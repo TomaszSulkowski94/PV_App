@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stwórz moduł PV</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <form th:object="${pvModule}" th:action="@{/PVModules}" th:method="POST" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label">Producent</label>
+            <input type="text" th:field="*{manufacturer}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Model</label>
+            <input type="text" th:field="*{model}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Typ modułu</label>
+            <select th:field="*{type}">
+                <option th:each="type : ${T(com.pvapp.PVApp.Domain.PVModule$moduleType).values()}"
+                        th:value="${type}"
+                        th:text="${type}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Prąd STC</label>
+            <input type="number" class="form-control" th:field="*{currentSTC}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Maksymalny Prąd STC</label>
+            <input type="number" class="form-control" th:field="*{maxCurrentSTC}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Napięcie STC</label>
+            <input type="number" class="form-control" th:field="*{voltageSTC}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Napięcie MPP</label>
+            <input type="number" class="form-control" th:field="*{voltageMPP}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Strata temperaturowa</label>
+            <input type="number" class="form-control" th:field="*{temperatureLost}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Sprawność modułu</label>
+            <input type="number" class="form-control" th:field="*{efficency}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Cena</label>
+            <input type="number" class="form-control" th:field="*{price}"/>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Dodaj moduł</button>
+        </div>
+    </form>
+   </div>
+</body>
+</html>

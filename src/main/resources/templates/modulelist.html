@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista modułów PV</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Producent</td>
+            <td>Model</td>
+            <td>Typ modułu</td>
+            <td>Moc modułu</td>
+            <td>Prąd STC</td>
+            <td>Maksymalny prąd STC</td>
+            <td>Napięcie STC</td>
+            <td>Napięcie MPP</td>
+            <td>Strata temperaturowa B</td>
+            <td>Sprawność</td>
+            <td>Cena</td>
+                      <td>Usuwanie</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pvModule: ${modules}">
+            <td th:text="${pvModule.manufacturer}"></td>
+            <td th:text="${pvModule.model}"></td>
+            <td th:text="${pvModule.type}"></td>
+            <td th:text="${pvModule.power}"></td>
+            <td th:text="${pvModule.currentSTC}"></td>
+            <td th:text="${pvModule.maxCurrentSTC}"></td>
+            <td th:text="${pvModule.voltageSTC}"></td>
+            <td th:text="${pvModule.voltageMPP}"></td>
+            <td th:text="${pvModule.temperatureLost}"></td>
+            <td th:text="${pvModule.efficency}"></td>
+            <td th:text="${pvModule.price}"></td>
+               <td><a th:href="${'/modulelist/'+pvModule.id}">Usuń moduł</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <a href="/createModule">Dodaj moduł do listy</a>
+    </div>
+</div>
+</body>
+</html>

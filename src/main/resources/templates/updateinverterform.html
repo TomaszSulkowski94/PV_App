@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja falownika</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <form th:object="${inverter}" th:action="@{/inverter/edit}" th:method="POST" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label">Id</label>
+            <input type="text" th:field="*{id}" class="form-control" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Producent</label>
+            <input type="text" class="form-control" th:field="*{manufacturer}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Model</label>
+            <input type="text" class="form-control" th:field="*{model}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Typ falownika</label>
+            <select th:field="*{type}">
+                <option th:each="type : ${T(com.pvapp.PVApp.Domain.Inverter$InverterType).values()}"
+                        th:value="${type}"
+                        th:text="${type}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Moc DC</label>
+            <input type="number" class="form-control" th:field="*{dcpower}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Moc AC</label>
+            <input type="number" class="form-control" th:field="*{acpower}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Liczba MPPT</label>
+            <input type="number" class="form-control" th:field="*{mppt}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Maksymalny prąd zwarcia</label>
+            <input type="number" class="form-control" th:field="*{maxcurrentzwarcia}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Maksymalny prąd roboczy</label>
+            <input type="number" class="form-control" th:field="*{maxcurrentrob}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Dolny zakres napięcia</label>
+            <input type="number" class="form-control" th:field="*{dolnyzakresnapiecia}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Górny zakres napięcia</label>
+            <input type="number" class="form-control" th:field="*{gornyzakresnapiecia}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Maksymalne napięcie pracy</label>
+            <input type="number" class="form-control" th:field="*{maksymalnenapiecie}"/>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Zapisz zmiany</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

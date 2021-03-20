@@ -1,33 +1,75 @@
 package com.pvapp.PVApp.Domain;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="inverter")
+@Table(name = "inverter")
 public class Inverter {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotEmpty(message = "Podaj producenta invertera")
+    @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String manufacturer;
+
+    @NotEmpty(message = "Podaj model invertera")
+    @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String model;
-    private type type;
+    private InverterType type;
+
+
+    @Range(min=1, max=1000000, message = "Moc falownika po stronie DC powinna przyjmować wartości z przedziału 1 a 1000000 [W]")
     private int dcpower;
+
+    @Range(min=1, max=1000000, message = "Moc falownika po stronie AC powinna przyjmować wartości z przedziału 1 a 1000000 [W]")
     private int acpower;
+
+    @Range(min=1, max=10, message = "Ilość łańcuchów MPPT może przyjmować wartości pomiędzy 1 a 10")
     private int mppt;
-    private int maxcurrentzwarcia;
-    private int maxcurrentrob;
+
+    @DecimalMin(value = "0.01", message = "Minimalna wartość prądu zwarcia  powinna być większa niż 0.01 [A]")
+    @DecimalMax(value = "100.00", message = "Maksymalnwa wartość prądu zwarcia powinna nyć nie większa niż 100.00 [A]")
+    private double maxcurrentzwarcia;
+
+    @DecimalMin(value = "0.01", message = "Minimalna wartość prądu zwarcia w warunkach roboczych powinna być większa niż 0.01 [A]")
+    @DecimalMax(value = "100.00", message = "Maksymalnwa wartość prądu zwarcia w warunkach roboczych powinna nyć nie większa niż 100.00 [A]")
+    private double maxcurrentrob;
+
+    @Range(min=1, max=1000, message = "Dolny zakres napięcia falownika powinien wynosić pomiędzy 1 a 1000 [V]")
     private int dolnyzakresnapiecia;
+    @Range(min=100, max=100000, message = "Górny zakres napięcia falownika powinien wynosić pomiędzy 100 a 100000 [V]")
     private int gornyzakresnapiecia;
+    @Range(min=100, max=100000, message = "Maksymalne napięcia falownika powininno wynosić pomiędzy 100 a 100000 [V]")
     private int maksymalnenapiecie;
 
-    public enum type {
+    public enum InverterType {
         JEDNOFAZOWY, TROJFAZOWY
+    }
+
+    public Inverter(String manufacturer, String model, InverterType type, int dcpower, int acpower, int mppt, double maxcurrentzwarcia, double maxcurrentrob, int dolnyzakresnapiecia, int gornyzakresnapiecia, int maksymalnenapiecie) {
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.type = type;
+        this.dcpower = dcpower;
+        this.acpower = acpower;
+        this.mppt = mppt;
+        this.maxcurrentzwarcia = maxcurrentzwarcia;
+        this.maxcurrentrob = maxcurrentrob;
+        this.dolnyzakresnapiecia = dolnyzakresnapiecia;
+        this.gornyzakresnapiecia = gornyzakresnapiecia;
+        this.maksymalnenapiecie = maksymalnenapiecie;
     }
 }

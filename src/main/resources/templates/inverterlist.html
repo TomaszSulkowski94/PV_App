@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista falowników</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Producent</td>
+            <td>Model</td>
+            <td>Typ falownika</td>
+            <td>Moc DC</td>
+            <td>Moc AC</td>
+            <td>Ilość MPPT</td>
+            <td>Maksymalny prąd zwarcia</td>
+            <td>Maksymalny prąd roboczy</td>
+            <td>Dolny zakres napięcia pracy</td>
+            <td>Górny zakres napiecia pracy</td>
+            <td>Maksymalne napięcie pracy</td>
+            <td>Edytuj</td>
+            <td>Usuń</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="inverter: ${inverters}">
+            <td th:text="${inverter.manufacturer}"></td>
+            <td th:text="${inverter.model}"></td>
+            <td th:text="${inverter.type}"></td>
+            <td th:text="${inverter.dcpower}"></td>
+            <td th:text="${inverter.acpower}"></td>
+            <td th:text="${inverter.mppt}"></td>
+            <td th:text="${inverter.maxcurrentzwarcia}"></td>
+            <td th:text="${inverter.maxcurrentrob}"></td>
+            <td th:text="${inverter.dolnyzakresnapiecia}"></td>
+            <td th:text="${inverter.gornyzakresnapiecia}"></td>
+            <td th:text="${inverter.maksymalnenapiecie}"></td>
+            <td><a th:href="${'/inverter/edit/'+{inverter.id}}">Edytuj</a></td>
+            <td><a th:href="${'/inverter/delete/'+{inverter.id}}">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <a href="/inverter/create">Dodaj falownik</a>
+    </div>
+</div>
+</body>
+</html>

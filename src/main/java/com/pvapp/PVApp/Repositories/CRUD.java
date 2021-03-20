@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public interface CRUD<T> {
 
-    void update(int id, T t);
+    void update(T t);
 
     void create(T t);
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista konstrukcji</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Producent</td>
+            <td>Model konstrukcji</td>
+            <td>Typ dachu</td>
+            <td>Materiał wykonania dachu</td>
+            <td>Cena</td>
+            <td>Edytuj</td>
+            <td>Usuń</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="construction: ${constructions}">
+            <td th:text="${construction.manufacturer}"></td>
+            <td th:text="${construction.model}"></td>
+            <td th:text="${construction.rooftype}"></td>
+            <td th:text="${construction.roofmaterial}"></td>
+            <td th:text="${construction.price}"></td>
+            <td><a th:href="${'/construction/edit/'+construction.id}">Edytuj</a></td>
+            <td><a th:href="${'/construction/delete/'+construction.id}">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <a href="/construction/createConstruction">Dodaj konstrukcje</a>
+    </div>
+</div>
+</body>
+</html>

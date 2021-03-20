@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/modules")
 public class PVModuleController {
 
     @Autowired
@@ -28,18 +29,28 @@ public class PVModuleController {
         return "pvform";
     }
 
-    @PostMapping("/PVModules")
-    public String saveModule(PVModule pvmodule) {
+    @PostMapping("/saveModule")
+    public String saveModule(@ModelAttribute("pvModule") PVModule pvmodule) {
         pvModuleService.saveModule(pvmodule);
-        return "redirect:/modulelist";
+        return "redirect:/modules/modulelist";
     }
 
 
-    @RequestMapping("/modulelist/{id}")
+    @GetMapping("/modulelist/{id}")
     public String deleteModule(@PathVariable("id") int id) {
         pvModuleService.deleteModule(id);
-        return "redirect:/modulelist";
+        return "redirect:/modules/modulelist";
     }
 
+    @GetMapping("/modulelist/edit/{id}")
+    public String updateModule(@PathVariable("id") int id, Model model) {
+                model.addAttribute("pvModule", pvModuleService.getPVModule(id));
+        return "updatepvmodule";
+    }
 
+    @PostMapping("/modulelist/edit")
+    public String updateModule(@ModelAttribute("pvModule") PVModule pvModule) {
+        pvModuleService.updatemodule(pvModule);
+        return "redirect:/modules/modulelist";
+    }
 }

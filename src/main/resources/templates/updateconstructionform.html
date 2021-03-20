@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja konstrukcji</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:object="${construction}" th:action="@{/construction/edit}" th:method="POST" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label">Id</label>
+            <input type="text" th:field="*{id}" class="form-control" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Producent</label>
+            <input type="text" class="form-control" th:field="*{manufacturer}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Model</label>
+            <input type="text" class="form-control" th:field="*{model}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Typ dachu</label>
+            <select th:field="*{rooftype}">
+                <option th:each="rooftype : ${T(com.pvapp.PVApp.Domain.Construction$roofType).values()}"
+                        th:value="${rooftype}"
+                        th:text="${rooftype}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Materiał wykoniania dachu</label>
+            <select th:field="*{roofmaterial}">
+                <option th:each="roofmaterial : ${T(com.pvapp.PVApp.Domain.Construction$roofMaterial).values()}"
+                        th:value="${roofmaterial}"
+                        th:text="${roofmaterial}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Cena</label>
+            <input type="number" class="form-control" th:field="*{price}"/>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Zapisz zmiany</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

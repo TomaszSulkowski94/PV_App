@@ -13,13 +13,13 @@ import javax.persistence.*;
 public class Construction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String manufacturer;
     private String model;
-    private roofType roofType;
-    private roofMaterial roofMaterial;
+    private roofType rooftype;
+    private roofMaterial roofmaterial;
     private double price;
 
     public enum roofType {
@@ -30,5 +30,11 @@ public class Construction {
         BLACHODACHOWKA, BLACHOTRAPEZ, PLYTA_WARSTWOWA, PAPA, GONT, GRUNT
     }
 
-
+    public Construction(String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price) {
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.rooftype = rooftype;
+        this.roofmaterial = roofmaterial;
+        this.price = price;
+    }
 }

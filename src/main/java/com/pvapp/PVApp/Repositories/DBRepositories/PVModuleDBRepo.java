@@ -18,7 +18,7 @@ public class PVModuleDBRepo implements CRUD<PVModule> {
 
     @Override
     @Transactional
-    public void update(int id, PVModule pvModule) {
+    public void update(PVModule pvModule) {
         em.merge(pvModule);
     }
 
@@ -37,7 +37,7 @@ public class PVModuleDBRepo implements CRUD<PVModule> {
 
     @Override
     public Collection<PVModule> printAll() {
-        return em.createQuery("from PVModule", PVModule.class).getResultList();
+        return em.createQuery("from PVModule order by manufacturer, model, type", PVModule.class).getResultList();
     }
 
     @Override

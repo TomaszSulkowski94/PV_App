@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj falownik</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:object="${inverter}" th:action="@{/inverter/save}" th:method="POST" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label">Producent</label>
+            <input type="text" class="form-control" th:field="*{manufacturer}" th:minlength="3" th:maxlength="20"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('manufacturer')}"
+                 th:errors="*{manufacturer}"></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Model</label>
+            <input type="text" class="form-control" th:field="*{model}" minlength=3 maxlength=20/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Typ falownika</label>
+            <select th:field="*{type}">
+                <option th:each="type : ${T(com.pvapp.PVApp.Domain.Inverter$InverterType).values()}"
+                        th:value="${type}"
+                        th:text="${type}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Moc DC</label>
+            <input type="number" class="form-control" th:field="*{dcpower}" min=1 max=1000000 step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('dcpower')}" th:errors="*{dcpower}"></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Moc AC</label>
+            <input type="number" class="form-control" th:field="*{acpower}" min=1 max=1000000 step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('acpower')}" th:errors="*{acpower}"></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Liczba MPPT</label>
+            <input type="number" class="form-control" th:field="*{mppt}" min=1 max=10 step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('mppt')}" th:errors="*{mppt}"></div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label">Maksymalny prąd zwarcia</label>
+            <input type="number" class="form-control" th:field="*{maxcurrentzwarcia}" min=0.01 max=100.00 step="0.01"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentzwarcia')}"
+                 th:errors="*{maxcurrentzwarcia}"></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Maksymalny prąd roboczy</label>
+            <input type="number" class="form-control" th:field="*{maxcurrentrob}" min=0.01 max=100.00 step="0.01"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentrob')}"
+                 th:errors="*{maxcurrentrob}"></div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label">Dolny zakres napięcia</label>
+            <input type="number" class="form-control" th:field="*{dolnyzakresnapiecia}" min=1 max=1000 step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('dolnyzakresnapiecia')}"
+                 th:errors="*{dolnyzakresnapiecia}"></div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label">Górny zakres napięcia</label>
+            <input type="number" class="form-control" th:field="*{gornyzakresnapiecia}" min=100 max=100000 step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('gornyzakresnapiecia')}"
+                 th:errors="*{gornyzakresnapiecia}"></div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label">Maksymalne napięcie pracy</label>
+            <input type="number" class="form-control" th:field="*{maksymalnenapiecie}" min=100 max=100000 step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maksymalnenapiecie')}"
+                 th:errors="*{maksymalnenapiecie}"></div>
+
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Dodaj falownik</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

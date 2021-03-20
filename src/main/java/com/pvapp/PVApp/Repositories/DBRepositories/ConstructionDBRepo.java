@@ -17,11 +17,12 @@ public class ConstructionDBRepo implements CRUD<Construction> {
 
     @Override
     @Transactional
-    public void update(int id, Construction construction) {
-
+    public void update(Construction construction) {
+        em.merge(construction);
     }
 
     @Override
+    @Transactional
     public void create(Construction construction) {
         em.persist(construction);
     }
@@ -30,7 +31,7 @@ public class ConstructionDBRepo implements CRUD<Construction> {
     @Override
     @Transactional
     public void delete(int id) {
-        em.remove(id);
+        em.remove(em.find(Construction.class, id));
     }
 
     @Override

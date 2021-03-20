@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
 
+
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
 </head>
@@ -26,7 +27,8 @@
             <td>Strata temperaturowa B</td>
             <td>Sprawność</td>
             <td>Cena</td>
-                      <td>Usuwanie</td>
+            <td>Edytuj</td>
+            <td>Usuwanie</td>
 
         </tr>
         </thead>
@@ -43,13 +45,13 @@
             <td th:text="${pvModule.temperatureLost}"></td>
             <td th:text="${pvModule.efficency}"></td>
             <td th:text="${pvModule.price}"></td>
-               <td><a th:href="${'/modulelist/'+pvModule.id}">Usuń moduł</a></td>
-
+            <td><a th:href="${'/modules/modulelist/edit/'+{pvModule.id}}">Edytuj</a></td>
+            <td><a th:href="${'/modules/modulelist/'+pvModule.id}">Usuń moduł</a></td>
         </tr>
         </tbody>
     </table>
     <div class="row">
-        <a href="/createModule">Dodaj moduł do listy</a>
+        <a href="/modules/createModule">Dodaj moduł do listy</a>
     </div>
 </div>
 </body>

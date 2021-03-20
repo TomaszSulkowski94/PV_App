@@ -17,8 +17,8 @@ public class InverterDBRepo implements CRUD<Inverter> {
 
     @Override
     @Transactional
-    public void update(int id, Inverter inverter) {
-
+    public void update(Inverter inverter) {
+        em.merge(inverter);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class InverterDBRepo implements CRUD<Inverter> {
     @Override
     @Transactional
     public void delete(int id) {
-        em.remove(id);
+        em.remove(em.find(Inverter.class, id));
     }
 
     @Override

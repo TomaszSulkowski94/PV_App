@@ -1,6 +1,6 @@
 package com.pvapp.PVApp.Repositories.DBRepositories;
 
-import com.pvapp.PVApp.Domain.Construction;
+import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Repositories.CRUD;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

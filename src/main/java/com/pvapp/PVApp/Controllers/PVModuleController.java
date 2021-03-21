@@ -1,12 +1,14 @@
 package com.pvapp.PVApp.Controllers;
 
-import com.pvapp.PVApp.Domain.PVModule;
+import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Services.PVModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -30,7 +32,10 @@ public class PVModuleController {
     }
 
     @PostMapping("/saveModule")
-    public String saveModule(@ModelAttribute("pvModule") PVModule pvmodule) {
+    public String saveModule(@Valid @ModelAttribute("pvModule") PVModule pvmodule, BindingResult result) {
+        if (result.hasErrors()) {
+            return "pvform";
+        }
         pvModuleService.saveModule(pvmodule);
         return "redirect:/modules/modulelist";
     }
@@ -44,12 +49,15 @@ public class PVModuleController {
 
     @GetMapping("/modulelist/edit/{id}")
     public String updateModule(@PathVariable("id") int id, Model model) {
-                model.addAttribute("pvModule", pvModuleService.getPVModule(id));
+        model.addAttribute("pvModule", pvModuleService.getPVModule(id));
         return "updatepvmodule";
     }
 
     @PostMapping("/modulelist/edit")
-    public String updateModule(@ModelAttribute("pvModule") PVModule pvModule) {
+    public String updateModule(@Valid @ModelAttribute("pvModule") PVModule pvModule, BindingResult result) {
+        if (result.hasErrors()) {
+            return "updatepvmodule";
+        }
         pvModuleService.updatemodule(pvModule);
         return "redirect:/modules/modulelist";
     }

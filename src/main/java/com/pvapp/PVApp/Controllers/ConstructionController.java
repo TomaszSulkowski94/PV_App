@@ -1,13 +1,15 @@
 package com.pvapp.PVApp.Controllers;
 
 
-import com.pvapp.PVApp.Domain.Construction;
+import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Services.ConstructionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -31,7 +33,10 @@ public class ConstructionController {
     }
 
     @PostMapping("/saveConstruction")
-    public String saveConstruction(@ModelAttribute("construction") Construction construction) {
+    public String saveConstruction(@Valid @ModelAttribute("construction") Construction construction, BindingResult result) {
+        if (result.hasErrors()) {
+            return "constructionform";
+        }
         constructionService.saveConstruction(construction);
         return "redirect:/construction/list";
     }
@@ -49,7 +54,10 @@ public class ConstructionController {
     }
 
     @PostMapping("/edit")
-    public String updateConstruction(@ModelAttribute("construction") Construction construction) {
+    public String updateConstruction(@Valid @ModelAttribute("construction") Construction construction, BindingResult result) {
+        if (result.hasErrors()) {
+            return "updateconstructionform";
+        }
         constructionService.update(construction);
         return "redirect:/construction/list";
     }

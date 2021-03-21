@@ -1,17 +1,25 @@
 package com.pvapp.PVApp.Repositories.DBRepositories;
 
+import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Repositories.CRUD;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
-public class InstalationDBRepo implements CRUD<InstalationDBRepo> {
+@Repository
+public class InstalationDBRepo implements CRUD<Instalation> {
+    @PersistenceContext
+    EntityManager em;
+
     @Override
-    public void update(InstalationDBRepo instalationDBRepo) {
+    public void update(Instalation instalationDBRepo) {
 
     }
 
     @Override
-    public void create(InstalationDBRepo instalationDBRepo) {
+    public void create(Instalation instalationDBRepo) {
 
     }
 
@@ -20,13 +28,14 @@ public class InstalationDBRepo implements CRUD<InstalationDBRepo> {
 
     }
 
+    //TODO: JOIN?????
     @Override
-    public Collection<InstalationDBRepo> printAll() {
-        return null;
+    public Collection<Instalation> printAll() {
+        return em.createQuery(" from Instalation", Instalation.class).getResultList();
     }
 
     @Override
-    public InstalationDBRepo printbyid(int id) {
+    public Instalation printbyid(int id) {
         return null;
     }
 }

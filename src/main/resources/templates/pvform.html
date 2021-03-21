@@ -8,7 +8,6 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
 
 
-
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
 </head>
@@ -18,53 +17,78 @@
         <div class="form-group">
             <label class="control-label">Producent</label>
             <input type="text" th:field="*{manufacturer}" class="form-control"/>
-
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('manufacturer')}"
+                 th:errors="*{manufacturer}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Model</label>
             <input type="text" th:field="*{model}" class="form-control"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('model')}"
+                 th:errors="*{model}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Typ modułu</label>
             <select th:field="*{type}">
-                <option th:each="type : ${T(com.pvapp.PVApp.Domain.PVModule$moduleType).values()}"
+                <option th:each="type : ${T(com.pvapp.PVApp.Entities.PVModule$moduleType).values()}"
                         th:value="${type}"
                         th:text="${type}">
                 </option>
             </select>
         </div>
         <div class="form-group">
-            <label class="control-label">Prąd STC</label>
+            <label class="control-label">Moc modułu [Wp]</label>
+            <input type="number" class="form-control" th:field="*{power}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('power')}"
+                 th:errors="*{power}"></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Prąd STC [A]</label>
             <input type="number" class="form-control" th:field="*{currentSTC}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('currentSTC')}"
+                 th:errors="*{currentSTC}"></div>
         </div>
         <div class="form-group">
-            <label class="control-label">Maksymalny Prąd STC</label>
+            <label class="control-label">Maksymalny prąd STC [A]</label>
             <input type="number" class="form-control" th:field="*{maxCurrentSTC}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maxCurrentSTC')}"
+                 th:errors="*{maxCurrentSTC}"></div>
         </div>
         <div class="form-group">
-            <label class="control-label">Napięcie STC</label>
+            <label class="control-label">Napięcie STC [V]</label>
             <input type="number" class="form-control" th:field="*{voltageSTC}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('voltageSTC')}"
+                 th:errors="*{voltageSTC}"></div>
         </div>
         <div class="form-group">
-            <label class="control-label">Napięcie MPP</label>
+            <label class="control-label">Napięcie MPP [V]</label>
             <input type="number" class="form-control" th:field="*{voltageMPP}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('voltageMPP')}"
+                 th:errors="*{voltageMPP}"></div>
         </div>
         <div class="form-group">
-            <label class="control-label">Strata temperaturowa</label>
+            <label class="control-label">Strata temperaturowa [%/C]</label>
             <input type="number" class="form-control" th:field="*{temperatureLost}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('temperatureLost')}"
+                 th:errors="*{temperatureLost}"></div>
         </div>
         <div class="form-group">
-            <label class="control-label">Sprawność modułu</label>
+            <label class="control-label">Sprawność modułu [-]</label>
             <input type="number" class="form-control" th:field="*{efficency}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('efficency')}"
+                 th:errors="*{efficency}"></div>
         </div>
         <div class="form-group">
-            <label class="control-label">Cena</label>
+            <label class="control-label">Cena [€/Wp]</label>
             <input type="number" class="form-control" th:field="*{price}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
+                 th:errors="*{price}"></div>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-default">Dodaj moduł</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <a href="/modules/modulelist" class="btn btn-danger" role="button">Powrót</button></a>
         </div>
     </form>
-   </div>
+</div>
 </body>
 </html>

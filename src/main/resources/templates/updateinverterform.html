@@ -22,15 +22,19 @@
         <div class="form-group">
             <label class="control-label">Producent</label>
             <input type="text" class="form-control" th:field="*{manufacturer}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('manufacturer')}"
+                 th:errors="*{manufacturer}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Model</label>
             <input type="text" class="form-control" th:field="*{model}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('model')}"
+                 th:errors="*{model}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Typ falownika</label>
             <select th:field="*{type}">
-                <option th:each="type : ${T(com.pvapp.PVApp.Domain.Inverter$InverterType).values()}"
+                <option th:each="type : ${T(com.pvapp.PVApp.Entities.Inverter$InverterType).values()}"
                         th:value="${type}"
                         th:text="${type}">
                 </option>
@@ -39,37 +43,61 @@
         <div class="form-group">
             <label class="control-label">Moc DC</label>
             <input type="number" class="form-control" th:field="*{dcpower}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('dcpower')}"
+                 th:errors="*{dcpower}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Moc AC</label>
             <input type="number" class="form-control" th:field="*{acpower}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('acpower')}"
+                 th:errors="*{acpower}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Liczba MPPT</label>
             <input type="number" class="form-control" th:field="*{mppt}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('mppt')}"
+                 th:errors="*{mppt}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Maksymalny prąd zwarcia</label>
             <input type="number" class="form-control" th:field="*{maxcurrentzwarcia}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentzwarcia')}"
+                 th:errors="*{maxcurrentzwarcia}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Maksymalny prąd roboczy</label>
             <input type="number" class="form-control" th:field="*{maxcurrentrob}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentrob')}"
+                 th:errors="*{maxcurrentrob}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Dolny zakres napięcia</label>
             <input type="number" class="form-control" th:field="*{dolnyzakresnapiecia}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('dolnyzakresnapiecia')}"
+                 th:errors="*{dolnyzakresnapiecia}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Górny zakres napięcia</label>
             <input type="number" class="form-control" th:field="*{gornyzakresnapiecia}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('gornyzakresnapiecia')}"
+                 th:errors="*{gornyzakresnapiecia}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Maksymalne napięcie pracy</label>
             <input type="number" class="form-control" th:field="*{maksymalnenapiecie}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maksymalnenapiecie')}"
+                 th:errors="*{maksymalnenapiecie}"></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Cena</label>
+            <input type="number" class="form-control" th:field="*{price}"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
+                 th:errors="*{price}"></div>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-default">Zapisz zmiany</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <a href="/inverter/list" class="btn btn-danger" role="button">Powrót</a>
         </div>
     </form>
 </div>

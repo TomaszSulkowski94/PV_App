@@ -1,7 +1,6 @@
 package com.pvapp.PVApp.Services;
 
-import com.pvapp.PVApp.Domain.Construction;
-import com.pvapp.PVApp.Domain.PVModule;
+import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Repositories.DBRepositories.ConstructionDBRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

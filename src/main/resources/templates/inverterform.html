@@ -28,7 +28,7 @@
         <div class="form-group">
             <label class="control-label">Typ falownika</label>
             <select th:field="*{type}">
-                <option th:each="type : ${T(com.pvapp.PVApp.Domain.Inverter$InverterType).values()}"
+                <option th:each="type : ${T(com.pvapp.PVApp.Entities.Inverter$InverterType).values()}"
                         th:value="${type}"
                         th:text="${type}">
                 </option>
@@ -68,7 +68,6 @@
             <input type="number" class="form-control" th:field="*{dolnyzakresnapiecia}" min=1 max=1000 step="1"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('dolnyzakresnapiecia')}"
                  th:errors="*{dolnyzakresnapiecia}"></div>
-
         </div>
         <div class="form-group">
             <label class="control-label">Górny zakres napięcia</label>
@@ -84,8 +83,17 @@
                  th:errors="*{maksymalnenapiecie}"></div>
 
         </div>
+        <div class="form-group">
+            <label class="control-label">Cena</label>
+            <input type="number" class="form-control" th:field="*{price}" min=0.01 max=999999.00 step="0.01"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
+                 th:errors="*{price}"></div>
+
+        </div>
         <div class="row">
             <button type="submit" class="btn btn-default">Dodaj falownik</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <a href="/inverter/list" class="btn btn-danger" role="button">Powrót</a>
         </div>
     </form>
 </div>

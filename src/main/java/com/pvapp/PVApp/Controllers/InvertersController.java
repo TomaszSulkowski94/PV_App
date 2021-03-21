@@ -1,6 +1,6 @@
 package com.pvapp.PVApp.Controllers;
 
-import com.pvapp.PVApp.Domain.Inverter;
+import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Services.InverterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class InvertersController {
 
     @PostMapping("/save")
     public String saveInverter(@Valid @ModelAttribute("inverter") Inverter inverter, BindingResult result) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "inverterform";
         }
         inverterService.saveInverter(inverter);
@@ -54,7 +54,10 @@ public class InvertersController {
     }
 
     @PostMapping("/edit")
-    public String editInverter(@ModelAttribute("inverter") Inverter inverter) {
+    public String editInverter(@Valid @ModelAttribute("inverter") Inverter inverter, BindingResult result) {
+        if (result.hasErrors()) {
+            return "updateinverterform";
+        }
         inverterService.update(inverter);
         return "redirect:/inverter/list";
     }

@@ -18,14 +18,15 @@
             <td>Producent</td>
             <td>Model</td>
             <td>Typ falownika</td>
-            <td>Moc DC</td>
-            <td>Moc AC</td>
-            <td>Ilość MPPT</td>
-            <td>Maksymalny prąd zwarcia</td>
-            <td>Maksymalny prąd roboczy</td>
-            <td>Dolny zakres napięcia pracy</td>
-            <td>Górny zakres napiecia pracy</td>
-            <td>Maksymalne napięcie pracy</td>
+            <td>Moc DC [W]</td>
+            <td>Moc AC [W]</td>
+            <td>Ilość MPPT [-]</td>
+            <td>Maksymalny prąd zwarcia [A]</td>
+            <td>Maksymalny prąd roboczy [A]</td>
+            <td>Dolny zakres napięcia pracy [V]</td>
+            <td>Górny zakres napiecia pracy [V]</td>
+            <td>Maksymalne napięcie pracy [V]</td>
+            <td>Cena [zł]</td>
             <td>Edytuj</td>
             <td>Usuń</td>
         </tr>
@@ -43,6 +44,7 @@
             <td th:text="${inverter.dolnyzakresnapiecia}"></td>
             <td th:text="${inverter.gornyzakresnapiecia}"></td>
             <td th:text="${inverter.maksymalnenapiecie}"></td>
+            <td th:text="${inverter.price}"></td>
             <td><a th:href="${'/inverter/edit/'+{inverter.id}}">Edytuj</a></td>
             <td><a th:href="${'/inverter/delete/'+{inverter.id}}">Usuń</a></td>
         </tr>

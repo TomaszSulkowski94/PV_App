@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista konstrukcji</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Producent modułu PV</td>
+            <td>Model modułu PV</td>
+            <td>Moc modułu PV [Wp]</td>
+            <td>Liczba modułów PV w instalacji</td>
+            <td>Moc instalacji [Wp]</td>
+            <td>Producent falownika</td>
+            <td>Model falownika</td>
+            <td>Producent konstrukcji</td>
+            <td>Typ dachu</td>
+            <td>Materiał poszycia dachu</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="instalation: ${instalations}">
+            <td th:text="${instalation.pvModule.manufacturer}"></td>
+            <td th:text="${instalation.pvModule.model}"></td>
+            <td th:text="${instalation.pvModule.power}"></td>
+            <td th:text="${instalation.numberofpvmodule}"></td>
+            <td th:text="${instalation.power}"></td>
+            <td th:text="${instalation.inverter.manufacturer}"></td>
+            <td th:text="${instalation.inverter.model}"></td>
+            <td th:text="${instalation.construction.manufacturer}"></td>
+            <td th:text="${instalation.construction.rooftype}"></td>
+            <td th:text="${instalation.construction.roofmaterial}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

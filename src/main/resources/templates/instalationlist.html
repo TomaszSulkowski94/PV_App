@@ -22,6 +22,7 @@
             <td>Moc instalacji [Wp]</td>
             <td>Producent falownika</td>
             <td>Model falownika</td>
+            <td>Liczba falowników</td>
             <td>Producent konstrukcji</td>
             <td>Typ dachu</td>
             <td>Materiał poszycia dachu</td>
@@ -36,12 +37,17 @@
             <td th:text="${instalation.power}"></td>
             <td th:text="${instalation.inverter.manufacturer}"></td>
             <td th:text="${instalation.inverter.model}"></td>
+            <td th:text="${instalation.numberofinverters}"></td>
             <td th:text="${instalation.construction.manufacturer}"></td>
             <td th:text="${instalation.construction.rooftype}"></td>
             <td th:text="${instalation.construction.roofmaterial}"></td>
         </tr>
         </tbody>
     </table>
+    <div class="row">
+        <a href="/instalation/design">Stwórz nową instalację PV</a>
+
+    </div>
 </div>
 </body>
 </html>

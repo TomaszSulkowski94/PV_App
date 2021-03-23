@@ -17,7 +17,7 @@ public class PVModuleService {
     PVModuleDBRepo pvModuleRepo;
 
     public List<PVModule> getAllModules() {
-        log.info("Printing all modules from DB");
+        log.info("Getting all modules from DB");
         return new ArrayList<PVModule>(pvModuleRepo.printAll());
     }
 
@@ -27,12 +27,12 @@ public class PVModuleService {
     }
 
     public PVModule getPVModule(int id) {
-        log.info("Print module from DB");
+        log.info("Getting module from DB");
         return pvModuleRepo.printbyid(id);
     }
 
     public void deleteModule(int id) {
-        log.info("Delete module from DB");
+        log.info("Deleting module from DB");
         pvModuleRepo.delete(id);
     }
 

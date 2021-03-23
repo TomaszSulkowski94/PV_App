@@ -28,7 +28,7 @@ public class InstalationDBRepo implements CRUD<Instalation> {
 
     }
 
-    //TODO: JOIN?????
+
     @Override
     public Collection<Instalation> printAll() {
         return em.createQuery(" from Instalation", Instalation.class).getResultList();

@@ -41,6 +41,12 @@ public class PVModuleController {
     }
 
 
+    @GetMapping("/module")
+    public String getKnight(@RequestParam("id") Integer id, Model model) {
+        model.addAttribute("module", pvModuleService.getPVModule(id));
+        return "knight";
+    }
+
     @GetMapping("/modulelist/{id}")
     public String deleteModule(@PathVariable("id") int id) {
         pvModuleService.deleteModule(id);

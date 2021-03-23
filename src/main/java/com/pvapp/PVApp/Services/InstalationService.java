@@ -15,7 +15,11 @@ public class InstalationService {
     @Autowired
     InstalationDBRepo instalationDBRepo;
 
-    public List<Instalation> getAll(){
+    public List<Instalation> getAll() {
         return new ArrayList<Instalation>(instalationDBRepo.printAll());
+    }
+
+    public void save(Instalation instalation) {
+        instalationDBRepo.create(instalation);
     }
 }

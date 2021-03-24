@@ -2,6 +2,7 @@ package com.pvapp.PVApp.Controllers;
 
 
 import com.pvapp.PVApp.Entities.Instalation;
+
 import com.pvapp.PVApp.Services.ConstructionService;
 import com.pvapp.PVApp.Services.InstalationService;
 import com.pvapp.PVApp.Services.InverterService;
@@ -9,10 +10,7 @@ import com.pvapp.PVApp.Services.PVModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,18 +40,27 @@ public class InstalationController {
     @GetMapping("/design")
     public String designInstalation(Model model) {
         model.addAttribute("instalation", new Instalation());
+        model.addAttribute("modules", moduleService.getAllModules());
+        model.addAttribute("constructions", constructionService.getAllConstructions());
+        model.addAttribute("inverters", inverterService.getAllInverters());
         return "designform";
     }
 
     @PostMapping("/save")
     public String designInstalation(@ModelAttribute("instalation") Instalation instalation) {
         instalationService.save(instalation);
-        return "redirect:/instalationlist";
+        return "redirect:/instalation/list";
     }
 
     @GetMapping("/designPage")
     public String test() {
         return "homePageDesign";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteInstalation(@PathVariable("id") int id) {
+        instalationService.delete(id);
+        return "redirect:/instalation/list";
     }
 
 }

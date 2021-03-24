@@ -22,4 +22,8 @@ public class InstalationService {
     public void save(Instalation instalation) {
         instalationDBRepo.create(instalation);
     }
+
+    public void delete(int id) {
+    instalationDBRepo.delete(id);
+    }
 }

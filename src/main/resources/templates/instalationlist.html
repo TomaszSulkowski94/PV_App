@@ -26,6 +26,8 @@
             <td>Producent konstrukcji</td>
             <td>Typ dachu</td>
             <td>Materiał poszycia dachu</td>
+            <td>Edytuj</td>
+            <td>Usuń</td>
         </tr>
         </thead>
         <tbody>
@@ -41,6 +43,9 @@
             <td th:text="${instalation.construction.manufacturer}"></td>
             <td th:text="${instalation.construction.rooftype}"></td>
             <td th:text="${instalation.construction.roofmaterial}"></td>
+            <td>TODO EDIT</td>
+            <td><a th:href="${'/instalation/delete/'+{instalation.id}}">Usuń</a></td>
+
         </tr>
         </tbody>
     </table>

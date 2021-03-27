@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label class="control-label">Model falownika</label>
-            <select th:field="*{inverter.id}" name="inverterId">
+            <select th:field="*{inverter.id}" name="inverterid">
                 <option th:each="inverter : ${inverters}"
                         th:value="${inverter.id}"
                         th:text="|${inverter.manufacturer}  ${inverter.model} ${inverter.type} ${inverter.dcpower}|">
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
             <label class="control-label">Konstrukcja</label>
-            <select th:field="*{construction.id}" name="constructionId">
+            <select th:field="*{construction.id}" name="constructionid">
                 <option th:each="construction : ${constructions}"
                         th:value="${construction.id}"
                         th:text="|${construction.manufacturer} ${construction.model} ${construction.rooftype} ${construction.roofmaterial}|">

@@ -63,8 +63,8 @@ public class PVModule {
     private double voltageMPP;
 
     @Column(name = "temperaturelost")
-    @DecimalMin(value = "-1.00", message = "Minimalna strata temperaturowa  powinna być większa niż -1.00 [%/C]")
-    @DecimalMax(value = "-0.01", message = "Maksymalnwa strata temperaturowa powinna nyć nie większa niż -0.01 [%/C]")
+    @DecimalMin(value = "0.01", message = "Minimalna strata temperaturowa  powinna być większa niż 0.01 [%/C]")
+    @DecimalMax(value = "1.00", message = "Maksymalnwa strata temperaturowa powinna nyć nie większa niż 1.00 [%/C]")
     private double temperatureLost;
 
     @Column(name = "efficency")
@@ -81,7 +81,6 @@ public class PVModule {
         MONOKRYSTALICZNY, POLIKRYSTALICZNY, BIFACIAL, GLASSGLASS;
 
     }
-
 
     @OneToMany(mappedBy = "pvModule")
     List<Instalation> instalationList;

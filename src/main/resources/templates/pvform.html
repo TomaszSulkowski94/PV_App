@@ -37,49 +37,49 @@
         </div>
         <div class="form-group">
             <label class="control-label">Moc modułu [Wp]</label>
-            <input type="number" class="form-control" th:field="*{power}"/>
+            <input type="number" class="form-control" th:field="*{power}" min="1" max="9999" step="1"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('power')}"
                  th:errors="*{power}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Prąd STC [A]</label>
-            <input type="number" class="form-control" th:field="*{currentSTC}"/>
+            <input type="number" class="form-control" th:field="*{currentSTC}" min="0.01" max="100.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('currentSTC')}"
                  th:errors="*{currentSTC}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Maksymalny prąd STC [A]</label>
-            <input type="number" class="form-control" th:field="*{maxCurrentSTC}"/>
+            <input type="number" class="form-control" th:field="*{maxCurrentSTC}" min="0.01" max="100.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('maxCurrentSTC')}"
                  th:errors="*{maxCurrentSTC}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Napięcie STC [V]</label>
-            <input type="number" class="form-control" th:field="*{voltageSTC}"/>
+            <input type="number" class="form-control" th:field="*{voltageSTC}" min="0.01" max="100.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('voltageSTC')}"
                  th:errors="*{voltageSTC}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Napięcie MPP [V]</label>
-            <input type="number" class="form-control" th:field="*{voltageMPP}"/>
+            <input type="number" class="form-control" th:field="*{voltageMPP}" min="0.01" max="100.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('voltageMPP')}"
                  th:errors="*{voltageMPP}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Strata temperaturowa [%/C]</label>
-            <input type="number" class="form-control" th:field="*{temperatureLost}"/>
+            <input type="number" class="form-control" th:field="*{temperatureLost}" min="0.01" max="1.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('temperatureLost')}"
                  th:errors="*{temperatureLost}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Sprawność modułu [-]</label>
-            <input type="number" class="form-control" th:field="*{efficency}"/>
+            <input type="number" class="form-control" th:field="*{efficency}" min="0.01" max="1.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('efficency')}"
                  th:errors="*{efficency}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Cena [€/Wp]</label>
-            <input type="number" class="form-control" th:field="*{price}"/>
+            <input type="number" class="form-control" th:field="*{price}" min="0.01" max="100.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
                  th:errors="*{price}"></div>
         </div>

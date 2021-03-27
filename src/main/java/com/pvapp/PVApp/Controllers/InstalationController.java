@@ -55,9 +55,9 @@ public class InstalationController {
 
     @PostMapping("/save")
     public String designInstalation(@ModelAttribute("instalation") Instalation instalation, HttpSession session,
-                                    @RequestParam(value = "moduleId", required = false) Integer moduleId,
-                                    @RequestParam(value = "constructionId", required = false) Integer constructionId,
-                                    @RequestParam(value = "inverterId", required = false) Integer inverterId) {
+                                    @RequestParam(value = "moduleid", required = false) Integer moduleId,
+                                    @RequestParam(value = "constructionid", required = false) Integer constructionId,
+                                    @RequestParam(value = "inverterid", required = false) Integer inverterId) {
 
 
         System.out.println("ID i parametry");

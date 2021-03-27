@@ -21,18 +21,18 @@ public class Instalation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="pvmoduleid")
     private PVModule pvModule;
     private int numberofpvmodule;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="inverterid")
     private Inverter inverter;
 
     private int numberofinverters;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "constructionid")
     private Construction construction;
 
@@ -50,4 +50,5 @@ public class Instalation {
         this.construction = construction;
         this.power = 0;
     }
+
 }

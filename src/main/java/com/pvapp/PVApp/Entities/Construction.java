@@ -19,7 +19,7 @@ public class Construction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="construction_id")
+    @Column(name="constructionid")
     private int id;
 
     @NotEmpty(message = "Podaj producenta konstrukcji")

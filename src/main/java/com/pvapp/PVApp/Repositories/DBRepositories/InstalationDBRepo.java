@@ -11,13 +11,16 @@ import java.util.Collection;
 
 @Repository
 public class InstalationDBRepo implements CRUD<Instalation> {
+
     @PersistenceContext
     EntityManager em;
 
     @Override
+    @Transactional
     public void update(Instalation instalation) {
-
+        em.merge(instalation);
     }
+
 
     @Override
     @Transactional

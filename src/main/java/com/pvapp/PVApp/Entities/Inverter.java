@@ -19,7 +19,7 @@ public class Inverter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="inverter_id")
+    @Column(name="inverterid")
     private int id;
 
     @NotEmpty(message = "Podaj producenta falownika")

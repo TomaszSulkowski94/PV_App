@@ -3,6 +3,8 @@ package com.pvapp.PVApp.Controllers;
 
 import com.pvapp.PVApp.Entities.Instalation;
 
+import com.pvapp.PVApp.Entities.PVModule;
+import com.pvapp.PVApp.Repositories.DBRepositories.PVModuleDBRepo;
 import com.pvapp.PVApp.Services.ConstructionService;
 import com.pvapp.PVApp.Services.InstalationService;
 import com.pvapp.PVApp.Services.InverterService;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -46,9 +50,30 @@ public class InstalationController {
         return "designform";
     }
 
+    @Autowired
+    PVModuleDBRepo pvModuleDBRepo;
+
     @PostMapping("/save")
-    public String designInstalation(@ModelAttribute("instalation") Instalation instalation) {
-        instalationService.save(instalation);
+    public String designInstalation(@ModelAttribute("instalation") Instalation instalation, HttpSession session,
+                                    @RequestParam(value = "moduleId", required = false) Integer moduleId,
+                                    @RequestParam(value = "constructionId", required = false) Integer constructionId,
+                                    @RequestParam(value = "inverterId", required = false) Integer inverterId) {
+
+
+        System.out.println("ID i parametry");
+        System.out.println("Moduł ID:" + instalation.getPvModule().getId());
+        System.out.println("Liczba modułów: " + instalation.getNumberofpvmodule());
+        System.out.println("Inverter ID:" + instalation.getInverter().getId());
+        System.out.println("Konstrukcja ID :" + instalation.getConstruction().getId());
+        System.out.println("Liczba falownikow: " + instalation.getNumberofinverters());
+
+        System.out.println("Obiekty");
+        System.out.println("Moduł " + moduleService.getPVModule(moduleId).getModel());
+        System.out.println("Inverter " + instalation.getInverter().getManufacturer());
+        System.out.println("Konstrukcja " + instalation.getConstruction().getManufacturer());
+
+
+        instalationService.save(instalation, moduleId, inverterId, constructionId);
         return "redirect:/instalation/list";
     }
 

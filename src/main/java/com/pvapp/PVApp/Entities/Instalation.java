@@ -21,21 +21,19 @@ public class Instalation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-
     @ManyToOne
-    @JoinColumn(name="pvmodule_id")
+    @JoinColumn(name="pvmoduleid")
     private PVModule pvModule;
     private int numberofpvmodule;
 
     @ManyToOne
-    @JoinColumn(name="inverter_id")
+    @JoinColumn(name="inverterid")
     private Inverter inverter;
 
     private int numberofinverters;
 
     @ManyToOne
-    @JoinColumn(name = "construction_id")
+    @JoinColumn(name = "constructionid")
     private Construction construction;
 
     private double power;

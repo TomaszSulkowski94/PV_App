@@ -36,6 +36,7 @@ public class PVModuleController {
         if (result.hasErrors()) {
             return "pvform";
         }
+
         pvModuleService.saveModule(pvmodule);
         return "redirect:/modules/modulelist";
     }

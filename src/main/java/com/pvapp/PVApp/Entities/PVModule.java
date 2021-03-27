@@ -21,7 +21,7 @@ public class PVModule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="pvmodule_id")
+    @Column(name="pvmoduleid")
     private int id;
 
 
@@ -31,8 +31,6 @@ public class PVModule {
 
     @NotEmpty(message = "Podaj model modułu PV")
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
-
-
     private String model;
 
 
@@ -75,8 +73,8 @@ public class PVModule {
     private double efficency;
 
     @Column(name = "price")
-    @DecimalMin(value = "0.01", message = "Minimalna wartość prądu zwarcia  powinna być większa niż 0.01 [A]")
-    @DecimalMax(value = "100.00", message = "Maksymalnwa wartość prądu zwarcia powinna nyć nie większa niż 100.00 [A]")
+    @DecimalMin(value = "0.01", message = "Minimalna wartość prądu zwarcia  powinna być większa niż 0.01 [€/Wp]")
+    @DecimalMax(value = "100.00", message = "Maksymalnwa wartość prądu zwarcia powinna nyć nie większa niż 100.00 [€/Wp]")
     private double price;
 
     public enum moduleType {

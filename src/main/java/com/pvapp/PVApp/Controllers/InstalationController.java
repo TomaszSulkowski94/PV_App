@@ -68,12 +68,13 @@ public class InstalationController {
         System.out.println("Liczba falownikow: " + instalation.getNumberofinverters());
 
         System.out.println("Obiekty");
-        System.out.println("Moduł " + moduleService.getPVModule(moduleId).getModel());
+        System.out.println("Moduł " + instalation.getPvModule().getModel());
         System.out.println("Inverter " + instalation.getInverter().getManufacturer());
         System.out.println("Konstrukcja " + instalation.getConstruction().getManufacturer());
 
-
+        System.out.println("proba zapisu");
         instalationService.save(instalation, moduleId, inverterId, constructionId);
+        System.out.println("przechodze do serwisu");
         return "redirect:/instalation/list";
     }
 

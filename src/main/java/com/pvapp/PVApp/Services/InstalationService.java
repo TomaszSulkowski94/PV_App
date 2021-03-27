@@ -32,6 +32,7 @@ public class InstalationService {
     }
 
     public void save(Instalation instalation) {
+        System.out.println("wchodzę w serwis save 1");
         instalationDBRepo.create(instalation);
     }
 
@@ -40,6 +41,7 @@ public class InstalationService {
     }
 
     public void save(Instalation instalation, int moduleId, int inverterId, int constructionId) {
+        System.out.println("wchodze w serwis save 2");
         instalation.setPvModule(pvModuleService.getPVModule(moduleId));
         instalation.setInverter(inverterService.getInverter(inverterId));
         instalation.setConstruction(constructionService.getConstruction(constructionId));

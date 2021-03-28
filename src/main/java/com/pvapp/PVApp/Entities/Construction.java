@@ -44,7 +44,7 @@ public class Construction {
         BLACHODACHOWKA, BLACHOTRAPEZ, PLYTA_WARSTWOWA, PAPA, GONT, GRUNT
     }
 
-    @OneToMany(mappedBy = "construction")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction")
     private List<Instalation> list;
 
 

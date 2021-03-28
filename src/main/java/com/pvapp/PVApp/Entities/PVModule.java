@@ -82,7 +82,7 @@ public class PVModule {
 
     }
 
-    @OneToMany(mappedBy = "pvModule")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pvModule")
     List<Instalation> instalationList;
 
     public PVModule(String manufacturer, String model, moduleType type, int power, double currentSTC, double maxCurrentSTC, double voltageSTC, double voltageMPP, double temperatureLost, double efficency, double price) {

@@ -66,7 +66,7 @@ public class Inverter {
     }
 
 
-    @OneToMany(mappedBy = "inverter")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inverter")
     private List<Instalation> instalationList;
 
     public Inverter(String manufacturer, String model, InverterType type, int dcpower, int acpower, int mppt, double maxcurrentzwarcia, double maxcurrentrob, int dolnyzakresnapiecia, int gornyzakresnapiecia, int maksymalnenapiecie, double price) {

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Lista konstrukcji</title>
+    <title>Lista instalacji PV</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
@@ -28,6 +28,7 @@
             <td>Materiał poszycia dachu</td>
             <td>Edytuj</td>
             <td>Usuń</td>
+            <td>Podgląd pod raport</td>
         </tr>
         </thead>
         <tbody>
@@ -43,8 +44,9 @@
             <td th:text="${instalation.construction.manufacturer}"></td>
             <td th:text="${instalation.construction.rooftype}"></td>
             <td th:text="${instalation.construction.roofmaterial}"></td>
-            <td>TODO EDIT</td>
+            <td><a th:href="${'/instalation/edit/'+{instalation.id}}">Edytuj</a></td>
             <td><a th:href="${'/instalation/delete/'+{instalation.id}}">Usuń</a></td>
+            <td>Raport</td>
 
         </tr>
         </tbody>

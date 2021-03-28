@@ -1,10 +1,6 @@
 package com.pvapp.PVApp.Controllers;
 
-
 import com.pvapp.PVApp.Entities.Instalation;
-
-import com.pvapp.PVApp.Entities.PVModule;
-import com.pvapp.PVApp.Repositories.DBRepositories.PVModuleDBRepo;
 import com.pvapp.PVApp.Services.ConstructionService;
 import com.pvapp.PVApp.Services.InstalationService;
 import com.pvapp.PVApp.Services.InverterService;
@@ -14,8 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.servlet.http.HttpSession;
+
 import java.util.List;
 
 @Controller
@@ -35,11 +30,27 @@ public class InstalationController {
     ConstructionService constructionService;
 
     @GetMapping("/list")
-    public String printInstalationInfo(Model model) {
+    public String printInstalations(Model model) {
         List<Instalation> instalationsList = instalationService.getAll();
         model.addAttribute("instalations", instalationsList);
         return "instalationlist";
     }
+
+    @GetMapping("/edit/{id}")
+    public String updateInstalation(Model model, @PathVariable("id") int id) {
+        model.addAttribute("instalation", instalationService.getById(id));
+        model.addAttribute("modules", moduleService.getAllModules());
+        model.addAttribute("constructions", constructionService.getAllConstructions());
+        model.addAttribute("inverters", inverterService.getAllInverters());
+        return "updateinstalation";
+    }
+
+    @PostMapping("/edit")
+    public String updateInstalation(@ModelAttribute("instalation") Instalation instalation) {
+        instalationService.update(instalation);
+        return "redirect:/instalation/list";
+    }
+
 
     @GetMapping("/design")
     public String designInstalation(Model model) {
@@ -50,43 +61,22 @@ public class InstalationController {
         return "designform";
     }
 
-    @Autowired
-    PVModuleDBRepo pvModuleDBRepo;
 
     @PostMapping("/save")
-    public String designInstalation(@ModelAttribute("instalation") Instalation instalation, HttpSession session,
-                                    @RequestParam(value = "moduleid", required = false) Integer moduleId,
-                                    @RequestParam(value = "constructionid", required = false) Integer constructionId,
-                                    @RequestParam(value = "inverterid", required = false) Integer inverterId) {
-
-
-        System.out.println("ID i parametry");
-        System.out.println("Moduł ID:" + instalation.getPvModule().getId());
-        System.out.println("Liczba modułów: " + instalation.getNumberofpvmodule());
-        System.out.println("Inverter ID:" + instalation.getInverter().getId());
-        System.out.println("Konstrukcja ID :" + instalation.getConstruction().getId());
-        System.out.println("Liczba falownikow: " + instalation.getNumberofinverters());
-
-        System.out.println("Obiekty");
-        System.out.println("Moduł " + instalation.getPvModule().getModel());
-        System.out.println("Inverter " + instalation.getInverter().getManufacturer());
-        System.out.println("Konstrukcja " + instalation.getConstruction().getManufacturer());
-
-        System.out.println("proba zapisu");
-        instalationService.save(instalation, moduleId, inverterId, constructionId);
-        System.out.println("przechodze do serwisu");
+    public String designInstalation(@ModelAttribute("instalation") Instalation instalation) {
+        instalationService.save(instalation);
         return "redirect:/instalation/list";
-    }
-
-    @GetMapping("/designPage")
-    public String test() {
-        return "homePageDesign";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteInstalation(@PathVariable("id") int id) {
         instalationService.delete(id);
         return "redirect:/instalation/list";
+    }
+
+    @GetMapping("/designPage")
+    public String test() {
+        return "homePageDesign";
     }
 
 }

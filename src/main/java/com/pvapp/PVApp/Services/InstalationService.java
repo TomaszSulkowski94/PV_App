@@ -1,9 +1,6 @@
 package com.pvapp.PVApp.Services;
 
-import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Entities.Instalation;
-import com.pvapp.PVApp.Entities.Inverter;
-import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Repositories.DBRepositories.InstalationDBRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,20 +16,16 @@ public class InstalationService {
     InstalationDBRepo instalationDBRepo;
 
     @Autowired
-    InverterService inverterService;
+    PVModuleService moduleService;
 
-    @Autowired
-    ConstructionService constructionService;
-
-    @Autowired
-    PVModuleService pvModuleService;
 
     public List<Instalation> getAll() {
         return new ArrayList<Instalation>(instalationDBRepo.printAll());
     }
 
     public void save(Instalation instalation) {
-        System.out.println("wchodzę w serwis save 1");
+        int power = instalation.getNumberofpvmodule() * moduleService.getPVModule(instalation.getPvModule().getId()).getPower();
+        instalation.setPower(power);
         instalationDBRepo.create(instalation);
     }
 
@@ -40,19 +33,14 @@ public class InstalationService {
         instalationDBRepo.delete(id);
     }
 
-    public void save(Instalation instalation, int moduleId, int inverterId, int constructionId) {
-        System.out.println("wchodze w serwis save 2");
-        instalation.setPvModule(pvModuleService.getPVModule(moduleId));
-        instalation.setInverter(inverterService.getInverter(inverterId));
-        instalation.setConstruction(constructionService.getConstruction(constructionId));
-        int power = instalation.getNumberofpvmodule() * instalation.getPvModule().getPower();
+
+    public Instalation getById(int id) {
+        return instalationDBRepo.printbyid(id);
+    }
+
+    public void update(Instalation instalation) {
+        int power = instalation.getNumberofpvmodule() * moduleService.getPVModule(instalation.getPvModule().getId()).getPower();
         instalation.setPower(power);
-        System.out.println("Id instalacji " + instalation.getId());
-        System.out.println("Moduł " + instalation.getPvModule().getId());
-        System.out.println("Liczba modułów " + instalation.getNumberofpvmodule());
-        System.out.println("Konstrukcja " + instalation.getConstruction().getId());
-        System.out.println("Inverter " + instalation.getInverter().getId());
-        System.out.println("Liczba falownikow " + instalation.getNumberofinverters());
-        instalationDBRepo.create(instalation);
+        instalationDBRepo.update(instalation);
     }
 }

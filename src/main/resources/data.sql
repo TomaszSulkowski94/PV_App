@@ -12,5 +12,5 @@ dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
 values ('Fronius', 'SunPower', 1, 800, 80, 2, 9.12, 10.14, 200, 800, 1000, 10000);
 
 INSERT INTO instalation(pvmoduleid, numberofpvmodule, inverterid, numberofinverters, constructionid, power)
-values (1, 20, 1, 1, 1, 200);
+values (1, 20, 1, 1, 1, 20*250);
 

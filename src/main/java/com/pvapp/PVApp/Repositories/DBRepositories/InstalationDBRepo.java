@@ -42,6 +42,6 @@ public class InstalationDBRepo implements CRUD<Instalation> {
 
     @Override
     public Instalation printbyid(int id) {
-        return null;
+        return em.find(Instalation.class, id);
     }
 }

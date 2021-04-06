@@ -30,6 +30,7 @@ public class Inverter {
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String model;
 
+    @Enumerated(EnumType.ORDINAL)
     private InverterType type;
 
 

@@ -14,12 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="construction")
+@Table(name = "construction")
 public class Construction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="constructionid")
+    @Column(name = "constructionid")
     private int id;
 
     @NotEmpty(message = "Podaj producenta konstrukcji")
@@ -29,29 +29,31 @@ public class Construction {
     @NotEmpty(message = "Podaj producenta invertera")
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String model;
-    private roofType rooftype;
-    private roofMaterial roofmaterial;
+
+
+    @Enumerated(EnumType.STRING)
+    public roofType rooftype;
+
+
+    @Enumerated(EnumType.STRING)
+    public roofMaterial roofmaterial;
 
     @DecimalMin(value = "0.01", message = "Minimalna cena musi wynosi 0.01 zł/moduł")
     @DecimalMax(value = "1000.00", message = "Maksymalna cena musi wynosi 1000.0 zł/moduł")
     private double price;
 
+
     public enum roofType {
-        DACH_PLASKI, DACH_SKOSNY, GRUNT
+        DACH_PLASKI, DACH_SKOSNY, GRUNT;
     }
 
-    public enum roofMaterial{
-        BLACHODACHOWKA, BLACHOTRAPEZ, PLYTA_WARSTWOWA, PAPA, GONT, GRUNT
+    public enum roofMaterial {
+        BLACHODACHOWKA, BLACHOTRAPEZ, PLYTA_WARSTWOWA, PAPA, GONT, GRUNT, DACHÓWKA_CERAMICZNA, DACHÓWKA_KARPIÓWKA
     }
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction")
     private List<Instalation> list;
-
-
-
-
-
-
 
 
     public Construction(String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price) {

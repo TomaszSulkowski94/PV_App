@@ -1,5 +1,6 @@
 package com.pvapp.PVApp.Controllers;
 
+import com.pvapp.PVApp.Entities.QuestionForm;
 import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Services.ConstructionService;
 import com.pvapp.PVApp.Services.InstalationService;
@@ -33,7 +34,7 @@ public class InstalationController {
     public String printInstalations(Model model) {
         List<Instalation> instalationsList = instalationService.getAll();
         model.addAttribute("instalations", instalationsList);
-        return "instalationlist";
+        return "Instalation/instalationlist";
     }
 
     @GetMapping("/edit/{id}")
@@ -42,7 +43,7 @@ public class InstalationController {
         model.addAttribute("modules", moduleService.getAllModules());
         model.addAttribute("constructions", constructionService.getAllConstructions());
         model.addAttribute("inverters", inverterService.getAllInverters());
-        return "updateinstalation";
+        return "Instalation/updateinstalation";
     }
 
     @PostMapping("/edit")
@@ -58,7 +59,7 @@ public class InstalationController {
         model.addAttribute("modules", moduleService.getAllModules());
         model.addAttribute("constructions", constructionService.getAllConstructions());
         model.addAttribute("inverters", inverterService.getAllInverters());
-        return "designform";
+        return "Instalation/designform";
     }
 
 
@@ -74,9 +75,11 @@ public class InstalationController {
         return "redirect:/instalation/list";
     }
 
+
     @GetMapping("/designPage")
     public String test() {
         return "homePageDesign";
     }
+
 
 }

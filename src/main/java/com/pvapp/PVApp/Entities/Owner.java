@@ -1,10 +1,10 @@
 package com.pvapp.PVApp.Entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,31 +18,32 @@ public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ownerid")
     private int id;
+
 
     private String firstname;
     private String secondname;
-    private String district;
-    private String city;
-    private String postalcode;
-    private String street;
-    private String housenumber;
+    private int phonenumber;
+    private String additionalphonenumber;
     private String mailadress;
-    private String phonenumber;
 
-//    @OneToMany(mappedBy = "owner")
-//    private List<Instalation> instalationList;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<Address> locations;
 
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<QuestionForm> questionForms;
 
-    public Owner(String firstname, String secondname, String district, String city, String postalcode, String street, String housenumber, String mailadress, String phonenumber) {
+    public Owner(String firstname, String secondname, int phonenumber, String mailadress) {
         this.firstname = firstname;
         this.secondname = secondname;
-        this.district = district;
-        this.city = city;
-        this.postalcode = postalcode;
-        this.street = street;
-        this.housenumber = housenumber;
-        this.mailadress = mailadress;
         this.phonenumber = phonenumber;
+        this.additionalphonenumber = null;
+        this.mailadress = mailadress;
     }
+
+    //    @OneToMany(mappedBy = "owner")
+    //    private List<Instalation> instalationList;
+
+
 }

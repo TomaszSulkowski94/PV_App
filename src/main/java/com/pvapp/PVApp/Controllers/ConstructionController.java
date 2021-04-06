@@ -23,19 +23,19 @@ public class ConstructionController {
     public String getconstructions(Model model) {
         List<Construction> constructionList = constructionService.getAllConstructions();
         model.addAttribute("constructions", constructionList);
-        return "constructionlist";
+        return "Construction/constructionlist";
     }
 
     @GetMapping("/createConstruction")
     public String createConstruction(Model model) {
         model.addAttribute("construction", new Construction());
-        return "constructionform";
+        return "Construction/constructionform";
     }
 
     @PostMapping("/saveConstruction")
     public String saveConstruction(@Valid @ModelAttribute("construction") Construction construction, BindingResult result) {
         if (result.hasErrors()) {
-            return "constructionform";
+            return "Construction/constructionform";
         }
         constructionService.saveConstruction(construction);
         return "redirect:/construction/list";
@@ -50,13 +50,13 @@ public class ConstructionController {
     @GetMapping("/edit/{id}")
     public String updateConstruction(@PathVariable("id") int id, Model model) {
         model.addAttribute("construction", constructionService.getConstruction(id));
-        return "updateconstructionform";
+        return "Construction/updateconstructionform";
     }
 
     @PostMapping("/edit")
     public String updateConstruction(@Valid @ModelAttribute("construction") Construction construction, BindingResult result) {
         if (result.hasErrors()) {
-            return "updateconstructionform";
+            return "Construction/updateconstructionform";
         }
         constructionService.update(construction);
         return "redirect:/construction/list";

@@ -1,6 +1,7 @@
 package com.pvapp.PVApp.Services;
 
 import com.pvapp.PVApp.Entities.Construction;
+import com.pvapp.PVApp.Entities.QuestionForm;
 import com.pvapp.PVApp.Repositories.DBRepositories.ConstructionDBRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,12 @@ public class ConstructionService {
     }
 
     public void update(Construction construction) {
-    constructionRepo.update(construction);
+        constructionRepo.update(construction);
+    }
+
+
+    public Construction getConstructionByRoofTypeMaterial(String rooftype, String roofmaterial) {
+        return constructionRepo.getByRoofTypeMaterial(rooftype, roofmaterial);
     }
 }
+

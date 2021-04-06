@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista użytkowników</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Imię</td>
+            <td>Nazwisko</td>
+            <td>Numer telefonu</td>
+            <td>Dodatkowy numer telefonu</td>
+            <td>Adres email</td>
+            <td>Edytuj</td>
+            <td>Usuń</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="owner: ${owners}">
+            <td th:text="${owner.firstname}">
+            <td th:text="${owner.secondname}">
+            <td th:text="${owner.phonenumber}">
+            <td th:text="${owner.additionalphonenumber}">
+            <td th:text="${owner.mailadress}">
+            <td><a th:href="${'/owner/edit/'+{owner.id}}">Edytuj</a></td>
+            <td><a th:href="${'/owner/delete/'+{owner.id}}">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/owner/create">Dodaj klienta</a>
+</div>
+</body>
+</html>

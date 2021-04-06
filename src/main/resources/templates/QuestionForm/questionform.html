@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ankieta dotycząca instalacji</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+
+    <form th:object="${questionform}" th:action="@{/questionform/save}" th:method="POST" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label">Wysokość miesięcznego rachunku</label>
+            <input type="number" class="form-control" th:field="*{bill}" min="0" max="9999"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Typ dachu</label>
+            <select th:field="*{roofType}">
+                <option th:each="roofType : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofType).values()}"
+                        th:value="${roofType}"
+                        th:text="${roofType}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Materiał wykonania dachu</label>
+            <select th:field="*{roofMaterial}">
+                <option th:each="roofMaterial : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofMaterial).values()}"
+                        th:value="${roofMaterial}"
+                        th:text="${roofMaterial}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Kąt nachylenia dachu</label>
+            <select th:field="*{roofSlope}">
+                <option th:each="roofSlope : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofSlope).values()}"
+                        th:value="${roofSlope}"
+                        th:text="${roofSlope}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Pozycja dachu</label>
+            <select th:field="*{roofPosition}">
+                <option th:each="roofPosition : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofPosition).values()}"
+                        th:value="${roofPosition}"
+                        th:text="${roofPosition}">
+                </option>
+            </select>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Wypełnij formularz</button>
+            <button type="reset" class="btn btn-default">Wyczyść formularz</button>
+            <a href="/questionform/list" class="btn btn-danger" role="button">Powrót</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

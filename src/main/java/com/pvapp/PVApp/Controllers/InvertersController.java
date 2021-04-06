@@ -23,19 +23,19 @@ public class InvertersController {
     public String getInverters(Model model) {
         List<Inverter> inverterList = inverterService.getAllInverters();
         model.addAttribute("inverters", inverterList);
-        return "inverterlist";
+        return "Inverter/inverterlist";
     }
 
     @GetMapping("/create")
     public String createInverter(Model model) {
         model.addAttribute("inverter", new Inverter());
-        return "inverterform";
+        return "Inverter/inverterform";
     }
 
     @PostMapping("/save")
     public String saveInverter(@Valid @ModelAttribute("inverter") Inverter inverter, BindingResult result) {
         if (result.hasErrors()) {
-            return "inverterform";
+            return "Inverter/inverterform";
         }
         inverterService.saveInverter(inverter);
         return "redirect:/inverter/list";
@@ -50,13 +50,13 @@ public class InvertersController {
     @GetMapping("/edit/{id}")
     public String editInverter(@PathVariable("id") int id, Model model) {
         model.addAttribute("inverter", inverterService.getInverter(id));
-        return "updateinverterform";
+        return "Inverter/updateinverterform";
     }
 
     @PostMapping("/edit")
     public String editInverter(@Valid @ModelAttribute("inverter") Inverter inverter, BindingResult result) {
         if (result.hasErrors()) {
-            return "updateinverterform";
+            return "Inverter/updateinverterform";
         }
         inverterService.update(inverter);
         return "redirect:/inverter/list";

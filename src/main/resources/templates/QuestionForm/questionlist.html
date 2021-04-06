@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista ankiet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Wysokość rachunku</td>
+            <td>Typ dachu</td>
+            <td>Materiał wykonania dachu</td>
+            <td>Nachylenie dachu</td>
+            <td>Pozycja dachu</td>
+            <td>Edytuj</td>
+            <td>Usuń</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="questionform: ${questionforms}">
+            <td th:text="${questionform.bill}">
+            <td th:text="${questionform.roofType}">
+            <td th:text="${questionform.roofMaterial}">
+            <td th:text="${questionform.roofSlope}">
+            <td th:text="${questionform.roofPosition}">
+            <td><a th:href="${'/questionform/edit/'+{questionform.id}}">Edytuj</a></td>
+            <td><a th:href="${'/questionform/delete/'+{questionform.id}}">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <td><a href="/questionform/create" class="btn btn-default" role="button">Utwórz nowy formularz</a></td>
+        <td><a href="/instalation/list" class="btn btn-default" role="button">Przejdź do listy instalacji</a></td>
+    </div>
+</div>
+</body>
+</html>

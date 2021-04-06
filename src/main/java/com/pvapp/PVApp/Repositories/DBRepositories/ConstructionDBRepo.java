@@ -1,6 +1,7 @@
 package com.pvapp.PVApp.Repositories.DBRepositories;
 
 import com.pvapp.PVApp.Entities.Construction;
+
 import com.pvapp.PVApp.Repositories.CRUD;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
+
 
 @Repository
 public class ConstructionDBRepo implements CRUD<Construction> {
@@ -42,6 +44,13 @@ public class ConstructionDBRepo implements CRUD<Construction> {
     @Override
     public Construction printbyid(int id) {
         return em.find(Construction.class, id);
+    }
+
+    public Construction getByRoofTypeMaterial(String rooftype, String roofmaterial) {
+        return em.createQuery("from Construction C WHERE C.rooftype=:type AND C.roofmaterial=:material", Construction.class)
+                .setParameter("type", Construction.roofType.valueOf(rooftype))
+                .setParameter("material", Construction.roofMaterial.valueOf(roofmaterial))
+                .getSingleResult();
     }
 
 }

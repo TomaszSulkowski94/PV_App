@@ -22,12 +22,12 @@ public class Instalation {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name="pvmoduleid")
+    @JoinColumn(name = "pvmoduleid")
     private PVModule pvModule;
     private int numberofpvmodule;
 
     @ManyToOne
-    @JoinColumn(name="inverterid")
+    @JoinColumn(name = "inverterid")
     private Inverter inverter;
 
     private int numberofinverters;
@@ -38,10 +38,12 @@ public class Instalation {
 
     private double power;
 
+    private double price;
+
+
 //    @ManyToOne
 //    @JoinColumn(name="owner_id")
 //    private Owner owner;
-
 
 
     public Instalation(PVModule pvModule, int numberofpvmodule, Inverter inverter, int numberofinverters, Construction construction) {
@@ -51,6 +53,9 @@ public class Instalation {
         this.numberofinverters = numberofinverters;
         this.construction = construction;
         this.power = 0;
+        this.price = 0;
     }
+
+
 
 }

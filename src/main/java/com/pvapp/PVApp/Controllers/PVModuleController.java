@@ -22,31 +22,25 @@ public class PVModuleController {
     public String getModules(Model model) {
         List<PVModule> allPVModules = pvModuleService.getAllModules();
         model.addAttribute("modules", allPVModules);
-        return "modulelist";
+        return "Pvmodule/modulelist";
     }
 
     @GetMapping("/createModule")
     public String newModule(Model model) {
         model.addAttribute("pvModule", new PVModule());
-        return "pvform";
+        return "Pvmodule/pvform";
     }
 
     @PostMapping("/saveModule")
     public String saveModule(@Valid @ModelAttribute("pvModule") PVModule pvmodule, BindingResult result) {
         if (result.hasErrors()) {
-            return "pvform";
+            return "Pvmodule/pvform";
         }
 
         pvModuleService.saveModule(pvmodule);
         return "redirect:/modules/modulelist";
     }
 
-
-    @GetMapping("/module")
-    public String getKnight(@RequestParam("id") Integer id, Model model) {
-        model.addAttribute("module", pvModuleService.getPVModule(id));
-        return "knight";
-    }
 
     @GetMapping("/modulelist/{id}")
     public String deleteModule(@PathVariable("id") int id) {
@@ -57,13 +51,13 @@ public class PVModuleController {
     @GetMapping("/modulelist/edit/{id}")
     public String updateModule(@PathVariable("id") int id, Model model) {
         model.addAttribute("pvModule", pvModuleService.getPVModule(id));
-        return "updatepvmodule";
+        return "Pvmodule/updatepvmodule";
     }
 
     @PostMapping("/modulelist/edit")
     public String updateModule(@Valid @ModelAttribute("pvModule") PVModule pvModule, BindingResult result) {
         if (result.hasErrors()) {
-            return "updatepvmodule";
+            return "Pvmodule/updatepvmodule";
         }
         pvModuleService.updatemodule(pvModule);
         return "redirect:/modules/modulelist";

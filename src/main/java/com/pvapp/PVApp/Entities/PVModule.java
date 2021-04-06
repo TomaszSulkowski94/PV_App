@@ -35,6 +35,7 @@ public class PVModule {
 
 
     @Column(name = "type")
+    @Enumerated(EnumType.ORDINAL)
     private moduleType type;
 
 

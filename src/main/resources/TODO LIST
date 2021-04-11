@@ -1,9 +1,12 @@
 TODO: Walidacja Construction, Instalation, Owner
 TODO: Logic
 TODO: Testy
+TODO: LOGGER
 TODO: Sparować z OWNER, RESULTS
-TODO: try catch, if dla zapytania o konstrukcje + uzueplnic baze danych
+TODO: try catch, if dla zapytania o konstrukcje
 TODO: Instalation -> OWNER, RESULTS, PVMODULE, INVERTER, CONSTRUCTION , OWNER, ADRESS
 TODO: OFFER -> INSTALATION A, B, C
 TODO: Rozbudować baze o kursy i dodatkowe współczynniki jak ceny montażu. -> klient indywidualny -> klient korporacyjny dwa sety danych i dla nich update z controllera
 TODO: Ladowanie danych z pliku
+TODO: Zbudować podgląd pod ankiete
+TODO: Połączenie dwóch drop down listów -> Construction

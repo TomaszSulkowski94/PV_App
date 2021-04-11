@@ -27,10 +27,10 @@
         <tbody>
         <tr th:each="questionform: ${questionforms}">
             <td th:text="${questionform.bill}">
-            <td th:text="${questionform.roofType}">
-            <td th:text="${questionform.roofMaterial}">
-            <td th:text="${questionform.roofSlope}">
-            <td th:text="${questionform.roofPosition}">
+            <td th:text="${questionform.rooftype}">
+            <td th:text="${questionform.roofmaterial}">
+            <td th:text="${questionform.roofslope}">
+            <td th:text="${questionform.roofposition}">
             <td><a th:href="${'/questionform/edit/'+{questionform.id}}">Edytuj</a></td>
             <td><a th:href="${'/questionform/delete/'+{questionform.id}}">Usuń</a></td>
         </tr>

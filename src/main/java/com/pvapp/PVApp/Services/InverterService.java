@@ -32,6 +32,7 @@ public class InverterService {
     }
 
     public void update(Inverter inverter) {
-        inverterRepo.update(inverter);
+         inverterRepo.update(inverter);
     }
+
 }

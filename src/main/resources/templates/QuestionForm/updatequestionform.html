@@ -19,41 +19,41 @@
         </div>
         <div class="form-group">
             <label class="control-label">Wysokość miesięcznego rachunku</label>
-            <input type="number" class="form-control" th:field="*{bill}" min="0" max="9999"/>
+            <input type="number" class="form-control" th:field="*{bill}" min="50" max="2000"/>
         </div>
         <div class="form-group">
             <label class="control-label">Typ dachu</label>
-            <select th:field="*{roofType}">
-                <option th:each="roofType : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofType).values()}"
-                        th:value="${roofType}"
-                        th:text="${roofType}">
+            <select th:field="*{rooftype}">
+                <option th:each="rooftype : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofType).values()}"
+                        th:value="${rooftype}"
+                        th:text="${rooftype}">
                 </option>
             </select>
         </div>
         <div class="form-group">
             <label class="control-label">Materiał wykonania dachu</label>
-            <select th:field="*{roofMaterial}">
-                <option th:each="roofMaterial : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofMaterial).values()}"
-                        th:value="${roofMaterial}"
-                        th:text="${roofMaterial}">
+            <select th:field="*{roofmaterial}">
+                <option th:each="roofmaterial : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofMaterial).values()}"
+                        th:value="${roofmaterial}"
+                        th:text="${roofmaterial}">
                 </option>
             </select>
         </div>
         <div class="form-group">
             <label class="control-label">Kąt nachylenia dachu</label>
-            <select th:field="*{roofSlope}">
-                <option th:each="roofSlope : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofSlope).values()}"
-                        th:value="${roofSlope}"
-                        th:text="${roofSlope}">
+            <select th:field="*{roofslope}">
+                <option th:each="roofslope : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofSlope).values()}"
+                        th:value="${roofslope}"
+                        th:text="${roofslope}">
                 </option>
             </select>
         </div>
         <div class="form-group">
             <label class="control-label">Pozycja dachu</label>
-            <select th:field="*{roofPosition}">
-                <option th:each="roofPosition : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofPosition).values()}"
-                        th:value="${roofPosition}"
-                        th:text="${roofPosition}">
+            <select th:field="*{roofposition}">
+                <option th:each="roofposition : ${T(com.pvapp.PVApp.Entities.QuestionForm$RoofPosition).values()}"
+                        th:value="${roofposition}"
+                        th:text="${roofposition}">
                 </option>
             </select>
         </div>

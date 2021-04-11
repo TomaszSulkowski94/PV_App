@@ -44,7 +44,7 @@ public class Construction {
 
 
     public enum roofType {
-        DACH_PLASKI, DACH_SKOSNY, GRUNT;
+        DACH_PLASKI, DACH_SKOSNY, GRUNT
     }
 
     public enum roofMaterial {
@@ -52,7 +52,7 @@ public class Construction {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction",orphanRemoval = true)
     private List<Instalation> list;
 
 

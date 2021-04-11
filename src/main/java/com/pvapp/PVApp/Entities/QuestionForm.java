@@ -17,25 +17,20 @@ public class QuestionForm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "questionformid")
     private int id;
+
     private int bill;
     @Enumerated(EnumType.STRING)
-    private RoofType roofType;
+    private RoofType rooftype;
     @Enumerated(EnumType.STRING)
-    private RoofSlope roofSlope;
+    private RoofSlope roofslope;
     @Enumerated(EnumType.STRING)
-    private RoofPosition roofPosition;
+    private RoofPosition roofposition;
     @Enumerated(EnumType.STRING)
-    private RoofMaterial roofMaterial;
+    private RoofMaterial roofmaterial;
 
 
     public enum RoofType {
-        DACH_PLASKI, DACH_SKOSNY, GRUNT;
-
-        private String value;
-
-        public String getValue() {
-            return value;
-        }
+        DACH_PLASKI, DACH_SKOSNY, GRUNT
     }
 
     public enum RoofSlope {
@@ -43,23 +38,26 @@ public class QuestionForm {
     }
 
     public enum RoofMaterial {
-        BLACHODACHOWKA, BLACHOTRAPEZ, PLYTA_WARSTWOWA, PAPA, GONT, GRUNT, DACHÓWKA_CERAMICZNA, DACHÓWKA_KARPIÓWKA;
-
-        private String value;
-
-        public String getValue() {
-            return value;
-        }
+        BLACHODACHOWKA, BLACHOTRAPEZ, PLYTA_WARSTWOWA, PAPA, GONT, GRUNT, DACHÓWKA_CERAMICZNA, DACHÓWKA_KARPIÓWKA
     }
 
 
     public enum RoofPosition {
-        Południe, Południowy_Wschód_10, Południowy_Wschód_20, Południowy_Wschód_30, Południowy_Wschód_40, Południowy_Wschód_50, Południowy_Wschód_60, Południowy_Wschód_70, Południowy_Wschód_80, Wschod, Południowy_Zachód_10, Południowy_Zachód_20, Południowy_Zachód_30, Południowy_Zachód_40, Południowy_Zachód_50, Południowy_Zachód_60, Południowy_Zachód_70, Południowy_Zachód_80, Zachód;
+        Południe, Południowy_Wschód_10, Południowy_Wschód_20, Południowy_Wschód_30, Południowy_Wschód_40, Południowy_Wschód_50, Południowy_Wschód_60, Południowy_Wschód_70, Południowy_Wschód_80, Wschod, Południowy_Zachód_10, Południowy_Zachód_20, Południowy_Zachód_30, Południowy_Zachód_40, Południowy_Zachód_50, Południowy_Zachód_60, Południowy_Zachód_70, Południowy_Zachód_80, Zachód
     }
-
 
     @ManyToOne
     @JoinColumn(name = "ownerid")
     private Owner owner;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "questionForm",orphanRemoval = true)
+    private Instalation instalation;
+
+    public QuestionForm(int bill, RoofType rooftype, RoofSlope roofslope, RoofPosition roofposition, RoofMaterial roofmaterial) {
+        this.bill = bill;
+        this.rooftype = rooftype;
+        this.roofslope = roofslope;
+        this.roofposition = roofposition;
+        this.roofmaterial = roofmaterial;
+    }
 }

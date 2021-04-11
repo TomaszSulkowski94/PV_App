@@ -1,6 +1,6 @@
 package com.pvapp.PVApp.Services;
 
-import com.pvapp.PVApp.Entities.Instalation;
+
 import com.pvapp.PVApp.Entities.QuestionForm;
 import com.pvapp.PVApp.Repositories.DBRepositories.QuestionFormDBRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,10 @@ public class QuestionFormService {
 
     @Autowired
     InstalationService instalationService;
+
+    public void create(QuestionForm questionForm) {
+        questionFormDBRepo.create(questionForm);
+    }
 
 
     public void createQuestionForm(QuestionForm questionForm) {

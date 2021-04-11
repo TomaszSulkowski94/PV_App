@@ -50,7 +50,7 @@ public class ConstructionDBRepo implements CRUD<Construction> {
         return em.createQuery("from Construction C WHERE C.rooftype=:type AND C.roofmaterial=:material", Construction.class)
                 .setParameter("type", Construction.roofType.valueOf(rooftype))
                 .setParameter("material", Construction.roofMaterial.valueOf(roofmaterial))
-                .getSingleResult();
+                .setMaxResults(1).getSingleResult();
     }
 
 }

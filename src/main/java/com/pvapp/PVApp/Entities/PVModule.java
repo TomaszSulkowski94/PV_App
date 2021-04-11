@@ -69,8 +69,8 @@ public class PVModule {
     private double temperatureLost;
 
     @Column(name = "efficency")
-    @DecimalMin(value = "0.01", message = "Minimalna sprawność  powinna być większa niż 0.01 [-]")
-    @DecimalMax(value = "1.00", message = "Maksymalnwa sprawność  powinna nyć nie większa niż 1.00 [-]")
+    @DecimalMin(value = "0.0001", message = "Minimalna sprawność  powinna być większa niż 0.0001 [-]")
+    @DecimalMax(value = "1.0000", message = "Maksymalnwa sprawność  powinna nyć nie większa niż 1.0000 [-]")
     private double efficency;
 
     @Column(name = "price")
@@ -79,24 +79,11 @@ public class PVModule {
     private double price;
 
     public enum moduleType {
-        MONOKRYSTALICZNY, POLIKRYSTALICZNY, BIFACIAL, GLASSGLASS;
+        POLIKRYSTALICZNY , MONOKRYSTALICZNY, BIFACIAL, GLASSGLASS
 
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pvModule")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pvModule",orphanRemoval = true)
     List<Instalation> instalationList;
 
-    public PVModule(String manufacturer, String model, moduleType type, int power, double currentSTC, double maxCurrentSTC, double voltageSTC, double voltageMPP, double temperatureLost, double efficency, double price) {
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.type = type;
-        this.power = power;
-        this.currentSTC = currentSTC;
-        this.maxCurrentSTC = maxCurrentSTC;
-        this.voltageSTC = voltageSTC;
-        this.voltageMPP = voltageMPP;
-        this.temperatureLost = temperatureLost;
-        this.efficency = efficency;
-        this.price = price;
-    }
-}
+ }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Instalation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "instalationid")
     private int id;
 
     @ManyToOne
@@ -29,15 +31,11 @@ public class Instalation {
     @ManyToOne
     @JoinColumn(name = "inverterid")
     private Inverter inverter;
-
     private int numberofinverters;
-
     @ManyToOne
     @JoinColumn(name = "constructionid")
     private Construction construction;
-
     private double power;
-
     private double price;
 
 
@@ -45,6 +43,16 @@ public class Instalation {
 //    @JoinColumn(name="owner_id")
 //    private Owner owner;
 
+
+    @OneToOne
+    @JoinColumn(name = "questionformid")
+    @Nullable
+    private QuestionForm questionForm;
+
+    @OneToOne
+    @JoinColumn(name = "productionid")
+    @Nullable
+    private Production production;
 
     public Instalation(PVModule pvModule, int numberofpvmodule, Inverter inverter, int numberofinverters, Construction construction) {
         this.pvModule = pvModule;
@@ -55,7 +63,6 @@ public class Instalation {
         this.power = 0;
         this.price = 0;
     }
-
 
 
 }

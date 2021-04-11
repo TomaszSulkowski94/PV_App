@@ -29,6 +29,7 @@
             <td>Koszt Instalacji [zł]</td>
             <td>Edytuj</td>
             <td>Usuń</td>
+            <td>Ankieta</td>
             <td>Podgląd pod raport</td>
         </tr>
         </thead>
@@ -40,7 +41,7 @@
             <td th:text="${instalation.numberofpvmodule}"></td>
             <td th:text="${instalation.power}"></td>
             <td th:text="${instalation.inverter.manufacturer}"></td>
-            <td th:text="${instalation.inverter.model}"></td>
+            <td th:text="|${instalation.inverter.model} ${instalation.inverter.type} ${instalation.inverter.acpower}|">
             <td th:text="${instalation.numberofinverters}"></td>
             <td th:text="${instalation.construction.manufacturer}"></td>
             <td th:text="${instalation.construction.rooftype}"></td>
@@ -48,6 +49,7 @@
             <td th:text="${instalation.price}"></td>
             <td><a th:href="${'/instalation/edit/'+{instalation.id}}">Edytuj</a></td>
             <td><a th:href="${'/instalation/delete/'+{instalation.id}}">Usuń</a></td>
+            <td><a th:href="${'/questionform/view/'+{instalation.questionForm.id}}">Ankieta</a></td>
             <td>Raport</td>
 
         </tr>
@@ -57,7 +59,9 @@
         <td><a href="/instalation/design" class="btn btn-default" role="button">Stwórz nową instalację PV</a></td>
         <td><a href="/modules/createModule" class="btn btn-default" role="button">Dodaj moduł do bazy danych</a></td>
         <td><a href="/inverter/create" class="btn btn-default" role="button">Dodaj falownik do bazy danych</a></td>
-        <td><a href="/construction/createConstruction" class="btn btn-default" role="button">Dodaj konstrukcję do bazy danych</a></td>
+        <td><a href="/construction/createConstruction" class="btn btn-default" role="button">Dodaj konstrukcję do bazy
+            danych</a></td>
+        <td><a href="/questionform/list" class="btn btn-default" role="button">Powrót do listy ankiet</a></td>
     </div>
 </div>
 </body>

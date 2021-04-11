@@ -1,6 +1,7 @@
 package com.pvapp.PVApp.Controllers;
 
 import com.pvapp.PVApp.Entities.QuestionForm;
+import com.pvapp.PVApp.Services.ConstructionService;
 import com.pvapp.PVApp.Services.QuestionFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class QuestionFormController {
 
     @Autowired
     QuestionFormService questionFormService;
+
+    @Autowired
+    ConstructionService constructionService;
 
     @GetMapping("/list")
     public String printAll(Model model) {
@@ -32,7 +36,7 @@ public class QuestionFormController {
     @PostMapping("/save")
     public String create(@ModelAttribute("questionform") QuestionForm questionForm) {
         questionFormService.createQuestionForm(questionForm);
-        return "redirect:/questionform/list";
+        return "redirect:/instalation/list";
     }
 
     @GetMapping("/edit/{id}")
@@ -52,4 +56,12 @@ public class QuestionFormController {
         questionFormService.deleteQuestionForm(id);
         return "redirect:/questionform/list";
     }
+
+    @GetMapping("/view/{id}")
+    public String getQuestionForm(@PathVariable("id") int id, Model model) {
+        model.addAttribute("questionform", questionFormService.getQuestionForm(id));
+        return "QuestionForm/viewquestionform";
+    }
+
+
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Podgląd ankiety</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="form-group">
+        <label class="control-label">Id</label>
+        <input type="text" th:field="*{questionform.id}" class="form-control" readonly="readonly"/>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Wysokość miesięcznego rachunku</label>
+        <input type="number"  th:field="*{questionform.bill}" class="form-control" readonly="readonly"/>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Typ dachu</label>
+        <input type="text" th:field="*{questionform.rooftype}" class="form-control" readonly="readonly"/>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Materiał wykonania dachu</label>
+        <input type="text"  th:field="*{questionform.roofmaterial}" class="form-control" readonly="readonly"/>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Kąt nachylenia dachu</label>
+        <input type="text" th:field="*{questionform.roofslope}" class="form-control" readonly="readonly"/>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Pozycja dachu</label>
+        <input type="text"  th:field="*{questionform.roofposition}" class="form-control" readonly="readonly"/>
+    </div>
+        <div class="row">
+        <a href="/instalation/list" class="btn btn-danger" role="button">Powrót</a>
+    </div>
+</div>
+</form>
+</div>
+</body>
+</html>

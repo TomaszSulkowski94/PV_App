@@ -17,27 +17,27 @@ public class PVModuleService {
     PVModuleDBRepo pvModuleRepo;
 
     public List<PVModule> getAllModules() {
-        log.info("Getting all modules from DB");
+        log.info("Getting all modules from DB --service");
         return new ArrayList<PVModule>(pvModuleRepo.printAll());
     }
 
     public void saveModule(PVModule pvModule) {
-        log.info("Creating module at DB");
+        log.info("Creating module at DB --service");
         pvModuleRepo.create(pvModule);
     }
 
     public PVModule getPVModule(int id) {
-        log.info("Getting module from DB");
+        log.info("Getting module from DB --service");
         return pvModuleRepo.printbyid(id);
     }
 
     public void deleteModule(int id) {
-        log.info("Deleting module from DB");
+        log.info("Deleting module from DB --service");
         pvModuleRepo.delete(id);
     }
 
     public void updatemodule(PVModule pvModule) {
-        log.info("Update module from DB");
+        log.info("Update module from DB --service");
         pvModuleRepo.update(pvModule);
     }
 }

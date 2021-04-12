@@ -51,7 +51,7 @@ public class InstalationService {
 
     public void update(Instalation instalation) {
         log.info("Updating instalation --service");
-        instalation.setPower(calcPower(instalation.getNumberofpvmodule(), instalation.getPvModule()));
+        instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
         instalation.setPrice(calcPrice(instalation));
         productionService.updateProduction(instalation);
         instalationDBRepo.update(instalation);
@@ -59,7 +59,7 @@ public class InstalationService {
 
 
     public void createInstalation(QuestionForm questionForm) {
-        log.info("Saving instalation to DB");
+        log.info("Saving instalation to DB --service");
         int yearconsumption = consumption(questionForm.getBill());
         PVModule pvModule = moduleService.getPVModule(1);
         int numberOfModules = Math.round(yearconsumption / pvModule.getPower());
@@ -98,12 +98,13 @@ public class InstalationService {
     }
 
     private int consumption(int bill) {
-        log.info("Calculationg consumption");
+        log.info("Calculating consumption --service");
         double electricprice = 0.54;
         return (int) Math.round((bill / electricprice) * 12 * 1.2);
     }
 
     private Inverter getInverterByPower(double power) {
+        log.info("Getting inverter --service");
         List<Inverter> inverterList = inverterService.getAllInverters();
         for (int i = 0; i < inverterList.size(); i++) {
             if (power > inverterList.get(i).getAcpower() && power <= inverterList.get(i).getDcpower()) {
@@ -114,6 +115,7 @@ public class InstalationService {
     }
 
     private int calcPower(int numberOfPVModules, PVModule pvModule) {
+        log.info("Calculating power --service");
         return numberOfPVModules * pvModule.getPower();
     }
 

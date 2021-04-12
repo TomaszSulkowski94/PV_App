@@ -32,6 +32,6 @@ public class Production {
     private double december;
     private double summary;
 
-    @OneToOne(mappedBy = "production", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "production", cascade = CascadeType.ALL)
     private Instalation instalation;
 }

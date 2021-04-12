@@ -19,6 +19,7 @@ public class ProductionService {
     ProductionDBRepository productionDBRepository;
 
     public void calcProduction(Instalation instalation, Production production) {
+        log.info("Calculating production  --service");
         double[] productionfactors = {0.03, 0.04, 0.07, 0.09, 0.12, 0.13, 0.12, 0.13, 0.11, 0.09, 0.05, 0.03};
         double[] productionArray = new double[12];
         double calcProduction;
@@ -46,6 +47,7 @@ public class ProductionService {
     }
 
     public Production createProduction(Instalation instalation) {
+        log.info("Saving production --service");
         Production production = new Production();
         calcProduction(instalation, production);
         productionDBRepository.create(production);
@@ -54,16 +56,19 @@ public class ProductionService {
 
 
     public void updateProduction(Instalation instalation) {
-        Production production = productionDBRepository.printbyid(instalation.getProduction().getId());
+        log.info("Updating production --service");
+        Production production = getProduction(instalation.getProduction().getId());
         calcProduction(instalation, production);
         productionDBRepository.update(production);
     }
 
     public void deleteProduction(int id) {
+        log.info("Deleting production --service" + id);
         productionDBRepository.delete(id);
     }
 
     public Production getProduction(int id) {
+        log.info("Getting production by id --service" + id);
         return productionDBRepository.printbyid(id);
     }
 

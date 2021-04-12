@@ -52,7 +52,7 @@ public class Construction {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction",orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction")
     private List<Instalation> list;
 
 

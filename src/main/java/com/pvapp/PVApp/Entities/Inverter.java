@@ -67,7 +67,7 @@ public class Inverter {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inverter",orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inverter")
     private List<Instalation> instalationList;
 
 

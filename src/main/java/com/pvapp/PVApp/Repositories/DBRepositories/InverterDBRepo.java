@@ -2,6 +2,7 @@ package com.pvapp.PVApp.Repositories.DBRepositories;
 
 import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Repositories.CRUD;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
 @Repository
+@Slf4j
 public class InverterDBRepo implements CRUD<Inverter> {
 
     @PersistenceContext
@@ -18,28 +20,33 @@ public class InverterDBRepo implements CRUD<Inverter> {
     @Override
     @Transactional
     public void update(Inverter inverter) {
+        log.info("Merging inverter --repository");
         em.merge(inverter);
     }
 
     @Override
     @Transactional
     public void create(Inverter inverter) {
+        log.info("Persisting inverter --repository");
         em.persist(inverter);
     }
 
     @Override
     @Transactional
     public void delete(int id) {
+        log.info("Deleting inverter by id--repository " + id);
         em.remove(em.find(Inverter.class, id));
     }
 
     @Override
     public Collection<Inverter> printAll() {
+        log.info("Getting all inverters --repository");
         return em.createQuery("from Inverter", Inverter.class).getResultList();
     }
 
     @Override
     public Inverter printbyid(int id) {
+        log.info("Getting inverter by id --repository" + id);
         return em.find(Inverter.class, id);
     }
 

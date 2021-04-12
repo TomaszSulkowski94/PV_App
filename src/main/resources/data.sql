@@ -111,8 +111,11 @@ values('Producent S', 'SL', 1, 48000, 40000, 2, 12.00, 44.00, 250, 960, 1000, 18
 INSERT INTO questionform(bill, rooftype,roofslope,roofposition,roofmaterial)
 values(80,'DACH_PLASKI', 'Dach_płaski','Południowy_Wschód_20','PAPA');
 
-INSERT INTO instalation(pvmoduleid, numberofpvmodule, inverterid, numberofinverters, constructionid, power, price, questionformid)
-values(1, 20, 5, 1, 1, 20 * 250, 20000,1);
+INSERT INTO production(january,february,march,april,may,june,july,august,september,october,november,december,summary)
+values (189,252,441,567,756,819,756,819,693,567,315,189,6363);
+
+INSERT INTO instalation(pvmoduleid, numberofpvmodule, inverterid, numberofinverters, constructionid, power, price, questionformid, productionid)
+values(1, 20, 5, 1, 1, 20 * 250, 20000,1, 1);
 
 
 

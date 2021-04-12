@@ -50,7 +50,7 @@ public class QuestionForm {
     @JoinColumn(name = "ownerid")
     private Owner owner;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "questionForm",orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "questionForm")
     private Instalation instalation;
 
     public QuestionForm(int bill, RoofType rooftype, RoofSlope roofslope, RoofPosition roofposition, RoofMaterial roofmaterial) {

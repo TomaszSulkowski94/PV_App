@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
+
 
 
 import javax.persistence.*;
@@ -46,12 +46,10 @@ public class Instalation {
 
     @OneToOne
     @JoinColumn(name = "questionformid")
-    @Nullable
     private QuestionForm questionForm;
 
     @OneToOne
     @JoinColumn(name = "productionid")
-    @Nullable
     private Production production;
 
     public Instalation(PVModule pvModule, int numberofpvmodule, Inverter inverter, int numberofinverters, Construction construction) {

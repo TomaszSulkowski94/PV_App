@@ -83,8 +83,7 @@
         <div class="form-group">
             <label class="control-label">Cena [€/Wp]</label>
             <input type="number" class="form-control" th:field="*{price}" min="0.01" max="100.00" step="0.01"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
-                 th:errors="*{price}"></div>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success">Zapisz zmiany</button>

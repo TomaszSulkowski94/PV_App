@@ -1,12 +1,11 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Data
@@ -26,7 +25,7 @@ public class Construction {
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String manufacturer;
 
-    @NotEmpty(message = "Podaj producenta invertera")
+    @NotEmpty(message = "Podaj producenta konstrukcji")
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String model;
 
@@ -41,6 +40,9 @@ public class Construction {
     @DecimalMin(value = "0.01", message = "Minimalna cena musi wynosi 0.01 zł/moduł")
     @DecimalMax(value = "1000.00", message = "Maksymalna cena musi wynosi 1000.0 zł/moduł")
     private double price;
+
+
+    private int roofslope;
 
 
     public enum roofType {

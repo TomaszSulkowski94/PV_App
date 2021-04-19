@@ -27,6 +27,8 @@
             <td>Typ dachu</td>
             <td>Materiał poszycia dachu</td>
             <td>Koszt Instalacji [zł]</td>
+            <td>Kąt skierowania instalacji</td>
+            <td>Kąt nachylenia instalacji</td>
             <td>Edytuj</td>
             <td>Usuń</td>
             <td>Ankieta</td>
@@ -47,6 +49,8 @@
             <td th:text="${instalation.construction.rooftype}"></td>
             <td th:text="${instalation.construction.roofmaterial}"></td>
             <td th:text="${instalation.price}"></td>
+            <td th:text="${instalation.roofposition}"></td>
+            <td th:text="${instalation.instalationangle}"></td>
             <td><a th:href="${'/instalation/edit/'+{instalation.id}}">Edytuj</a></td>
             <td><a th:href="${'/instalation/delete/'+{instalation.id}}">Usuń</a></td>
             <td><a th:href="${'/questionform/view/'+{instalation.questionForm.id}}">Ankieta</a></td>

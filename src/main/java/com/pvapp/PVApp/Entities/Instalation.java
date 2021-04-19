@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
 import javax.persistence.*;
 
 @NoArgsConstructor
@@ -38,6 +37,8 @@ public class Instalation {
     private double power;
     private double price;
 
+    private int roofposition;
+    private int instalationangle;
 
 //    @ManyToOne
 //    @JoinColumn(name="owner_id")
@@ -51,6 +52,10 @@ public class Instalation {
     @OneToOne
     @JoinColumn(name = "productionid")
     private Production production;
+
+    @OneToOne
+    @JoinColumn(name = "technicalresultsid")
+    private TechnicalResults technicalResults;
 
     public Instalation(PVModule pvModule, int numberofpvmodule, Inverter inverter, int numberofinverters, Construction construction) {
         this.pvModule = pvModule;

@@ -6,8 +6,10 @@ import com.pvapp.PVApp.Services.QuestionFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -34,7 +36,10 @@ public class QuestionFormController {
     }
 
     @PostMapping("/save")
-    public String create(@ModelAttribute("questionform") QuestionForm questionForm) {
+    public String create(@Valid @ModelAttribute("questionform") QuestionForm questionForm, BindingResult result) {
+        if (result.hasErrors()) {
+            return "questionform/create";
+        }
         questionFormService.createQuestionForm(questionForm);
         return "redirect:/instalation/list";
     }
@@ -46,7 +51,10 @@ public class QuestionFormController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("questionform") QuestionForm questionForm) {
+    public String update(@Valid @ModelAttribute("questionform") QuestionForm questionForm, BindingResult result) {
+        if (result.hasErrors()) {
+            return "questionform/update";
+        }
         questionFormService.updateQuestionForm(questionForm);
         return "redirect:/questionform/list";
     }

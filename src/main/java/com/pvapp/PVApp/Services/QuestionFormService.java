@@ -1,6 +1,7 @@
 package com.pvapp.PVApp.Services;
 
 
+import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Entities.QuestionForm;
 import com.pvapp.PVApp.Repositories.DBRepositories.QuestionFormDBRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -37,9 +38,16 @@ public class QuestionFormService {
 
     }
 
+    public void updateQuestionFormByInstalation(QuestionForm questionForm) {
+        log.info("Updating questionform --service");
+        questionFormDBRepo.update(questionForm);
+    }
+
     public void updateQuestionForm(QuestionForm questionForm) {
         log.info("Updating questionform --service");
         questionFormDBRepo.update(questionForm);
+        instalationService.updateByQuestionForm(questionForm);
+
     }
 
     public QuestionForm getQuestionForm(int id) {
@@ -50,6 +58,11 @@ public class QuestionFormService {
     public List<QuestionForm> getForms() {
         log.info("Getting all questionforms  --service ");
         return new ArrayList<QuestionForm>(questionFormDBRepo.printAll());
+    }
+
+    public QuestionForm getFirst() {
+        log.info("Getting first questionform --service");
+        return questionFormDBRepo.getFirst();
     }
 
 

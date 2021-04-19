@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label class="control-label">Liczba modułów pv</label>
-            <input type="number" th:field="*{numberofpvmodule}" class="form-control" step="1"/>
+            <input type="number" th:field="*{numberofpvmodule}" class="form-control" min="1" max="99999" step="1"/>
         </div>
         <div class="form-group">
             <label class="control-label">Model falownika</label>
@@ -38,7 +38,7 @@
         </div>
         <div class="form-group">
             <label class="control-label">Liczba falowników</label>
-            <input type="number" th:field="*{numberofinverters}" class="form-control"/>
+            <input type="number" th:field="*{numberofinverters}" class="form-control" min="1" max="999" step="1"/>
         </div>
         <div class="form-group">
             <label class="control-label">Konstrukcja</label>
@@ -49,6 +49,54 @@
                 </option>
             </select>
         </div>
+        <div class="form group">
+            <label class="control-label">Pozycja dachu</label>
+            <select th:field="*{roofposition}">
+                <option th:value="0" th:text="POŁUDNIE"></option>
+                <option th:value="10" th:text="'POŁUDNIOWY WSCHÓD 10'"></option>
+                <option th:value="20" th:text="'POŁUDNIOWY WSCHÓD 20'"></option>
+                <option th:value="30" th:text="'POŁUDNIOWY WSCHÓD 30'"></option>
+                <option th:value="40" th:text="'POŁUDNIOWY WSCHÓD 40'"></option>
+                <option th:value="50" th:text="'POŁUDNIOWY WSCHÓD 50'"></option>
+                <option th:value="60" th:text="'POŁUDNIOWY WSCHÓD 60'"></option>
+                <option th:value="70" th:text="'POŁUDNIOWY WSCHÓD 70'"></option>
+                <option th:value="80" th:text="'POŁUDNIOWY WSCHÓD 80'"></option>
+                <option th:value="90" th:text="'WSCHÓD-ZACHÓD'"></option>
+                <option th:value="10" th:text="'POŁUDNIOWY ZACHÓD 10'"></option>
+                <option th:value="20" th:text="'POŁUDNIOWY ZACHÓD 20'"></option>
+                <option th:value="30" th:text="'POŁUDNIOWY ZACHÓD 30'"></option>
+                <option th:value="40" th:text="'POŁUDNIOWY ZACHÓD 40'"></option>
+                <option th:value="50" th:text="'POŁUDNIOWY ZACHÓD 50'"></option>
+                <option th:value="60" th:text="'POŁUDNIOWY ZACHÓD 60'"></option>
+                <option th:value="70" th:text="'POŁUDNIOWY ZACHÓD 70'"></option>
+                <option th:value="80" th:text="'POŁUDNIOWY ZACHÓD 80'"></option>
+            </select>
+        </div>
+        <div class="form group">
+            <label class="control-label">Nachylenie dachu</label>
+            <select th:field="*{instalationangle}">
+                <option th:value="0" th:text="0"></option>
+                <option th:value="5" th:text="5"></option>
+                <option th:value="10" th:text="10"></option>
+                <option th:value="15" th:text="15"></option>
+                <option th:value="20" th:text="20"></option>
+                <option th:value="25" th:text="25"></option>
+                <option th:value="30" th:text="30"></option>
+                <option th:value="35" th:text="35"></option>
+                <option th:value="40" th:text="40"></option>
+                <option th:value="45" th:text="45"></option>
+                <option th:value="50" th:text="50"></option>
+                <option th:value="55" th:text="55"></option>
+                <option th:value="60" th:text="60"></option>
+                <option th:value="65" th:text="65"></option>
+                <option th:value="70" th:text="70"></option>
+                <option th:value="75" th:text="75"></option>
+                <option th:value="80" th:text="80"></option>
+                <option th:value="85" th:text="85"></option>
+                <option th:value="90" th:text="90"></option>
+            </select>
+        </div>
+        <br>
         <div class="row">
             <button type="submit" class="btn btn-default">Zaprojektuj instalację</button>
             <button type="reset" class="btn btn-default">Wyczyść formularz</button>

@@ -47,6 +47,11 @@ public class QuestionFormDBRepo implements CRUD<QuestionForm> {
     @Override
     public QuestionForm printbyid(int id) {
         log.info("Getting question form by id --repository " + id);
-        return em.find(QuestionForm.class,id);
+        return em.find(QuestionForm.class, id);
+    }
+
+    public QuestionForm getFirst() {
+        log.info("Getting first position from DB --repository");
+        return em.createQuery("from QuestionForm", QuestionForm.class).getResultList().get(0);
     }
 }

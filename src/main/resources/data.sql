@@ -30,38 +30,38 @@ temperaturelost, efficency, price)
 VALUES ('Producent R', 'RM310', 1, 310, 10.01, 9.24, 40.1, 32.6, 0.27, 0.186, 0.27);
 
 
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'Balastowy', 'DACH_PLASKI', 'PAPA', 150);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'Balastowy', 'DACH_PLASKI', 'PAPA', 170);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'B1', 'DACH_SKOSNY', 'BLACHODACHOWKA', 90);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'BX1', 'DACH_SKOSNY', 'BLACHODACHOWKA', 80);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'B2', 'DACH_SKOSNY', 'BLACHOTRAPEZ', 30);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'BX2', 'DACH_SKOSNY', 'BLACHOTRAPEZ', 50);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'P1', 'DACH_SKOSNY', 'PLYTA_WARSTWOWA', 110);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'PX1', 'DACH_SKOSNY', 'PLYTA_WARSTWOWA', 95);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'G1', 'DACH_SKOSNY', 'GONT', 80);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'GX1', 'DACH_SKOSNY', 'GONT', 100);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'DC1', 'DACH_SKOSNY', 'DACHÓWKA_CERAMICZNA', 150);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'DCX1', 'DACH_SKOSNY', 'DACHÓWKA_CERAMICZNA', 140);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'DK1', 'DACH_SKOSNY', 'DACHÓWKA_KARPIÓWKA', 70);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'DKX1', 'DACH_SKOSNY', 'DACHÓWKA_KARPIÓWKA', 60);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent A', 'G1', 'GRUNT', 'GRUNT', 110);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price)
-values ('Producent B', 'GX1', 'GRUNT', 'GRUNT', 125);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'Balastowy', 'DACH_PLASKI', 'PAPA', 150, 15);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price , roofslope)
+values ('Producent B', 'Balastowy', 'DACH_PLASKI', 'PAPA', 170, 20);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'B1', 'DACH_SKOSNY', 'BLACHODACHOWKA', 90, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent B', 'BX1', 'DACH_SKOSNY', 'BLACHODACHOWKA', 80, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'B2', 'DACH_SKOSNY', 'BLACHOTRAPEZ', 30, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent B', 'BX2', 'DACH_SKOSNY', 'BLACHOTRAPEZ', 50, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'P1', 'DACH_SKOSNY', 'PLYTA_WARSTWOWA', 110, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent B', 'PX1', 'DACH_SKOSNY', 'PLYTA_WARSTWOWA', 95, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'G1', 'DACH_SKOSNY', 'GONT', 80, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent B', 'GX1', 'DACH_SKOSNY', 'GONT', 100, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'DC1', 'DACH_SKOSNY', 'DACHÓWKA_CERAMICZNA', 150, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent B', 'DCX1', 'DACH_SKOSNY', 'DACHÓWKA_CERAMICZNA', 140, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'DK1', 'DACH_SKOSNY', 'DACHÓWKA_KARPIÓWKA', 70, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent B', 'DKX1', 'DACH_SKOSNY', 'DACHÓWKA_KARPIÓWKA', 60, 0);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent A', 'G1', 'GRUNT', 'GRUNT', 110, 20);
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
+values ('Producent B', 'GX1', 'GRUNT', 'GRUNT', 125, 25);
 
 INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
 values('Producent S', 'STL-X', 0, 1500, 1000, 1, 11.00, 14.00, 160, 840, 1000, 4200);
@@ -109,21 +109,16 @@ INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurr
 values('Producent S', 'SL', 1, 48000, 40000, 2, 12.00, 44.00, 250, 960, 1000, 18000);
 
 INSERT INTO questionform(bill, rooftype,roofslope,roofposition,roofmaterial)
-values(80,'DACH_PLASKI', 'Dach_płaski','Południowy_Wschód_20','PAPA');
+values(80,'DACH_PLASKI', 15,20,'PAPA');
 
 INSERT INTO production(january,february,march,april,may,june,july,august,september,october,november,december,summary)
 values (189,252,441,567,756,819,756,819,693,567,315,189,6363);
 
-INSERT INTO instalation(pvmoduleid, numberofpvmodule, inverterid, numberofinverters, constructionid, power, price, questionformid, productionid)
-values(1, 20, 5, 1, 1, 20 * 250, 20000,1, 1);
+INSERT INTO instalation(pvmoduleid, numberofpvmodule, inverterid, numberofinverters, constructionid, power, price, questionformid, productionid, roofposition, instalationangle)
+values(1, 20, 5, 1, 1, 20 * 250, 20000,1, 1,0 ,15);
 
 
 
-INSERT INTO owner(firstname, secondname, phonenumber, additionalphonenumber, mailadress)
-values('Jan', 'Kowalski', 123456789, null, 'ABCDEFGHJ@XYZ.PL');
-
-INSERT INTO address(district, city, postalcode, street, housenumber, ownerid)
-values(5, 'Kraków', 'Wawel', '41250', 4, 1);
 
 
 

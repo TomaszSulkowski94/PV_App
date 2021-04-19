@@ -21,13 +21,13 @@
         </div>
         <div class="form-group">
             <label class="control-label">Producent</label>
-            <input type="text" class="form-control" th:field="*{manufacturer}"/>
+            <input type="text" class="form-control" th:field="*{manufacturer}" minlength="3" maxlength="9"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('manufacturer')}"
                  th:errors="*{manufacturer}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Model</label>
-            <input type="text" class="form-control" th:field="*{model}"/>
+            <input type="text" class="form-control" th:field="*{model}" minlength="3" maxlength="9"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('model')}"
                  th:errors="*{model}"></div>
         </div>
@@ -42,55 +42,56 @@
         </div>
         <div class="form-group">
             <label class="control-label">Moc DC</label>
-            <input type="number" class="form-control" th:field="*{dcpower}"/>
+            <input type="number" class="form-control" th:field="*{dcpower}" min="1" max="1000000" step="1"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('dcpower')}"
                  th:errors="*{dcpower}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Moc AC</label>
-            <input type="number" class="form-control" th:field="*{acpower}"/>
+            <input type="number" class="form-control" th:field="*{acpower}" min="1" max="1000000" step="1"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('acpower')}"
                  th:errors="*{acpower}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Liczba MPPT</label>
-            <input type="number" class="form-control" th:field="*{mppt}"/>
+            <input type="number" class="form-control" th:field="*{mppt}" min="1" max="99"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('mppt')}"
                  th:errors="*{mppt}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Maksymalny prąd zwarcia</label>
-            <input type="number" class="form-control" th:field="*{maxcurrentzwarcia}"/>
+            <input type="number" class="form-control" th:field="*{maxcurrentzwarcia}" min="0.01" max="100.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentzwarcia')}"
                  th:errors="*{maxcurrentzwarcia}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Maksymalny prąd roboczy</label>
-            <input type="number" class="form-control" th:field="*{maxcurrentrob}"/>
+            <input type="number" class="form-control" th:field="*{maxcurrentrob}" min="0.01" max="100.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentrob')}"
                  th:errors="*{maxcurrentrob}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Dolny zakres napięcia</label>
-            <input type="number" class="form-control" th:field="*{dolnyzakresnapiecia}"/>
+            <input type="number" class="form-control" th:field="*{dolnyzakresnapiecia}" min="1" max="1000" step="1"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('dolnyzakresnapiecia')}"
                  th:errors="*{dolnyzakresnapiecia}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Górny zakres napięcia</label>
-            <input type="number" class="form-control" th:field="*{gornyzakresnapiecia}"/>
+            <input type="number" class="form-control" th:field="*{gornyzakresnapiecia}" min="100" max="100000"
+                   step="1"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('gornyzakresnapiecia')}"
                  th:errors="*{gornyzakresnapiecia}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Maksymalne napięcie pracy</label>
-            <input type="number" class="form-control" th:field="*{maksymalnenapiecie}"/>
+            <input type="number" class="form-control" th:field="*{maksymalnenapiecie}" min="100" max="100000" step="1"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('maksymalnenapiecie')}"
                  th:errors="*{maksymalnenapiecie}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Cena</label>
-            <input type="number" class="form-control" th:field="*{price}"/>
+            <input type="number" class="form-control" th:field="*{price}" min="0.01" max="99999.00" step="0.01"/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
                  th:errors="*{price}"></div>
         </div>

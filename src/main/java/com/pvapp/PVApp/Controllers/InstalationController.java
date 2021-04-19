@@ -2,10 +2,7 @@ package com.pvapp.PVApp.Controllers;
 
 import com.pvapp.PVApp.Entities.QuestionForm;
 import com.pvapp.PVApp.Entities.Instalation;
-import com.pvapp.PVApp.Services.ConstructionService;
-import com.pvapp.PVApp.Services.InstalationService;
-import com.pvapp.PVApp.Services.InverterService;
-import com.pvapp.PVApp.Services.PVModuleService;
+import com.pvapp.PVApp.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+
+import static com.pvapp.PVApp.Entities.QuestionForm.RoofMaterial.SPECIFIED_BY_CONSTRUCTION;
 
 @Controller
 @RequestMapping("/instalation")
@@ -29,6 +28,9 @@ public class InstalationController {
 
     @Autowired
     ConstructionService constructionService;
+
+    @Autowired
+    QuestionFormService questionFormService;
 
     @GetMapping("/list")
     public String printInstalations(Model model) {

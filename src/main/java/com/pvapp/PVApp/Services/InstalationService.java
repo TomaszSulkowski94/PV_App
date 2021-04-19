@@ -41,22 +41,13 @@ public class InstalationService {
         log.info("Saving instalation --service");
         instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
         instalation.setPrice(calcPrice(instalation));
-        QuestionForm questionForm = new QuestionForm(0, null, null, null, null);
+        instalation.setInstalationangle(setInstalationAngle(instalation));
+        QuestionForm questionForm = new QuestionForm(50, setRoofTypeFromInstalation(instalation), setInstalationAngle(instalation), instalation.getRoofposition(), setRoofMaterialFromInstalation(instalation));
         questionFormService.create(questionForm);
         instalation.setQuestionForm(questionForm);
-        Production production = productionService.createProduction(instalation);
-        instalation.setProduction(production);
+        instalation.setProduction(productionService.createProduction(instalation));
         instalationDBRepo.create(instalation);
     }
-
-    public void update(Instalation instalation) {
-        log.info("Updating instalation --service");
-        instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
-        instalation.setPrice(calcPrice(instalation));
-        productionService.updateProduction(instalation);
-        instalationDBRepo.update(instalation);
-    }
-
 
     public void createInstalation(QuestionForm questionForm) {
         log.info("Saving instalation to DB --service");
@@ -70,12 +61,132 @@ public class InstalationService {
         instalation.setPower(instalationSize);
         instalation.setPrice(calcPrice(instalation));
         instalation.setQuestionForm(questionForm);
+        instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
+        instalation.setRoofposition(setRoofPosition(questionForm));
         Production production = productionService.createProduction(instalation);
         instalation.setProduction(production);
         instalationDBRepo.create(instalation);
     }
 
-    public double calcPrice(Instalation instalation) {
+    public void updateByQuestionForm(QuestionForm questionForm) {
+        log.info("Updating instalation --service");
+        Instalation instalation = instalationDBRepo.printbyid(questionFormService.getQuestionForm(questionForm.getId()).getId());
+        int yearconsumption = consumption(questionForm.getBill());
+        PVModule pvModule = instalation.getPvModule();
+        int numberOfModules = Math.round(yearconsumption / pvModule.getPower());
+        double instalationSize = calcPower(numberOfModules, pvModule);
+        Inverter inverter = getInverterByPower(instalationSize);
+        Construction construction = getconstructionString(questionForm);
+        instalation.setRoofposition(setRoofPosition(questionForm));
+        instalation.setNumberofpvmodule(numberOfModules);
+        instalation.setPower(instalationSize);
+        instalation.setInverter(inverter);
+        instalation.setConstruction(construction);
+        instalation.setPrice(calcPrice(instalation));
+        instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
+        productionService.updateProduction(instalation);
+        instalationDBRepo.update(instalation);
+    }
+
+    public void update(Instalation instalation) {
+        log.info("Updating instalation --service");
+        instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
+        instalation.setPrice(calcPrice(instalation));
+        QuestionForm questionForm = questionFormService.getQuestionForm(instalation.getQuestionForm().getId());
+        questionForm.setRoofmaterial(setRoofMaterialFromInstalation(instalation));
+        questionForm.setRoofslope(setInstalationAngle(instalation));
+        questionForm.setRoofposition(instalation.getRoofposition());
+        questionForm.setRooftype(setRoofTypeFromInstalation(instalation));
+        questionFormService.updateQuestionFormByInstalation(questionForm);
+        productionService.updateProduction(instalation);
+        instalationDBRepo.update(instalation);
+    }
+//     TODO: Based on the updating questionform
+//    public void update(Instalation instalation) {
+//        log.info("Updating instalation --service");
+//        instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
+//        instalation.setPrice(calcPrice(instalation));
+//        QuestionForm questionForm = questionFormService.getQuestionForm(instalation.getQuestionForm().getId());
+//        questionForm.setRoofmaterial(setRoofMaterialFromInstalation(instalation));
+//        questionForm.setRoofslope(setInstalationAngle(instalation));
+//        questionForm.setRooftype(setRoofTypeFromInstalation(instalation));
+//        questionFormService.updateQuestionForm(questionForm);
+//        productionService.updateProduction(instalation);
+//        instalationDBRepo.update(instalation);
+//    }
+
+
+    private int setInstalationAngle(Instalation instalation) {
+        log.info("Setting angle to questionform --service");
+        Construction construction = constructionService.getConstruction(instalation.getConstruction().getId());
+        if (construction.getRooftype().toString().equals("DACH_SKOSNY")) {
+            log.info("Setting instalation angle: " + instalation.getInstalationangle());
+            return instalation.getInstalationangle();
+        } else {
+            log.info("Setting instalation angle: " + construction.getRoofslope());
+            return construction.getRoofslope();
+        }
+    }
+
+    private int setInstalationAngleQF(QuestionForm questionForm, Construction construction) {
+        log.info("Setting angle to instalation --service");
+        if (construction.getRooftype().toString().equals("DACH_SKOSNY")) {
+            return questionForm.getRoofslope();
+        } else {
+            return construction.getRoofslope();
+        }
+    }
+
+    private int setRoofPosition(QuestionForm questionForm) {
+        return questionForm.getRoofposition();
+    }
+
+    private QuestionForm.RoofType setRoofTypeFromInstalation(Instalation instalation) {
+        log.info("Setting roof type to questionform --service");
+        Construction construction = constructionService.getConstruction(instalation.getConstruction().getId());
+        String rooftype = construction.getRooftype().toString();
+        switch (rooftype) {
+            case "DACH_PLASKI":
+                return QuestionForm.RoofType.DACH_PLASKI;
+            case "DACH_SKOSNY":
+                return QuestionForm.RoofType.DACH_SKOSNY;
+            case "GRUNT":
+                return QuestionForm.RoofType.GRUNT;
+            default: {
+                return QuestionForm.RoofType.GRUNT;
+            }
+        }
+    }
+
+    private QuestionForm.RoofMaterial setRoofMaterialFromInstalation(Instalation instalation) {
+        log.info("Setting roof material to questionform --service");
+        Construction construction = constructionService.getConstruction(instalation.getConstruction().getId());
+        String material = construction.getRoofmaterial().toString();
+        switch (material) {
+            case "BLACHODACHOWKA":
+                return QuestionForm.RoofMaterial.BLACHODACHOWKA;
+            case "BLACHOTRAPEZ":
+                return QuestionForm.RoofMaterial.BLACHOTRAPEZ;
+            case "PLYTA_WARSTWOWA":
+                return QuestionForm.RoofMaterial.PLYTA_WARSTWOWA;
+            case "PAPA":
+                return QuestionForm.RoofMaterial.PAPA;
+            case "GONT":
+                return QuestionForm.RoofMaterial.GONT;
+            case "GRUNT":
+                return QuestionForm.RoofMaterial.GRUNT;
+            case "DACHÓWKA_CERAMICZNA":
+                return QuestionForm.RoofMaterial.DACHÓWKA_CERAMICZNA;
+            case "DACHÓWKA_KARPIÓWKA":
+                return QuestionForm.RoofMaterial.DACHÓWKA_KARPIÓWKA;
+            default: {
+                return QuestionForm.RoofMaterial.SPECIFIED_BY_CONSTRUCTION;
+            }
+        }
+    }
+
+
+    private double calcPrice(Instalation instalation) {
         log.info("Calculating price --service");
         int numberOfPVModules = instalation.getNumberofpvmodule();
         int numberOfInverters = instalation.getNumberofinverters();

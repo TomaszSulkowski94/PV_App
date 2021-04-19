@@ -19,9 +19,11 @@
             <td>Model konstrukcji</td>
             <td>Typ dachu</td>
             <td>Materiał wykonania dachu</td>
+            <td>Nachylenie konstrukcji</td>
             <td>Cena [zł/moduł]</td>
             <td>Edytuj</td>
             <td>Usuń</td>
+
         </tr>
         </thead>
         <tbody>
@@ -30,6 +32,7 @@
             <td th:text="${construction.model}"></td>
             <td th:text="${construction.rooftype}"></td>
             <td th:text="${construction.roofmaterial}"></td>
+            <td th:text="${construction.roofslope}"></td>
             <td th:text="${construction.price}"></td>
             <td><a th:href="${'/construction/edit/'+{construction.id}}">Edytuj</a></td>
             <td><a th:href="${'/construction/delete/'+{construction.id}}">Usuń</a></td>

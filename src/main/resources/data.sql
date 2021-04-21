@@ -32,7 +32,7 @@ VALUES ('Producent R', 'RM310', 1, 310, 10.01, 9.24, 40.1, 32.6, 0.27, 0.186, 0.
 
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent A', 'Balastowy', 'DACH_PLASKI', 'PAPA', 150, 15);
-INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price , roofslope)
+INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'Balastowy', 'DACH_PLASKI', 'PAPA', 170, 20);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent A', 'B1', 'DACH_SKOSNY', 'BLACHODACHOWKA', 90, 0);
@@ -63,59 +63,86 @@ values ('Producent A', 'G1', 'GRUNT', 'GRUNT', 110, 20);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'GX1', 'GRUNT', 'GRUNT', 125, 25);
 
-INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 0, 1500, 1000, 1, 11.00, 14.00, 160, 840, 1000, 4200);
-INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 0, 2000, 1500, 1, 11.00, 14.00, 160, 840, 1000, 4300);
-INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 0, 3000, 2000, 1, 11.00, 14.00, 160, 840, 1000, 4500);
-INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 4000, 3000, 2, 11.00, 14.00, 160, 840, 1000, 4000);
-INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 5000, 4000, 2, 11.00, 14.00, 190, 840, 1000, 4100);
-INSERT INTO inverter(manufacturer,model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 6000, 5000, 2, 11.00, 14.00, 190, 840, 1000, 4300);
-INSERT INTO inverter(manufacturer,model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 7200, 6000, 2, 11.00, 14.00, 290, 840, 1000, 4500);
-INSERT INTO inverter(manufacturer,model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 8400, 7000, 2, 11.00, 14.00, 290, 840, 1000, 4600);
-INSERT INTO inverter(manufacturer,model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 9100, 8000, 2, 11.00, 14.00, 290, 840, 1000, 4700);
-INSERT INTO inverter(manufacturer,model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 10200, 9000, 2, 11.00, 14.00, 290, 840, 1000, 4850);
-INSERT INTO inverter(manufacturer,model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 11200, 10000, 2, 11.00, 14.00, 290, 840, 1000, 4950);
-INSERT INTO inverter(manufacturer,model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 12200, 11000, 2, 11.00, 14.00, 300, 840, 1000, 5200);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'STL-X', 1, 15000, 12000, 2, 11.00, 14.00, 300, 800, 1000, 5500);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 18000, 15000, 2, 21.00, 27.00, 370, 850, 1000, 6000);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 20400, 17000, 2, 24.00, 30.00, 420, 850, 1000, 6500);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 24000, 20000, 2, 24.00, 30.00, 430, 850, 1000, 8000);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 28800, 24000, 2, 24.00, 30.00, 430, 850, 1000, 9000);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 30000, 27000, 2, 24.00, 30.00, 430, 850, 1000, 9300);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 33000, 30000, 2, 12.00, 40.00, 250, 960, 1000, 9500);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 36000, 33000, 2, 12.00, 44.00, 250, 960, 1000, 12000);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 39000, 36000, 2, 12.00, 47.00, 250, 960, 1000, 15000);
-INSERT INTO inverter(manufacturer, model , type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob, dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
-values('Producent S', 'SL', 1, 48000, 40000, 2, 12.00, 44.00, 250, 960, 1000, 18000);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 0, 1500, 1000, 1, 11.00, 14.00, 160, 840, 1000, 4200);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 0, 2000, 1500, 1, 11.00, 14.00, 160, 840, 1000, 4300);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 0, 3000, 2000, 1, 11.00, 14.00, 160, 840, 1000, 4500);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 4000, 3000, 2, 11.00, 14.00, 160, 840, 1000, 4000);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 5000, 4000, 2, 11.00, 14.00, 190, 840, 1000, 4100);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 6000, 5000, 2, 11.00, 14.00, 190, 840, 1000, 4300);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 7200, 6000, 2, 11.00, 14.00, 290, 840, 1000, 4500);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 8400, 7000, 2, 11.00, 14.00, 290, 840, 1000, 4600);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 9100, 8000, 2, 11.00, 14.00, 290, 840, 1000, 4700);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 10200, 9000, 2, 11.00, 14.00, 290, 840, 1000, 4850);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 11200, 10000, 2, 11.00, 14.00, 290, 840, 1000, 4950);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 12200, 11000, 2, 11.00, 14.00, 300, 840, 1000, 5200);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'STL-X', 1, 15000, 12000, 2, 11.00, 14.00, 300, 800, 1000, 5500);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 18000, 15000, 2, 21.00, 27.00, 370, 850, 1000, 6000);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 20400, 17000, 2, 24.00, 30.00, 420, 850, 1000, 6500);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 24000, 20000, 2, 24.00, 30.00, 430, 850, 1000, 8000);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 28800, 24000, 2, 24.00, 30.00, 430, 850, 1000, 9000);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 30000, 27000, 2, 24.00, 30.00, 430, 850, 1000, 9300);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 33000, 30000, 2, 12.00, 40.00, 250, 960, 1000, 9500);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 36000, 33000, 2, 12.00, 44.00, 250, 960, 1000, 12000);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 39000, 36000, 2, 12.00, 47.00, 250, 960, 1000, 15000);
+INSERT INTO inverter(manufacturer, model, type, dcpower, acpower, mppt, maxcurrentzwarcia, maxcurrentrob,
+dolnyzakresnapiecia, gornyzakresnapiecia, maksymalnenapiecie, price)
+values ('Producent S', 'SL', 1, 48000, 40000, 2, 12.00, 44.00, 250, 960, 1000, 18000);
 
-INSERT INTO questionform(bill, rooftype,roofslope,roofposition,roofmaterial)
-values(80,'DACH_PLASKI', 15,20,'PAPA');
+INSERT INTO questionform(bill, rooftype, roofslope, roofposition, roofmaterial)
+values (80, 'DACH_PLASKI', 15, 20, 'PAPA');
 
-INSERT INTO production(january,february,march,april,may,june,july,august,september,october,november,december,summary)
-values (189,252,441,567,756,819,756,819,693,567,315,189,6363);
+INSERT INTO production(january, february, march, april, may, june, july, august, september, october, november, december,
+summary)
+values (189, 252, 441, 567, 756, 819, 756, 819, 693, 567, 315, 189, 6363);
 
-INSERT INTO instalation(pvmoduleid, numberofpvmodule, inverterid, numberofinverters, constructionid, power, price, questionformid, productionid, roofposition, instalationangle)
-values(1, 20, 5, 1, 1, 20 * 250, 20000,1, 1,0 ,15);
+INSERT INTO technicalresults (vocmax,vmppmax,vmppmin,iscmax,imppmax,nmax,nmin,nmaxparallel)
+values(51.0,40.0,  30.0 ,11.0, 9.0,  21, 5, 1);
+
+INSERT INTO instalation(pvmoduleid, numberofpvmodule, inverterid, numberofinverters, constructionid, power, price,
+questionformid, productionid, roofposition, instalationangle, technicalresultsid)
+values(1, 20, 5, 1, 1, 20 * 250, 20000, 1, 1, 0, 15, 1);
 
 
 

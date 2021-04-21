@@ -48,7 +48,7 @@ public class QuestionForm {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "questionForm")
     private Instalation instalation;
 
-    public QuestionForm(int bill, RoofType rooftype, int roofslope, int roofposition, RoofMaterial roofmaterial) {
+    public QuestionForm(int bill, RoofType rooftype, int roofslope, int roofposition, RoofMaterial roofmaterial, Instalation instalation) {
         this.bill = bill;
         this.rooftype = rooftype;
         this.roofslope = roofslope;

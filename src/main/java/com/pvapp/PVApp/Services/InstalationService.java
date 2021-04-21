@@ -32,6 +32,9 @@ public class InstalationService {
     @Autowired
     QuestionFormService questionFormService;
 
+    @Autowired
+    TechnicalResultService technicalResultService;
+
 
     public List<Instalation> getAll() {
         return new ArrayList<Instalation>(instalationDBRepo.printAll());
@@ -42,10 +45,11 @@ public class InstalationService {
         instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
         instalation.setPrice(calcPrice(instalation));
         instalation.setInstalationangle(setInstalationAngle(instalation));
-        QuestionForm questionForm = new QuestionForm(50, setRoofTypeFromInstalation(instalation), setInstalationAngle(instalation), instalation.getRoofposition(), setRoofMaterialFromInstalation(instalation));
+        QuestionForm questionForm = new QuestionForm(50, setRoofTypeFromInstalation(instalation), setInstalationAngle(instalation), instalation.getRoofposition(), setRoofMaterialFromInstalation(instalation), instalation);
         questionFormService.create(questionForm);
         instalation.setQuestionForm(questionForm);
         instalation.setProduction(productionService.createProduction(instalation));
+        instalation.setTechnicalResults(technicalResultService.createTR(instalation));
         instalationDBRepo.create(instalation);
     }
 
@@ -63,8 +67,8 @@ public class InstalationService {
         instalation.setQuestionForm(questionForm);
         instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
         instalation.setRoofposition(setRoofPosition(questionForm));
-        Production production = productionService.createProduction(instalation);
-        instalation.setProduction(production);
+        instalation.setProduction(productionService.createProduction(instalation));
+        instalation.setTechnicalResults(technicalResultService.createTR(instalation));
         instalationDBRepo.create(instalation);
     }
 
@@ -84,6 +88,7 @@ public class InstalationService {
         instalation.setConstruction(construction);
         instalation.setPrice(calcPrice(instalation));
         instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
+        technicalResultService.updateTR(instalation);
         productionService.updateProduction(instalation);
         instalationDBRepo.update(instalation);
     }
@@ -98,23 +103,10 @@ public class InstalationService {
         questionForm.setRoofposition(instalation.getRoofposition());
         questionForm.setRooftype(setRoofTypeFromInstalation(instalation));
         questionFormService.updateQuestionFormByInstalation(questionForm);
+        technicalResultService.updateTR(instalation);
         productionService.updateProduction(instalation);
         instalationDBRepo.update(instalation);
     }
-//     TODO: Based on the updating questionform
-//    public void update(Instalation instalation) {
-//        log.info("Updating instalation --service");
-//        instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
-//        instalation.setPrice(calcPrice(instalation));
-//        QuestionForm questionForm = questionFormService.getQuestionForm(instalation.getQuestionForm().getId());
-//        questionForm.setRoofmaterial(setRoofMaterialFromInstalation(instalation));
-//        questionForm.setRoofslope(setInstalationAngle(instalation));
-//        questionForm.setRooftype(setRoofTypeFromInstalation(instalation));
-//        questionFormService.updateQuestionForm(questionForm);
-//        productionService.updateProduction(instalation);
-//        instalationDBRepo.update(instalation);
-//    }
-
 
     private int setInstalationAngle(Instalation instalation) {
         log.info("Setting angle to questionform --service");

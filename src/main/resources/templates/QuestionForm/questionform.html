@@ -9,7 +9,8 @@
 
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
-</head>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="selectFilter.min.js"></script>
 <body>
 <div class="container">
 
@@ -21,25 +22,28 @@
         </div>
         <div class="form group">
             <label class="control-label">Materiał typ dachu</label>
-            <select th:field="*{rooftype}">
+            <select th:field="*{rooftype}" data-target="roofmaterial">
                 <option th:value="DACH_PLASKI" th:text="'DACH PŁASKI'"></option>
                 <option th:value="DACH_SKOSNY" th:text="'DACH SKOŚNY'"></option>
                 <option th:value="GRUNT" th:text="GRUNT"></option>
             </select>
+            <br>
+            <label class="control-label">Materiał wykonania dachu</label>
+            <select th:field="*{roofmaterial}">
+                <option th:value="PAPA" th:text="PAPA" data-belong="DACH_PLASKI"></option>
+                <option th:value="BLACHODACHOWKA" th:text="BLACHODACHÓWKA" data-belong="DACH_SKOSNY"></option>
+                <option th:value="BLACHOTRAPEZ" th:text="BLACHOTRAPEZ" data-belong="DACH_SKOSNY"></option>
+                <option th:value="PLYTA_WARSTWOWA" th:text="'PŁYTA WARTSTWOWA'" data-belong="DACH_SKOSNY"></option>
+                <option th:value="GONT" th:text="GONT" data-belong="DACH_SKOSNY"></option>
+                <option th:value="GRUNT" th:text="GRUNT" data-belong="GRUNT"></option>
+                <option th:value="DACHÓWKA_CERAMICZNA" th:text="'DACHÓWKA CERAMICZNA'"
+                        data-belong="DACH_SKOSNY"></option>
+                <option th:value="DACHÓWKA_KARPIÓWKA" th:text="'DACHÓWKA KARPIÓWKA'" data-belong="DACH_SKOSNY"></option>
+            </select>
         </div>
         <br>
         <div class="form group">
-            <label class="control-label">Materiał wykonania dachu</label>
-            <select th:field="*{roofmaterial}">
-                <option th:value="BLACHODACHOWKA" th:text="BLACHODACHÓWKA"></option>
-                <option th:value="BLACHOTRAPEZ" th:text="BLACHOTRAPEZ"></option>
-                <option th:value="PLYTA_WARSTWOWA" th:text="'PŁYTA WARTSTWOWA'"></option>
-                <option th:value="PAPA" th:text="PAPA"></option>
-                <option th:value="GONT" th:text="GONT"></option>
-                <option th:value="GRUNT" th:text="GRUNT"></option>
-                <option th:value="DACHÓWKA_CERAMICZNA" th:text="'DACHÓWKA CERAMICZNA'"></option>
-                <option th:value="DACHÓWKA_KARPIÓWKA" th:text="'DACHÓWKA KARPIÓWKA'"></option>
-            </select>
+
         </div>
         <br>
 

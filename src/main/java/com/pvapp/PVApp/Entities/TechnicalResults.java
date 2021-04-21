@@ -27,6 +27,7 @@ public class TechnicalResults {
     private double imppmax;
     private int nmax;
     private int nmin;
+    private int nmaxparallel;
 
     @OneToOne(mappedBy = "technicalResults", cascade = CascadeType.ALL)
     private Instalation instalation;

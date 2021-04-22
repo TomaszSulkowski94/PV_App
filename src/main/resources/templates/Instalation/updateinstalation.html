@@ -108,6 +108,14 @@
             <label class="control-label">Produkcja</label>
             <input type="text" th:field="*{production.id}" class="form-control" readonly="readonly"/>
         </div>
+        <div class="form-group">
+            <label class="control-label">Dane techniczne</label>
+            <input type="text" th:field="*{technicalResults.id}" class="form-control" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Cena</label>
+            <input type="text" th:field="*{price.id}" class="form-control" readonly="readonly"/>
+        </div>
         <div class="row">
             <button type="submit" class="btn btn-default">Zapisz zmiany</button>
             <button type="reset" class="btn btn-default">Wyczyść zmiany</button>

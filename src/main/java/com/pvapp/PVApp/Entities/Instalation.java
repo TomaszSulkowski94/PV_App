@@ -35,14 +35,13 @@ public class Instalation {
     @JoinColumn(name = "constructionid")
     private Construction construction;
     private double power;
-    private double price;
+
+    @OneToOne
+    @JoinColumn(name = "priceid")
+    private Price price;
 
     private int roofposition;
     private int instalationangle;
-
-//    @ManyToOne
-//    @JoinColumn(name="owner_id")
-//    private Owner owner;
 
 
     @OneToOne
@@ -63,8 +62,6 @@ public class Instalation {
         this.inverter = inverter;
         this.numberofinverters = numberofinverters;
         this.construction = construction;
-        this.power = 0;
-        this.price = 0;
     }
 
 

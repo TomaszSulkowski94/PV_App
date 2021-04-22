@@ -34,12 +34,13 @@ public class ProductionService {
         double electricFactor = electricFactor(questionFormService.getQuestionForm(instalation.getQuestionForm().getId()), instalation);
         double summary = 0;
         for (int i = 0; i < productionfactors.length; i++) {
-            double calcProduction = (instalation.getPower()/1000)* productionfactors[i] * electricFactor * 1050 * (1 - pvModule.getTemperatureLost());
-            calcProduction = Math.round(calcProduction * 100) / 100;
+            double calcProduction = (instalation.getPower() / 1000) * productionfactors[i] * electricFactor * 1025 * (1 - pvModule.getTemperatureLost());
+            calcProduction = roundResult(calcProduction);
             productionArray[i] = calcProduction;
             log.info("Calculating production for " + (i + 1) + " month: " + calcProduction + " kWh");
             summary += calcProduction;
         }
+        log.info("Summary production: " + summary + " kWh");
         production.setJanuary(productionArray[0]);
         production.setFebruary(productionArray[1]);
         production.setMarch(productionArray[2]);
@@ -63,6 +64,10 @@ public class ProductionService {
         return production;
     }
 
+    private double roundResult(double number) {
+        number = Math.round(number * 100);
+        return number / 100;
+    }
 
 
     public void updateProduction(Instalation instalation) {

@@ -35,6 +35,8 @@ public class InstalationService {
     @Autowired
     TechnicalResultService technicalResultService;
 
+    @Autowired
+    PriceService priceService;
 
     public List<Instalation> getAll() {
         return new ArrayList<Instalation>(instalationDBRepo.printAll());
@@ -43,13 +45,13 @@ public class InstalationService {
     public void save(Instalation instalation) {
         log.info("Saving instalation --service");
         instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
-        instalation.setPrice(calcPrice(instalation));
         instalation.setInstalationangle(setInstalationAngle(instalation));
         QuestionForm questionForm = new QuestionForm(50, setRoofTypeFromInstalation(instalation), setInstalationAngle(instalation), instalation.getRoofposition(), setRoofMaterialFromInstalation(instalation), instalation);
         questionFormService.create(questionForm);
         instalation.setQuestionForm(questionForm);
         instalation.setProduction(productionService.createProduction(instalation));
         instalation.setTechnicalResults(technicalResultService.createTR(instalation));
+        priceService.createPrice(instalation);
         instalationDBRepo.create(instalation);
     }
 
@@ -63,12 +65,12 @@ public class InstalationService {
         Construction construction = getconstructionString(questionForm);
         Instalation instalation = new Instalation(pvModule, numberOfModules, inverter, 1, construction);
         instalation.setPower(instalationSize);
-        instalation.setPrice(calcPrice(instalation));
         instalation.setQuestionForm(questionForm);
         instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
         instalation.setRoofposition(setRoofPosition(questionForm));
         instalation.setProduction(productionService.createProduction(instalation));
         instalation.setTechnicalResults(technicalResultService.createTR(instalation));
+        priceService.createPrice(instalation);
         instalationDBRepo.create(instalation);
     }
 
@@ -86,7 +88,7 @@ public class InstalationService {
         instalation.setPower(instalationSize);
         instalation.setInverter(inverter);
         instalation.setConstruction(construction);
-        instalation.setPrice(calcPrice(instalation));
+        priceService.updatePrice(instalation);
         instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
         technicalResultService.updateTR(instalation);
         productionService.updateProduction(instalation);
@@ -96,7 +98,6 @@ public class InstalationService {
     public void update(Instalation instalation) {
         log.info("Updating instalation --service");
         instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
-        instalation.setPrice(calcPrice(instalation));
         QuestionForm questionForm = questionFormService.getQuestionForm(instalation.getQuestionForm().getId());
         questionForm.setRoofmaterial(setRoofMaterialFromInstalation(instalation));
         questionForm.setRoofslope(setInstalationAngle(instalation));
@@ -104,6 +105,7 @@ public class InstalationService {
         questionForm.setRooftype(setRoofTypeFromInstalation(instalation));
         questionFormService.updateQuestionFormByInstalation(questionForm);
         technicalResultService.updateTR(instalation);
+        priceService.updatePrice(instalation);
         productionService.updateProduction(instalation);
         instalationDBRepo.update(instalation);
     }
@@ -178,20 +180,10 @@ public class InstalationService {
     }
 
 
-    private double calcPrice(Instalation instalation) {
-        log.info("Calculating price --service");
-        int numberOfPVModules = instalation.getNumberofpvmodule();
-        int numberOfInverters = instalation.getNumberofinverters();
-        PVModule pvModule = moduleService.getPVModule(instalation.getPvModule().getId());
-        Inverter inverter = instalation.getInverter();
-        Construction construction = constructionService.getConstruction(instalation.getConstruction().getId());
-        double currency = 4.45;
-        double modulePrice = currency * pvModule.getPower() * pvModule.getPrice();
-        double price = numberOfPVModules * modulePrice + construction.getPrice() * numberOfPVModules + inverter.getPrice() * numberOfInverters;
-        price = (Math.round(price * 100)) / 100;
-        return price;
+    private double roundResult(double number) {
+        number = Math.round(number * 100);
+        return number / 100;
     }
-
 
     private Construction getconstructionString(QuestionForm questionForm) {
         String rooftype = questionForm.getRooftype().toString();

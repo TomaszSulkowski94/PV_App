@@ -26,7 +26,8 @@
             <td>Producent konstrukcji</td>
             <td>Typ dachu</td>
             <td>Materiał poszycia dachu</td>
-            <td>Koszt Instalacji [zł]</td>
+            <td>Cena instalacji netto [zł]</td>
+            <td>Cena instalacji brutto [zł]</td>
             <td>Kąt skierowania instalacji</td>
             <td>Kąt nachylenia instalacji</td>
             <td>Edytuj</td>
@@ -48,7 +49,8 @@
             <td th:text="${instalation.construction.manufacturer}"></td>
             <td th:text="${instalation.construction.rooftype}"></td>
             <td th:text="${instalation.construction.roofmaterial}"></td>
-            <td th:text="${instalation.price}"></td>
+            <td th:text="${instalation.price.instalationpricenet}"></td>
+            <td th:text="${instalation.price.instalationpricegross}"></td>
             <td th:text="${instalation.roofposition}"></td>
             <td th:text="${instalation.instalationangle}"></td>
             <td><a th:href="${'/instalation/edit/'+{instalation.id}}">Edytuj</a></td>

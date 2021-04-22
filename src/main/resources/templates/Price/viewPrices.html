@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista falowników</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Cena modułów [zł]</td>
+            <td>Cena falownika [zł]</td>
+            <td>Cena konstrukcji [zł]</td>
+            <td>Cena instalacji netto [zł]</td>
+            <td>Wartość podatku VAT [zł]</td>
+            <td>Cena instalacji brutto [zł]</td>
+            <td>Zniżka [%]</td>
+            <td>Usuń</td>
+            <td>Nadaj zniżkę</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="price: ${prices}">
+            <td th:text="${price.modulePrice}"></td>
+            <td th:text="${price.inverterPrice}"></td>
+            <td th:text="${price.constructionPrice}"></td>
+            <td th:text="${price.instalationPriceNet}"></td>
+            <td th:text="${price.taxvalue}"></td>
+            <td th:text="${price.instalationPriceGross}"></td>
+            <td th:text="${price.discount}"></td>
+            <td><a th:href="${'/price/delete/'+{price.id}}">Usuń</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <a href="/inverter/create">Dodaj falownik</a>
+    </div>
+</div>
+</body>
+</html>

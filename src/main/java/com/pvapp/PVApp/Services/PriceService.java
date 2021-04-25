@@ -42,7 +42,7 @@ public class PriceService {
         price.setInverterprice(inverter.getPrice());
         double netPrice = calcInstalationPriceNet(modulePrice, constructionPrice, inverter);
         price.setInstalationpricenet(netPrice);
-        price.setTaxvalue(netPrice * 0.08);
+        price.setTaxvalue(round(netPrice * 0.08));
         double grossPrice = calcGrossPrice(netPrice, 8);
         price.setInstalationpricegross(grossPrice);
         price.setDiscountedinstalationpricegross(grossPrice);

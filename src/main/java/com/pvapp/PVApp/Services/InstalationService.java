@@ -49,8 +49,8 @@ public class InstalationService {
         QuestionForm questionForm = new QuestionForm(50, setRoofTypeFromInstalation(instalation), setInstalationAngle(instalation), instalation.getRoofposition(), setRoofMaterialFromInstalation(instalation), instalation);
         questionFormService.create(questionForm);
         instalation.setQuestionForm(questionForm);
-        instalation.setProduction(productionService.createProduction(instalation));
-        instalation.setTechnicalResults(technicalResultService.createTR(instalation));
+        productionService.createProduction(instalation);
+        technicalResultService.createTR(instalation);
         priceService.createPrice(instalation);
         instalationDBRepo.create(instalation);
     }
@@ -68,8 +68,8 @@ public class InstalationService {
         instalation.setQuestionForm(questionForm);
         instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
         instalation.setRoofposition(setRoofPosition(questionForm));
-        instalation.setProduction(productionService.createProduction(instalation));
-        instalation.setTechnicalResults(technicalResultService.createTR(instalation));
+        productionService.createProduction(instalation);
+        technicalResultService.createTR(instalation);
         priceService.createPrice(instalation);
         instalationDBRepo.create(instalation);
     }

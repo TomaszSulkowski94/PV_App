@@ -39,13 +39,9 @@
             <td th:text="${price.instalationpricegross}"></td>
             <td><a th:href="${'/price/delete/'+{price.id}}">Usuń</a></td>
             <td><a th:href="${'/price/setdiscount/'+{price.id}}">Rabat</a></td>
-
         </tr>
         </tbody>
     </table>
-    <div class="row">
-        <a href="/inverter/create">Dodaj falownik</a>
-    </div>
 </div>
 </body>
 </html>

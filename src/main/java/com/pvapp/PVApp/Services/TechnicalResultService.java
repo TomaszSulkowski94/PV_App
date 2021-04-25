@@ -53,7 +53,7 @@ public class TechnicalResultService {
         technicalResults.setNmax(calcMaxNumberOfModulesAtString(inverter, vocMax, vmppMax));
         technicalResults.setNmaxparallel(calcMaxParallelString(inverter, iscMax, imppMax));
         technicalResults.setNmin(calcMinNumberOfModulesAtString(inverter, vmppMin));
-        technicalResults.setInstalation(instalation);
+        instalation.setTechnicalResults(technicalResults);
     }
 
     public void deleteTR(int id) {
@@ -79,7 +79,8 @@ public class TechnicalResultService {
     }
 
     private double roundTwoPlaces(double number) {
-        return Math.round(number * 100) / 100;
+        number = Math.round(number * 100);
+        return number / 100;
     }
 
     private double calcvVocmax(PVModule pvModule) {

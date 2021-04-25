@@ -56,13 +56,12 @@ public class ProductionService {
         production.setSummary(summary);
     }
 
-    public Production createProduction(Instalation instalation) {
+    public void createProduction(Instalation instalation) {
         log.info("Saving production --service");
         Production production = new Production();
         calcProduction(instalation, production);
         productionDBRepository.create(production);
         instalation.setProduction(production);
-        return production;
     }
 
     private double roundResult(double number) {

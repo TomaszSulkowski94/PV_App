@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Dodaj zniżkę</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
 </head>
 <body>
-
+<div class="container">
+    <form th:object="${price}" th:action="@{/price/setdiscount}" th:method="POST" class="form-horizontal">
+        <div hidden class="form-group">
+            <label class="control-label">Id</label>
+            <input type="text" th:field="*{id}" class="form-control" readonly="readonly"/>
+        </div>
+        <div hidden class="form-group">
+            <label class="control-label">Cena modułów PV</label>
+            <input type="number" class="form-control" th:field="*{moduleprice}" readonly="readonly"/>
+        </div>
+        <div hidden class="form-group">
+            <label class="control-label">Cena falownika</label>
+            <input type="number" class="form-control" th:field="*{inverterprice}" readonly="readonly"/>
+        </div>
+        <div hidden class="form-group">
+            <label class="control-label">Cena konstrukcji</label>
+            <input type="number" class="form-control" th:field="*{constructionprice}" readonly="readonly"/>
+        </div>
+        <div hidden class="form-group">
+            <label class="control-label">Cena instalacji netto</label>
+            <input type="number" class="form-control" th:field="*{instalationpricenet}" readonly="readonly"/>
+        </div>
+        <div hidden class="form-group">
+            <label class="control-label">Podatek</label>
+            <input type="number" class="form-control" th:field="*{taxvalue}" readonly="readonly"/>
+        </div>
+        <div  class="form-group">
+            <label class="control-label">Cena przed rabatem</label>
+            <input type="number" class="form-control" th:field="*{instalationpricegross}" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Rabat</label>
+            <input type="number" class="form-control" th:field="*{discount}" min="0" max="40" step="1"/>
+        </div>
+        <div hidden class="form-group">
+            <label class="control-label">Cena po rabacie</label>
+            <input type="number" class="form-control" th:field="*{discountedinstalationpricegross}" readonly="readonly"/>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Dodaj zniżkę</button>
+            <a href="/instalation/list" class="btn btn-danger" role="button">Powrót</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

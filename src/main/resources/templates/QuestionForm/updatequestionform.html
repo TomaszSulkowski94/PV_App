@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <form th:object="${questionform}" th:method="POST" th:action="@{/questionform/update}" class="form-horizontal">
-        <div class="form-group">
+        <div hidden class="form-group">
             <label class="control-label">Id</label>
             <input type="text" th:field="*{id}" class="form-control" readonly="readonly"/>
         </div>

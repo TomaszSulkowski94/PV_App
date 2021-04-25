@@ -36,7 +36,7 @@ public class Instalation {
     private Construction construction;
     private double power;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "priceid")
     private Price price;
 
@@ -44,15 +44,15 @@ public class Instalation {
     private int instalationangle;
 
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "questionformid")
     private QuestionForm questionForm;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "productionid")
     private Production production;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "technicalresultsid")
     private TechnicalResults technicalResults;
 

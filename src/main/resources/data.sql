@@ -138,8 +138,8 @@ summary)
 values (163.09, 221.34, 407.73, 512.57, 698.96, 733.91, 710.61, 733.91, 634.89, 506.75, 302.88, 198.04, 5824.67);
 
 INSERT INTO price(moduleprice, inverterprice, constructionprice, instalationpricenet, taxvalue, instalationpricegross,
-discount)
-values (7569.45, 4200.0, 3000.0, 14769.45, 1181.556, 15951.01, 0);
+discount,discountedinstalationpricegross)
+values (7569.45, 4200.0, 3000.0, 14769.45, 1181.556, 15951.01, 0, 15951.01);
 
 INSERT INTO technicalresults(vocmax, vmppmax, vmppmin, iscmax, imppmax, nmax, nmin, nmaxparallel)
 values (51.0, 40.0, 30.0, 11.0, 9.0, 21, 5, 1);

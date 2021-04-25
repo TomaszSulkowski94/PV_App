@@ -16,8 +16,6 @@ public class PriceService {
     @Autowired
     PriceDBRepo priceDBRepo;
 
-    @Autowired
-    InstalationService instalationService;
 
     @Autowired
     PVModuleService pvModuleService;
@@ -45,7 +43,9 @@ public class PriceService {
         double netPrice = calcInstalationPriceNet(modulePrice, constructionPrice, inverter);
         price.setInstalationpricenet(netPrice);
         price.setTaxvalue(netPrice * 0.08);
-        price.setInstalationpricegross(calcGrossPrice(netPrice, 8));
+        double grossPrice = calcGrossPrice(netPrice, 8);
+        price.setInstalationpricegross(grossPrice);
+        price.setDiscountedinstalationpricegross(grossPrice);
     }
 
 
@@ -82,9 +82,12 @@ public class PriceService {
         priceDBRepo.update(price);
     }
 
-    public void setDiscount(int discount, Price price) {
-//        price.getInstalationPriceNet();
-//        update();
+    public void setDiscount(Price price) {
+        int discount = price.getDiscount();
+        double doublDiscount = (double) discount / 100;
+        double newGrossPrice = round(price.getInstalationpricegross() - price.getInstalationpricegross() * doublDiscount);
+        price.setDiscountedinstalationpricegross(newGrossPrice);
+        update(price);
     }
 
     public void createPrice(Instalation instalation) {

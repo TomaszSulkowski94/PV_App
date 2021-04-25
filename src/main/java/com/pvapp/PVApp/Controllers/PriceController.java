@@ -5,9 +5,7 @@ import com.pvapp.PVApp.Services.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,17 @@ public class PriceController {
         List<Price> prices = priceService.getAllPrices();
         model.addAttribute("prices",prices);
         return "Price/viewPrices";
+    }
+
+    @GetMapping("/setdiscount/{id}")
+    public String setDiscount(@PathVariable("id") int id, Model model) {
+        model.addAttribute("price", priceService.getPrice(id));
+        return "Price/setdiscount";
+    }
+
+    @PostMapping("/setdiscount")
+    public String setDiscount(@ModelAttribute("price") Price price) {
+        priceService.setDiscount(price);
+        return "redirect:/instalation/list";
     }
 }

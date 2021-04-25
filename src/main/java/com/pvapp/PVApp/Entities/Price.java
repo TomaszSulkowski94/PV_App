@@ -26,6 +26,7 @@ public class Price {
     private double instalationpricenet;
     private double taxvalue;
     private double instalationpricegross;
+    private double discountedinstalationpricegross;
     private int discount;
 
     @OneToOne(mappedBy = "price", cascade = CascadeType.ALL)

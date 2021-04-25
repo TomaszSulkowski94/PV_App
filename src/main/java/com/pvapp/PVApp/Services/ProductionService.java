@@ -61,6 +61,7 @@ public class ProductionService {
         Production production = new Production();
         calcProduction(instalation, production);
         productionDBRepository.create(production);
+        instalation.setProduction(production);
         return production;
     }
 

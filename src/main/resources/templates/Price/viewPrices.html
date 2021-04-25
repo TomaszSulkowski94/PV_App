@@ -20,22 +20,25 @@
             <td>Cena konstrukcji [zł]</td>
             <td>Cena instalacji netto [zł]</td>
             <td>Wartość podatku VAT [zł]</td>
-            <td>Cena instalacji brutto [zł]</td>
-            <td>Zniżka [%]</td>
+            <td>Cena instalacji brutto przed rabatem [zł]</td>
+            <td>Rabat [%]</td>
+            <td>Cena instalacji brutto po rabacie [zł]</td>
             <td>Usuń</td>
-            <td>Nadaj zniżkę</td>
+            <td>Dodaj zniżkę</td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="price: ${prices}">
-            <td th:text="${price.modulePrice}"></td>
-            <td th:text="${price.inverterPrice}"></td>
-            <td th:text="${price.constructionPrice}"></td>
-            <td th:text="${price.instalationPriceNet}"></td>
+            <td th:text="${price.moduleprice}"></td>
+            <td th:text="${price.inverterprice}"></td>
+            <td th:text="${price.constructionprice}"></td>
+            <td th:text="${price.instalationpricenet}"></td>
             <td th:text="${price.taxvalue}"></td>
-            <td th:text="${price.instalationPriceGross}"></td>
+            <td th:text="${price.instalationpricegross}"></td>
             <td th:text="${price.discount}"></td>
+            <td th:text="${price.instalationpricegross}"></td>
             <td><a th:href="${'/price/delete/'+{price.id}}">Usuń</a></td>
+            <td><a th:href="${'/price/setdiscount/'+{price.id}}">Rabat</a></td>
 
         </tr>
         </tbody>

@@ -27,13 +27,15 @@
             <td>Typ dachu</td>
             <td>Materiał poszycia dachu</td>
             <td>Cena instalacji netto [zł]</td>
-            <td>Cena instalacji brutto [zł]</td>
+            <td>Cena instalacji brutto przed rabatem [zł]</td>
+            <td>Cena instalacji brutto po rabacie [zł]</td>
             <td>Kąt skierowania instalacji</td>
             <td>Kąt nachylenia instalacji</td>
             <td>Edytuj</td>
             <td>Usuń</td>
             <td>Ankieta</td>
-            <td>Podgląd pod raport</td>
+            <td>Rabat</td>
+            <td>Raport</td>
         </tr>
         </thead>
         <tbody>
@@ -51,11 +53,13 @@
             <td th:text="${instalation.construction.roofmaterial}"></td>
             <td th:text="${instalation.price.instalationpricenet}"></td>
             <td th:text="${instalation.price.instalationpricegross}"></td>
+            <td th:text="${instalation.price.discountedinstalationpricegross}"></td>
             <td th:text="${instalation.roofposition}"></td>
             <td th:text="${instalation.instalationangle}"></td>
             <td><a th:href="${'/instalation/edit/'+{instalation.id}}">Edytuj</a></td>
             <td><a th:href="${'/instalation/delete/'+{instalation.id}}">Usuń</a></td>
             <td><a th:href="${'/questionform/view/'+{instalation.questionForm.id}}">Ankieta</a></td>
+            <td><a th:href="${'/price/setdiscount/'+{instalation.price.id}}">Rabat</a></td>
             <td>Raport</td>
 
         </tr>

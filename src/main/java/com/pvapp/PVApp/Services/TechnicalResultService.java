@@ -33,6 +33,7 @@ public class TechnicalResultService {
         TechnicalResults technicalResults = new TechnicalResults();
         calcTR(instalation, technicalResults);
         technicalResultsDB.create(technicalResults);
+        instalation.setTechnicalResults(technicalResults);
         return technicalResults;
     }
 

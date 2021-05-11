@@ -26,7 +26,7 @@ public class TechnicalResultsDB implements CRUD<TechnicalResults> {
     }
 
     @Override
-    @javax.transaction.Transactional
+    @Transactional
     public void create(TechnicalResults technicalResults) {
         log.info("Creating technical results --repository");
         em.persist(technicalResults);

@@ -11,9 +11,9 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
 @Entity
 @Table(name = "pvmodules")
@@ -21,7 +21,7 @@ public class PVModule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="pvmoduleid")
+    @Column(name = "pvmoduleid")
     private int id;
 
 
@@ -79,11 +79,11 @@ public class PVModule {
     private double price;
 
     public enum moduleType {
-        POLIKRYSTALICZNY , MONOKRYSTALICZNY, BIFACIAL, GLASSGLASS
+        POLIKRYSTALICZNY, MONOKRYSTALICZNY, BIFACIAL, GLASSGLASS
 
     }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pvModule")
     List<Instalation> instalationList;
 
- }
+}

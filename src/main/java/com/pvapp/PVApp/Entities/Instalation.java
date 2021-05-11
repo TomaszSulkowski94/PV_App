@@ -1,10 +1,7 @@
 package com.pvapp.PVApp.Entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import javax.persistence.*;
@@ -24,15 +21,18 @@ public class Instalation {
 
     @ManyToOne
     @JoinColumn(name = "pvmoduleid")
+    @ToString.Exclude
     private PVModule pvModule;
     private int numberofpvmodule;
 
     @ManyToOne
     @JoinColumn(name = "inverterid")
+    @ToString.Exclude
     private Inverter inverter;
     private int numberofinverters;
     @ManyToOne
     @JoinColumn(name = "constructionid")
+    @ToString.Exclude
     private Construction construction;
     private double power;
 
@@ -43,15 +43,17 @@ public class Instalation {
     private int roofposition;
     private int instalationangle;
 
-
+    @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "questionformid")
     private QuestionForm questionForm;
 
+    @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "productionid")
     private Production production;
 
+    @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "technicalresultsid")
     private TechnicalResults technicalResults;

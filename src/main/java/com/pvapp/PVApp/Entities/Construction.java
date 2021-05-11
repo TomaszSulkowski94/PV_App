@@ -1,8 +1,7 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.Range;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

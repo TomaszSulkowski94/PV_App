@@ -23,8 +23,6 @@ public class QuestionForm {
     @Column(name = "questionformid")
     private int id;
 
-    @NotNull
-    @Range(min = 50, max = 2000, message = "Wartość rachunku powinna przyjąć wartość z przedziału 50 do 2000 zł")
     private int bill;
     @Enumerated(EnumType.STRING)
     private RoofType rooftype;

@@ -22,6 +22,7 @@ public class PriceDBRepo implements CRUD<Price> {
     public void update(Price price) {
         log.info("Merging price --repository");
         em.merge(price);
+
     }
 
     @Override

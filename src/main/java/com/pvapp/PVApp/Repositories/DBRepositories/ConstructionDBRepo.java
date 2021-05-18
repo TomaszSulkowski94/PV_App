@@ -61,4 +61,9 @@ public class ConstructionDBRepo implements CRUD<Construction> {
                 .setMaxResults(1).getSingleResult();
     }
 
+    public Collection<Construction> getByManufactuer() {
+        log.info("Getting construction for manufaturer: Porducent A");
+        return em.createQuery("from Construction C WHERE C.manufacturer=:man", Construction.class).setParameter("man","Producent A").getResultList();
+    }
+
 }

@@ -78,6 +78,8 @@ public class PriceService {
         log.info("Recalculating price --service");
         Price price = getPrice(instalation.getPrice().getId());
         calcPrice(price, instalation);
+        instalation.setPrice(price);
+        update(price);
     }
 
     public void update(Price price) {

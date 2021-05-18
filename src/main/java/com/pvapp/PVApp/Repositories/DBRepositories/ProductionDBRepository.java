@@ -35,7 +35,7 @@ public class ProductionDBRepository implements CRUD<Production> {
     @Override
     @Transactional
     public void delete(int id) {
-        log.info("Deleting production by id --repository "+ id);
+        log.info("Deleting production by id --repository " + id);
         em.remove(em.find(Production.class, id));
     }
 

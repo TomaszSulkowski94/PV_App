@@ -74,6 +74,7 @@ public class ProductionService {
         log.info("Updating production --service");
         Production production = getProduction(instalation.getProduction().getId());
         calcProduction(instalation, production);
+        instalation.setProduction(production);
         productionDBRepository.update(production);
     }
 

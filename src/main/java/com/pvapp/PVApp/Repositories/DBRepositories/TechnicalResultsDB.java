@@ -36,7 +36,7 @@ public class TechnicalResultsDB implements CRUD<TechnicalResults> {
     @Transactional
     public void delete(int id) {
         log.info("Deleting technical results by id --repository: " + id);
-        em.remove(em.find(TechnicalResults.class,id));
+        em.remove(em.find(TechnicalResults.class, id));
     }
 
     @Override
@@ -48,6 +48,6 @@ public class TechnicalResultsDB implements CRUD<TechnicalResults> {
     @Override
     public TechnicalResults printbyid(int id) {
         log.info("Getting technical results by id --repository: " + id);
-        return em.find(TechnicalResults.class,id);
+        return em.find(TechnicalResults.class, id);
     }
 }

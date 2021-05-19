@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
@@ -55,15 +57,33 @@ public class ConstructionDBRepo implements CRUD<Construction> {
 
     public Construction getByRoofTypeMaterial(String rooftype, String roofmaterial) {
         log.info("Getting construction by roof type and roof material --repository");
+        try {
+            return em.createQuery("from Construction C WHERE C.rooftype=:type AND C.roofmaterial=:material", Construction.class)
+                    .setParameter("type", Construction.roofType.valueOf(rooftype))
+                    .setParameter("material", Construction.roofMaterial.valueOf(roofmaterial))
+                    .setMaxResults(1).getSingleResult();
+        } catch (NoResultException ex) {
+            if (rooftype.equals("DACH_PLASKI")) {
+                log.info("Zmieniono materiał dachu  z " + roofmaterial + " na: PAPA (brak takiej konstrukcji w bazie) --Repository (catch)");
+                roofmaterial = "PAPA";
+            } else if (rooftype.equals("DACH_SKOSNY")) {
+                log.info("Zmieniono materiał dachu  z " + roofmaterial + " na: BLACHOTRAPEZ (brak takiej konstrukcji w bazie) --Repository (catch)");
+                roofmaterial = "BLACHOTRAPEZ";
+            } else {
+                log.info("Zmieniono materiał dachu  z " + roofmaterial + " na: GRUNT (brak takiej konstrukcji w bazie) --Repository (catch)");
+                roofmaterial = "GRUNT";
+            }
+        }
         return em.createQuery("from Construction C WHERE C.rooftype=:type AND C.roofmaterial=:material", Construction.class)
                 .setParameter("type", Construction.roofType.valueOf(rooftype))
                 .setParameter("material", Construction.roofMaterial.valueOf(roofmaterial))
                 .setMaxResults(1).getSingleResult();
     }
 
+
     public Collection<Construction> getByManufactuer() {
         log.info("Getting construction for manufaturer: Porducent A");
-        return em.createQuery("from Construction C WHERE C.manufacturer=:man", Construction.class).setParameter("man","Producent A").getResultList();
+        return em.createQuery("from Construction C WHERE C.manufacturer=:man", Construction.class).setParameter("man", "Producent A").getResultList();
     }
 
 }

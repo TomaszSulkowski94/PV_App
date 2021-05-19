@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
-
-
+    <link rel="stylesheet"
+          th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
 </head>
@@ -27,9 +27,6 @@
             <td>Strata temperaturowa B [%/C]</td>
             <td>Sprawność [-]</td>
             <td>Cena [€/Wp]</td>
-            <td>Edytuj</td>
-            <td>Usuwanie</td>
-
         </tr>
         </thead>
         <tbody>
@@ -45,9 +42,9 @@
             <td th:text="${pvModule.temperatureLost}"></td>
             <td th:text="${pvModule.efficency}"></td>
             <td th:text="${pvModule.price}"></td>
-            <td><a th:href="${'/modules/modulelist/edit/'+{pvModule.id}}">Edytuj</a></td>
-            <td><a th:href="${'/modules/modulelist/'+pvModule.id}">Usuń moduł</a></td>
-        </tr>
+            <td><a th:href="${'/modules/modulelist/edit/'+{pvModule.id}}"><i class="fa fa-pencil"></i></a></td>
+            <td><a th:href="${'/modules/modulelist/'+pvModule.id}"><i class="fa fa-trash"></i></a></td>
+                  </tr>
         </tbody>
     </table>
     <div class="row">

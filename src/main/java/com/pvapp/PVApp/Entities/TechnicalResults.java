@@ -1,9 +1,6 @@
 package com.pvapp.PVApp.Entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -30,5 +27,6 @@ public class TechnicalResults {
     private int nmaxparallel;
 
     @OneToOne(mappedBy = "technicalResults", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Instalation instalation;
 }

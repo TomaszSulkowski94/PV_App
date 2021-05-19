@@ -27,6 +27,7 @@ public class Price {
     private int discount;
 
     @OneToOne(mappedBy = "price", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Instalation instalation;
 
     public Price(double moduleprice, double inverterprice, double constructionprice, double instalationpricenet, double taxvalue, double instalationpricegross) {

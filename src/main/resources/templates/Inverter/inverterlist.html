@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Lista falowników</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
+    <link rel="stylesheet"
+          th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
 
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
@@ -27,8 +28,6 @@
             <td>Górny zakres napiecia pracy [V]</td>
             <td>Maksymalne napięcie pracy [V]</td>
             <td>Cena [zł]</td>
-            <td>Edytuj</td>
-            <td>Usuń</td>
         </tr>
         </thead>
         <tbody>
@@ -45,8 +44,8 @@
             <td th:text="${inverter.gornyzakresnapiecia}"></td>
             <td th:text="${inverter.maksymalnenapiecie}"></td>
             <td th:text="${inverter.price}"></td>
-            <td><a th:href="${'/inverter/edit/'+{inverter.id}}">Edytuj</a></td>
-            <td><a th:href="${'/inverter/delete/'+{inverter.id}}">Usuń</a></td>
+            <td><a th:href="${'/inverter/edit/'+{inverter.id}}"><i class="fa fa-pencil"></i></a></td>
+            <td><a th:href="${'/inverter/delete/'+{inverter.id}}"><i class="fa fa-trash"></i></a></td>
         </tr>
         </tbody>
     </table>

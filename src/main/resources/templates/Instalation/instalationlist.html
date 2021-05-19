@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Lista instalacji PV</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
+    <link rel="stylesheet"
+          th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
 
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
@@ -31,11 +32,6 @@
             <td>Cena instalacji brutto po rabacie [zł]</td>
             <td>Kąt skierowania instalacji</td>
             <td>Kąt nachylenia instalacji</td>
-            <td>Edytuj</td>
-            <td>Usuń</td>
-            <td>Ankieta</td>
-            <td>Rabat</td>
-            <td>Raport</td>
         </tr>
         </thead>
         <tbody>
@@ -56,11 +52,12 @@
             <td th:text="${instalation.price.discountedinstalationpricegross}"></td>
             <td th:text="${instalation.roofposition}"></td>
             <td th:text="${instalation.instalationangle}"></td>
-            <td><a th:href="${'/instalation/edit/'+{instalation.id}}">Edytuj</a></td>
-            <td><a th:href="${'/instalation/delete/'+{instalation.id}}">Usuń</a></td>
-            <td><a th:href="${'/questionform/view/'+{instalation.questionForm.id}}">Ankieta</a></td>
-            <td><a th:href="${'/price/setdiscount/'+{instalation.price.id}}">Rabat</a></td>
-            <td>Raport</td>
+            <td><a th:href="${'/instalation/edit/'+{instalation.id}}"><i class="fa fa-pencil"></i></a></td>
+            <td><a th:href="${'/instalation/delete/'+{instalation.id}}"><i class="fa fa-trash"></i></a></td>
+            <td><a th:href="${'/questionform/view/'+{instalation.questionForm.id}}"><i
+                    class="fa fa-question-circle"></i></a></td>
+            <td><a th:href="${'/price/setdiscount/'+{instalation.price.id}}"><i class="fa fa-percent"></i></a></td>
+            <td><i class="fas fa-clipboard-check"></i></td>
 
         </tr>
         </tbody>

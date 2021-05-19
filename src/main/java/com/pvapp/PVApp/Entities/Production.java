@@ -33,5 +33,6 @@ public class Production {
     private double summary;
 
     @OneToOne(mappedBy = "production", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Instalation instalation;
 }

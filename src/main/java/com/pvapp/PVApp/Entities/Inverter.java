@@ -68,6 +68,7 @@ public class Inverter {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "inverter")
+    @ToString.Exclude
     private List<Instalation> instalationList;
 
 

@@ -41,6 +41,7 @@ public class QuestionForm {
 
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "questionForm")
+    @ToString.Exclude
     private Instalation instalation;
 
     public QuestionForm(int bill, RoofType rooftype, int roofslope, int roofposition, RoofMaterial roofmaterial, Instalation instalation) {

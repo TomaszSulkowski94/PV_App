@@ -6,6 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"
+          th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
 
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
@@ -21,9 +23,6 @@
             <td>Materiał wykonania dachu</td>
             <td>Nachylenie konstrukcji</td>
             <td>Cena [zł/moduł]</td>
-            <td>Edytuj</td>
-            <td>Usuń</td>
-
         </tr>
         </thead>
         <tbody>
@@ -34,11 +33,12 @@
             <td th:text="${construction.roofmaterial}"></td>
             <td th:text="${construction.roofslope}"></td>
             <td th:text="${construction.price}"></td>
-            <td><a th:href="${'/construction/edit/'+{construction.id}}">Edytuj</a></td>
-            <td><a th:href="${'/construction/delete/'+{construction.id}}">Usuń</a></td>
+            <td><a th:href="${'/construction/edit/'+{construction.id}}"><i class="fa fa-pencil"></i></a></td>
+            <td><a th:href="${'/construction/delete/'+{construction.id}}"><i class="fa fa-trash"></i></a></td>
         </tr>
         </tbody>
     </table>
+
 
     <div class="row">
         <td><a href="/construction/createConstruction" class="btn btn-default" role="button">Dodaj konstrukcje</a></td>

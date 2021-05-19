@@ -97,14 +97,13 @@ public class InstalationService {
 
     public void update(Instalation instalation) {
         log.info("Updating instalation --service");
-        double power=calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId()));
+        double power = calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId()));
         instalation.setPower(power);
         QuestionForm questionForm = questionFormService.getQuestionForm(instalation.getQuestionForm().getId());
         questionForm.setRoofmaterial(setRoofMaterialFromInstalation(instalation));
         questionForm.setRoofslope(setInstalationAngle(instalation));
         questionForm.setRoofposition(instalation.getRoofposition());
         questionForm.setRooftype(setRoofTypeFromInstalation(instalation));
-        instalation.setQuestionForm(questionForm);
         questionFormService.updateQuestionFormByInstalation(questionForm);
         technicalResultService.updateTR(instalation);
         priceService.updatePrice(instalation);

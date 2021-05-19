@@ -39,6 +39,7 @@ public class ProductionService {
             productionArray[i] = calcProduction;
             log.info("Calculating production for " + (i + 1) + " month: " + calcProduction + " kWh");
             summary += calcProduction;
+            summary = roundResult(summary);
         }
         log.info("Summary production: " + summary + " kWh");
         production.setJanuary(productionArray[0]);
@@ -60,8 +61,9 @@ public class ProductionService {
         log.info("Saving production --service");
         Production production = new Production();
         calcProduction(instalation, production);
-        productionDBRepository.create(production);
         instalation.setProduction(production);
+        productionDBRepository.create(production);
+
     }
 
     private double roundResult(double number) {
@@ -72,9 +74,8 @@ public class ProductionService {
 
     public void updateProduction(Instalation instalation) {
         log.info("Updating production --service");
-        Production production = getProduction(instalation.getProduction().getId());
+        Production production = instalation.getProduction();
         calcProduction(instalation, production);
-        instalation.setProduction(production);
         productionDBRepository.update(production);
     }
 

@@ -27,6 +27,5 @@ public class TechnicalResults {
     private int nmaxparallel;
 
     @OneToOne(mappedBy = "technicalResults", cascade = CascadeType.ALL)
-    @ToString.Exclude
     private Instalation instalation;
 }

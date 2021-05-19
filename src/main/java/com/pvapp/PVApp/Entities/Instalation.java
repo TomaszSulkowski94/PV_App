@@ -2,6 +2,7 @@ package com.pvapp.PVApp.Entities;
 
 
 import lombok.*;
+import net.bytebuddy.dynamic.TypeResolutionStrategy;
 
 
 import javax.persistence.*;
@@ -19,9 +20,8 @@ public class Instalation {
     @Column(name = "instalationid")
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pvmoduleid")
-
     private PVModule pvModule;
     private int numberofpvmodule;
 
@@ -36,7 +36,7 @@ public class Instalation {
     private Construction construction;
     private double power;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "priceid")
     private Price price;
 
@@ -44,17 +44,17 @@ public class Instalation {
     private int instalationangle;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "questionformid")
     private QuestionForm questionForm;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productionid")
     private Production production;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "technicalresultsid")
     private TechnicalResults technicalResults;
 

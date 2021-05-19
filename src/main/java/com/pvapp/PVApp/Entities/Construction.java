@@ -54,7 +54,6 @@ public class Construction {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction")
-    @ToString.Exclude
     private List<Instalation> list;
 
 

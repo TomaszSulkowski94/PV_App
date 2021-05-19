@@ -84,7 +84,6 @@ public class PVModule {
     }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pvModule")
-    @ToString.Exclude
     List<Instalation> instalationList;
 
 }

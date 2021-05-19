@@ -53,7 +53,6 @@ public class TechnicalResultService {
         technicalResults.setNmax(calcMaxNumberOfModulesAtString(inverter, vocMax, vmppMax));
         technicalResults.setNmaxparallel(calcMaxParallelString(inverter, iscMax, imppMax));
         technicalResults.setNmin(calcMinNumberOfModulesAtString(inverter, vmppMin));
-        instalation.setTechnicalResults(technicalResults);
     }
 
     public void deleteTR(int id) {

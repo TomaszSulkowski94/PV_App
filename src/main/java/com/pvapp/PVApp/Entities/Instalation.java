@@ -66,5 +66,4 @@ public class Instalation {
         this.construction = construction;
     }
 
-
 }

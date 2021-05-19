@@ -35,19 +35,19 @@ values ('Producent A', 'Balastowy', 'DACH_PLASKI', 'PAPA', 150, 15);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'Balastowy', 'DACH_PLASKI', 'PAPA', 170, 20);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
-values ('Producent A', 'B1', 'DACH_SKOSNY', 'BLACHODACHOWKA', 90, 0);
+values ('Producent A', 'B1A', 'DACH_SKOSNY', 'BLACHODACHOWKA', 90, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'BX1', 'DACH_SKOSNY', 'BLACHODACHOWKA', 80, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
-values ('Producent A', 'B2', 'DACH_SKOSNY', 'BLACHOTRAPEZ', 30, 0);
+values ('Producent A', 'B2A', 'DACH_SKOSNY', 'BLACHOTRAPEZ', 30, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'BX2', 'DACH_SKOSNY', 'BLACHOTRAPEZ', 50, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
-values ('Producent A', 'P1', 'DACH_SKOSNY', 'PLYTA_WARSTWOWA', 110, 0);
+values ('Producent A', 'P1A', 'DACH_SKOSNY', 'PLYTA_WARSTWOWA', 110, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'PX1', 'DACH_SKOSNY', 'PLYTA_WARSTWOWA', 95, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
-values ('Producent A', 'G1', 'DACH_SKOSNY', 'GONT', 80, 0);
+values ('Producent A', 'G1A', 'DACH_SKOSNY', 'GONT', 80, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'GX1', 'DACH_SKOSNY', 'GONT', 100, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
@@ -59,7 +59,7 @@ values ('Producent A', 'DK1', 'DACH_SKOSNY', 'DACHÓWKA_KARPIÓWKA', 70, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'DKX1', 'DACH_SKOSNY', 'DACHÓWKA_KARPIÓWKA', 60, 0);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
-values ('Producent A', 'G1', 'GRUNT', 'GRUNT', 110, 20);
+values ('Producent A', 'G1A', 'GRUNT', 'GRUNT', 110, 20);
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)
 values ('Producent B', 'GX1', 'GRUNT', 'GRUNT', 125, 25);
 

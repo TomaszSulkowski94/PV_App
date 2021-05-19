@@ -24,7 +24,7 @@
 
         </div>
         <div class="form group">
-            <label class="control-label">Materiał typ dachu</label>
+            <label class="control-label">Typ dachu</label>
             <select th:field="*{rooftype}">
                 <option th:value="DACH_PLASKI" th:text="'DACH PŁASKI'"></option>
                 <option th:value="DACH_SKOSNY" th:text="'DACH SKOŚNY'"></option>
@@ -39,14 +39,23 @@
                 <option th:value="BLACHODACHOWKA" th:text="BLACHODACHÓWKA"></option>
                 <option th:value="BLACHOTRAPEZ" th:text="BLACHOTRAPEZ"></option>
                 <option th:value="PLYTA_WARSTWOWA" th:text="'PŁYTA WARTSTWOWA'"></option>
-                                <option th:value="GONT" th:text="GONT"></option>
+                <option th:value="GONT" th:text="GONT"></option>
                 <option th:value="GRUNT" th:text="GRUNT"></option>
                 <option th:value="DACHÓWKA_CERAMICZNA" th:text="'DACHÓWKA CERAMICZNA'"></option>
                 <option th:value="DACHÓWKA_KARPIÓWKA" th:text="'DACHÓWKA KARPIÓWKA'"></option>
             </select>
         </div>
         <br>
-
+        <div class="form group">
+            <label class="control-label">Nachylenie dachu</label>
+            <select th:field="*{roofslope}">
+                <option th:value="0" th:text="'BRAK'"></option>
+                <option th:value="10" th:text="'LEKKO NACHYLONY'"></option>
+                <option th:value="30" th:text="'SREDNIO NACHYLOWNY'"></option>
+                <option th:value="50" th:text="'MOCNO NACHYLONY'"></option>
+            </select>
+        </div>
+        <br>
         <div class="form group">
             <label class="control-label">Pozycja dachu</label>
             <select th:field="*{roofposition}">
@@ -71,18 +80,6 @@
             </select>
         </div>
         <br>
-
-        <div class="form group">
-            <label class="control-label">Nachylenie dachu</label>
-            <select th:field="*{roofslope}">
-                <option th:value="0" th:text="'DACH PŁASKI'"></option>
-                <option th:value="10" th:text="'LEKKO NACHYLONY'"></option>
-                <option th:value="30" th:text="'SREDNIO NACHYLOWNY'"></option>
-                <option th:value="50" th:text="'MOCNO NACHYLONY'"></option>
-            </select>
-        </div>
-        <br>
-
         <div class="row">
             <button type="submit" class="btn btn-default">Zaktualizuj formularz</button>
             <button type="reset" class="btn btn-default">Wyczyść zmiany</button>

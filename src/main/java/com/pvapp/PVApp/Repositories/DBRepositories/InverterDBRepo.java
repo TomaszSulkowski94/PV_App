@@ -40,8 +40,8 @@ public class InverterDBRepo implements CRUD<Inverter> {
 
     @Override
     public Collection<Inverter> printAll() {
-        log.info("Getting all inverters --repository");
-        return em.createQuery("from Inverter", Inverter.class).getResultList();
+        log.info("Getting all inverters ordered by acpower--repository");
+        return em.createQuery("from Inverter order by acpower", Inverter.class).getResultList();
     }
 
     @Override

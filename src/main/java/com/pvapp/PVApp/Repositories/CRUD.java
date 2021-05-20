@@ -1,6 +1,7 @@
 package com.pvapp.PVApp.Repositories;
 
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public interface CRUD<T> {

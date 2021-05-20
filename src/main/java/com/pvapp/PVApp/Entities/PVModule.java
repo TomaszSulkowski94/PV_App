@@ -64,8 +64,8 @@ public class PVModule {
     private double voltageMPP;
 
     @Column(name = "temperaturelost")
-    @DecimalMin(value = "0.01", message = "Minimalna strata temperaturowa  powinna być większa niż 0.01 [%/C]")
-    @DecimalMax(value = "1.00", message = "Maksymalnwa strata temperaturowa powinna nyć nie większa niż 1.00 [%/C]")
+    @DecimalMin(value = "0.0001", message = "Minimalna strata temperaturowa  powinna być większa niż 0.01 [%/C]")
+    @DecimalMax(value = "1.0000", message = "Maksymalnwa strata temperaturowa powinna nyć nie większa niż 1.00 [%/C]")
     private double temperatureLost;
 
     @Column(name = "efficency")
@@ -83,7 +83,7 @@ public class PVModule {
 
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH}, mappedBy = "pvModule")
+    @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "pvModule")
     List<Instalation> instalationList;
 
 }

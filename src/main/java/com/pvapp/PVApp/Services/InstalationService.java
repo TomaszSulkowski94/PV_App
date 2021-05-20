@@ -42,6 +42,18 @@ public class InstalationService {
         return new ArrayList<Instalation>(instalationDBRepo.printAll());
     }
 
+    public List<Instalation> getAllByPVModule(PVModule pvModule) {
+        return new ArrayList<Instalation>(instalationDBRepo.getByPVModule(pvModule));
+    }
+
+    public List<Instalation> getAllByConstruction(Construction construction) {
+        return new ArrayList<Instalation>(instalationDBRepo.getByConstruction(construction));
+    }
+
+    public List<Instalation> getAllByInverter (Inverter inverter) {
+        return new ArrayList<Instalation>(instalationDBRepo.getByInverter(inverter));
+    }
+
     public void save(Instalation instalation) {
         log.info("Saving instalation --service");
         instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));

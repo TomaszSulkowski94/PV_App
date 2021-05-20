@@ -44,6 +44,8 @@
         <div class="form-group">
             <label class="control-label">Rabat</label>
             <input type="number" class="form-control" th:field="*{discount}" min="0" max="40" step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('discount')}"
+                 th:errors="*{discount}"></div>
         </div>
         <div hidden class="form-group">
             <label class="control-label">Cena po rabacie</label>

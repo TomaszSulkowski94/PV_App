@@ -26,6 +26,7 @@ public class Price {
     private double taxvalue;
     private double instalationpricegross;
     private double discountedinstalationpricegross;
+
     @NotNull
     @Range(min = 0, max = 40, message = "Wartość rabatu powinna znajdywać się w przedziale 0-40%")
     private int discount;

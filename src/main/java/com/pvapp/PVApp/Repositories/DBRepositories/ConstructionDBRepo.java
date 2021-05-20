@@ -64,13 +64,13 @@ public class ConstructionDBRepo implements CRUD<Construction> {
                     .setMaxResults(1).getSingleResult();
         } catch (NoResultException ex) {
             if (rooftype.equals("DACH_PLASKI")) {
-                log.info("Zmieniono materiał dachu  z " + roofmaterial + " na: PAPA (brak takiej konstrukcji w bazie) --Repository (catch)");
+                log.info("Change roof material  from " + roofmaterial + " to: PAPA (this construction not exists in DB) --Repository (catch)");
                 roofmaterial = "PAPA";
             } else if (rooftype.equals("DACH_SKOSNY")) {
-                log.info("Zmieniono materiał dachu  z " + roofmaterial + " na: BLACHOTRAPEZ (brak takiej konstrukcji w bazie) --Repository (catch)");
+                log.info("Change roof material  from " + roofmaterial + " to: BLACHOTRAPEZ (this construction not exists in DB) --Repository (catch)");
                 roofmaterial = "BLACHOTRAPEZ";
             } else {
-                log.info("Zmieniono materiał dachu  z " + roofmaterial + " na: GRUNT (brak takiej konstrukcji w bazie) --Repository (catch)");
+                log.info("Change roof material  from " + roofmaterial + " to: GRUNT (this construction not exists in DB) --Repository (catch)");
                 roofmaterial = "GRUNT";
             }
         }
@@ -82,7 +82,7 @@ public class ConstructionDBRepo implements CRUD<Construction> {
 
 
     public Collection<Construction> getByManufactuer() {
-        log.info("Getting construction for manufaturer: Porducent A");
+        log.info("Getting construction for manufaturer: Producent A");
         return em.createQuery("from Construction C WHERE C.manufacturer=:man", Construction.class).setParameter("man", "Producent A").getResultList();
     }
 

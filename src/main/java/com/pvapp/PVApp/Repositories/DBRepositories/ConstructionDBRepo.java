@@ -45,8 +45,8 @@ public class ConstructionDBRepo implements CRUD<Construction> {
 
     @Override
     public Collection<Construction> printAll() {
-        log.info("Getting all constructions --repository");
-        return em.createQuery("from Construction", Construction.class).getResultList();
+        log.info("Getting all constructions ordered by manufacturerm, roogtype, roofmaterial--repository");
+        return em.createQuery("from Construction order by manufacturer, rooftype, roofmaterial", Construction.class).getResultList();
     }
 
     @Override

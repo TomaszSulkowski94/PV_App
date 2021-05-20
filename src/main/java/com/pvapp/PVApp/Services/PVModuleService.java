@@ -1,5 +1,6 @@
 package com.pvapp.PVApp.Services;
 
+import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Repositories.DBRepositories.PVModuleDBRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
@@ -16,9 +18,12 @@ public class PVModuleService {
     @Autowired
     PVModuleDBRepo pvModuleRepo;
 
+    @Autowired
+    InstalationService instalationService;
+
     public List<PVModule> getAllModules() {
         log.info("Getting all modules from DB --service");
-        return new ArrayList<PVModule>(pvModuleRepo.printAll());
+        return new LinkedList<>(pvModuleRepo.printAll());
     }
 
     public void saveModule(PVModule pvModule) {
@@ -39,5 +44,11 @@ public class PVModuleService {
     public void updatemodule(PVModule pvModule) {
         log.info("Update module from DB --service");
         pvModuleRepo.update(pvModule);
+        List<Instalation> instalations = instalationService.getAllByPVModule(pvModule);
+        if (!instalations.isEmpty()){
+            for (int i = 0; i <instalations.size() ; i++) {
+                instalationService.update(instalations.get(i));
+            }
+        }
     }
 }

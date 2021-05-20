@@ -42,7 +42,7 @@ public class PVModuleDBRepo implements CRUD<PVModule> {
 
     @Override
     public Collection<PVModule> printAll() {
-        log.info("Getting all pv modules --repository");
+        log.info("Getting all pv modules order by manufacturer, model, type --repository");
         return em.createQuery("from PVModule order by manufacturer, model, type", PVModule.class).getResultList();
     }
 

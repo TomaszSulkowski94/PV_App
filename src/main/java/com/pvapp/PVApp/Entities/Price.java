@@ -1,9 +1,11 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,6 +26,8 @@ public class Price {
     private double taxvalue;
     private double instalationpricegross;
     private double discountedinstalationpricegross;
+    @NotNull
+    @Range(min = 0, max = 40, message = "Wartość rabatu powinna znajdywać się w przedziale 0-40%")
     private int discount;
 
     @OneToOne(mappedBy = "price")

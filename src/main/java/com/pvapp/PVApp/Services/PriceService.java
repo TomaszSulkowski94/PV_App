@@ -49,7 +49,7 @@ public class PriceService {
         double grossPrice = calcGrossPrice(netPrice, 8);
         log.info("Gross price: " + grossPrice);
         price.setInstalationpricegross(grossPrice);
-        price.setDiscountedinstalationpricegross(grossPrice);
+        calcDiscount(price);
     }
 
 
@@ -86,13 +86,19 @@ public class PriceService {
         priceDBRepo.update(price);
     }
 
-    public void setDiscount(Price price) {
+
+    public void calcDiscount(Price price){
         int discount = price.getDiscount();
         double doublDiscount = (double) discount / 100;
         double newGrossPrice = round(price.getInstalationpricegross() - price.getInstalationpricegross() * doublDiscount);
         price.setDiscountedinstalationpricegross(newGrossPrice);
+    }
+
+    public void setDiscount(Price price) {
+        calcDiscount(price);
         update(price);
     }
+
 
     public void createPrice(Instalation instalation) {
         log.info("Saving price --service");

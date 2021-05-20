@@ -24,12 +24,12 @@ public class Instalation {
     private PVModule pvModule;
     private int numberofpvmodule;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inverterid")
     private Inverter inverter;
     private int numberofinverters;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "constructionid")
     private Construction construction;
     private double power;

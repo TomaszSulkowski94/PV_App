@@ -1,5 +1,6 @@
 package com.pvapp.PVApp.Services;
 
+import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Repositories.DBRepositories.InverterDBRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,8 @@ public class InverterService {
     @Autowired
     InverterDBRepo inverterRepo;
 
+    @Autowired
+    InstalationService instalationService;
 
     public List<Inverter> getAllInverters() {
         log.info("Getting all inverters --service");
@@ -39,7 +42,12 @@ public class InverterService {
 
     public void update(Inverter inverter) {
         log.info("Updating inverter --service");
-         inverterRepo.update(inverter);
+        inverterRepo.update(inverter);
+        List<Instalation> instalations = instalationService.getAllByInverter(inverter);
+        if (!instalations.isEmpty()) {
+            for (int i = 0; i < instalations.size(); i++) {
+                instalationService.update(instalations.get(i));
+            }
+        }
     }
-
 }

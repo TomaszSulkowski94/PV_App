@@ -1,7 +1,7 @@
 package com.pvapp.PVApp.Services;
 
 import com.pvapp.PVApp.Entities.Construction;
-import com.pvapp.PVApp.Entities.QuestionForm;
+import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Repositories.DBRepositories.ConstructionDBRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,9 @@ public class ConstructionService {
 
     @Autowired
     ConstructionDBRepo constructionRepo;
+
+    @Autowired
+    InstalationService instalationService;
 
     public List<Construction> getAllConstructions() {
         log.info("Getting all constructions from DB --service");
@@ -40,6 +43,12 @@ public class ConstructionService {
     public void update(Construction construction) {
         log.info("Updating construction from DB --service");
         constructionRepo.update(construction);
+        List<Instalation> instalations = instalationService.getAllByConstruction(construction);
+        if (!instalations.isEmpty()) {
+            for (int i = 0; i < instalations.size(); i++) {
+                instalationService.update(instalations.get(i));
+            }
+        }
     }
 
 

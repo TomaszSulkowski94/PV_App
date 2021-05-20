@@ -53,7 +53,7 @@ public class Construction {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "construction")
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH}, mappedBy = "construction")
     private List<Instalation> list;
 
 

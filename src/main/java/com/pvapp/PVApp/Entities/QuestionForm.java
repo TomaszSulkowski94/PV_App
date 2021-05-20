@@ -40,7 +40,7 @@ public class QuestionForm {
     }
 
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "questionForm")
+    @OneToOne(mappedBy = "questionForm", cascade = CascadeType.ALL)
     private Instalation instalation;
 
     public QuestionForm(int bill, RoofType rooftype, int roofslope, int roofposition, RoofMaterial roofmaterial, Instalation instalation) {

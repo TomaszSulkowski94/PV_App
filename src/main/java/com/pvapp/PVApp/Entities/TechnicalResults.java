@@ -26,6 +26,6 @@ public class TechnicalResults {
     private int nmin;
     private int nmaxparallel;
 
-    @OneToOne(mappedBy = "technicalResults", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "technicalResults")
     private Instalation instalation;
 }

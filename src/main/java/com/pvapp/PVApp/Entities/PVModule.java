@@ -83,7 +83,7 @@ public class PVModule {
 
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pvModule")
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH}, mappedBy = "pvModule")
     List<Instalation> instalationList;
 
 }

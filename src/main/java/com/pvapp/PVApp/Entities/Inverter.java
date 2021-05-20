@@ -67,7 +67,7 @@ public class Inverter {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inverter")
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH}, mappedBy = "inverter")
     @ToString.Exclude
     private List<Instalation> instalationList;
 

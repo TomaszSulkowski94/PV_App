@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +19,7 @@ public class PVModuleService {
 
     @Autowired
     InstalationService instalationService;
+
 
     public List<PVModule> getAllModules() {
         log.info("Getting all modules from DB --service");
@@ -37,6 +37,8 @@ public class PVModuleService {
     }
 
     public void deleteModule(int id) {
+
+
         log.info("Deleting module from DB --service");
         pvModuleRepo.delete(id);
     }
@@ -45,8 +47,8 @@ public class PVModuleService {
         log.info("Update module from DB --service");
         pvModuleRepo.update(pvModule);
         List<Instalation> instalations = instalationService.getAllByPVModule(pvModule);
-        if (!instalations.isEmpty()){
-            for (int i = 0; i <instalations.size() ; i++) {
+        if (!instalations.isEmpty()) {
+            for (int i = 0; i < instalations.size(); i++) {
                 instalationService.update(instalations.get(i));
             }
         }

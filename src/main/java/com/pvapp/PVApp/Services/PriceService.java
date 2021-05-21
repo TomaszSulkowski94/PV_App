@@ -38,10 +38,12 @@ public class PriceService {
         double modulePrice = calcModulePrice(pvModule, instalation);
         price.setModuleprice(modulePrice);
         log.info("Module price: " + modulePrice);
+        double inverterPrice = calcInverterPrice(inverter, instalation);
+        price.setInverterprice(inverterPrice);
+        log.info("Module price: " + modulePrice);
         double constructionPrice = calcConstructionPrice(instalation);
         log.info("Construction price: " + constructionPrice);
         price.setConstructionprice(constructionPrice);
-        price.setInverterprice(inverter.getPrice());
         double netPrice = calcInstalationPriceNet(modulePrice, constructionPrice, inverter);
         price.setInstalationpricenet(netPrice);
         log.info("Net price: " + netPrice);
@@ -65,6 +67,11 @@ public class PriceService {
         return round(instalation.getPower() * pvModule.getPrice() * 4.45);
     }
 
+    private double calcInverterPrice(Inverter inverter, Instalation instalation) {
+        return round(instalation.getNumberofinverters() * inverter.getPrice());
+    }
+
+
     private double round(double number) {
         number = Math.round(number * 100);
         return number / 100;
@@ -87,7 +94,7 @@ public class PriceService {
     }
 
 
-    public void calcDiscount(Price price){
+    public void calcDiscount(Price price) {
         int discount = price.getDiscount();
         double doublDiscount = (double) discount / 100;
         double newGrossPrice = round(price.getInstalationpricegross() - price.getInstalationpricegross() * doublDiscount);

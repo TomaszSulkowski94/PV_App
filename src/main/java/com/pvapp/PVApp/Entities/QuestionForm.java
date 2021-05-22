@@ -20,6 +20,8 @@ public class QuestionForm {
     @Column(name = "questionformid")
     private int id;
 
+    @NotNull
+    @Range(min = 50, max = 2000, message = "Wartość rabatu powinna znajdywać się w przedziale 0-40%")
     private int bill;
     @Enumerated(EnumType.STRING)
     private RoofType rooftype;

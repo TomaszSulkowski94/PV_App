@@ -29,6 +29,7 @@
         <div class="form-group">
             <label class="control-label">Liczba modułów pv</label>
             <input type="number" th:field="*{numberofpvmodule}" class="form-control" min="1" max="99999" step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('numberofpvmodule')}" th:errors="*{numberofpvmodule}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Model falownika</label>
@@ -42,6 +43,7 @@
         <div class="form-group">
             <label class="control-label">Liczba falowników</label>
             <input type="number" th:field="*{numberofinverters}" class="form-control" min="1" max="999" step="1"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('numberofinverters')}" th:errors="*{numberofinverters}"></div>
         </div>
         <div class="form-group">
             <label class="control-label">Konstrukcja</label>

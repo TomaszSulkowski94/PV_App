@@ -3,6 +3,7 @@ package com.pvapp.PVApp.Controllers;
 import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Services.PVModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,8 +45,17 @@ public class PVModuleController {
 
     @GetMapping("/modulelist/{id}")
     public String deleteModule(@PathVariable("id") int id) {
-        pvModuleService.deleteModule(id);
-        return "redirect:/modules/modulelist";
+        try {
+            pvModuleService.deleteModule(id);
+            return "redirect:/modules/modulelist";
+        } catch (DataIntegrityViolationException ex) {
+            return "Exception/pverror";
+        }
+    }
+
+    @GetMapping("/error")
+    public String moduleException() {
+        return "Exception/pverror";
     }
 
     @GetMapping("/modulelist/edit/{id}")

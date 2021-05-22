@@ -4,6 +4,7 @@ package com.pvapp.PVApp.Controllers;
 import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Services.ConstructionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,8 +44,12 @@ public class ConstructionController {
 
     @GetMapping("/delete/{id}")
     public String deleteConstruction(@PathVariable("id") int id) {
-        constructionService.delete(id);
-        return "redirect:/construction/list";
+        try {
+            constructionService.delete(id);
+            return "redirect:/construction/list";
+        } catch (DataIntegrityViolationException ex) {
+            return "Exception/constructionerror";
+        }
     }
 
     @GetMapping("/edit/{id}")

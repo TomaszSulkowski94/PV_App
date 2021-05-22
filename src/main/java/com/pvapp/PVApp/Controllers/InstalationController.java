@@ -1,17 +1,19 @@
 package com.pvapp.PVApp.Controllers;
 
-import com.pvapp.PVApp.Entities.QuestionForm;
+
 import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.List;
 
-import static com.pvapp.PVApp.Entities.QuestionForm.RoofMaterial.SPECIFIED_BY_CONSTRUCTION;
+
 
 @Controller
 @RequestMapping("/instalation")
@@ -32,6 +34,12 @@ public class InstalationController {
     @Autowired
     QuestionFormService questionFormService;
 
+    @GetMapping("/report/{id}")
+    public String viewReport(Model model, @PathVariable("id") int id) {
+        model.addAttribute("instalation", instalationService.getById(id));
+        return "Report/report";
+    }
+
     @GetMapping("/list")
     public String printInstalations(Model model) {
         List<Instalation> instalationsList = instalationService.getAll();
@@ -49,11 +57,14 @@ public class InstalationController {
     }
 
     @PostMapping("/edit")
-    public String updateInstalation(@ModelAttribute("instalation") Instalation instalation) {
+    public String updateInstalation(@Valid @ModelAttribute("instalation") Instalation instalation, BindingResult result) {
+        if (result.hasErrors()) {
+            return "Instalation/updateinstalation";
+        }
         instalationService.update(instalation);
         return "redirect:/instalation/list";
-    }
 
+    }
 
     @GetMapping("/design")
     public String designInstalation(Model model) {
@@ -66,7 +77,10 @@ public class InstalationController {
 
 
     @PostMapping("/save")
-    public String designInstalation(@ModelAttribute("instalation") Instalation instalation) {
+    public String designInstalation(@Valid @ModelAttribute("instalation") Instalation instalation, BindingResult result) {
+        if (result.hasErrors()) {
+            return "Instalation/designform";
+        }
         instalationService.save(instalation);
         return "redirect:/instalation/list";
     }

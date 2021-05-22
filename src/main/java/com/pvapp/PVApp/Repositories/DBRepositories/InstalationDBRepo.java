@@ -64,15 +64,15 @@ public class InstalationDBRepo implements CRUD<Instalation> {
     }
 
     public Collection<Instalation> getByConstruction(Construction construction) {
-        log.info("Getting instalations by pvModuleId --repository " + construction);
+        log.info("Getting instalations by construction --repository " + construction);
         return em.createQuery(" from Instalation I  WHERE I.construction=:con", Instalation.class)
                 .setParameter("con", construction).getResultList();
     }
 
 
     public Collection<Instalation> getByInverter(Inverter inverter) {
-        log.info("Getting instalations by pvModuleId --repository " + inverter);
-        return em.createQuery(" from Instalation I  WHERE I.inverter=:inv", Instalation.class)
+        log.info("Getting instalations by inverter --repository " + inverter);
+        return em.createQuery(" from Instalation I WHERE I.inverter=:inv", Instalation.class)
                 .setParameter("inv", inverter).getResultList();
     }
 }

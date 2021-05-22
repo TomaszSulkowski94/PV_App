@@ -38,7 +38,7 @@ public class QuestionFormController {
     @PostMapping("/save")
     public String create(@Valid @ModelAttribute("questionform") QuestionForm questionForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "questionform/create";
+            return "QuestionForm/questionform";
         }
         questionFormService.createQuestionForm(questionForm);
         return "redirect:/instalation/list";

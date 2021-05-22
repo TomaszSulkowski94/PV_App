@@ -123,7 +123,7 @@ public class InstalationService {
         instalationDBRepo.update(instalation);
     }
 
-    private int setInstalationAngle(Instalation instalation) {
+        private int setInstalationAngle(Instalation instalation) {
         log.info("Setting angle to questionform --service");
         Construction construction = constructionService.getConstruction(instalation.getConstruction().getId());
         if (construction.getRooftype().toString().equals("DACH_SKOSNY")) {

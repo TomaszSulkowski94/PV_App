@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Błąd kasowania modułu PV</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: justify;">UPS coś poszło nie tak!</h1>
+    <h3 style="text-align: justify;"> Nie można skasować wybranego modułu, ponieważ jest on wykorzystywany w
+        zaprojektowanej instalacji!</h3>
+    <div class="row">
+        <a href="/modules/modulelist" class="btn btn-default" role="button">Powrót do listy modułów</button></a>
+    </div>
+</div>
+</body>
+</html>

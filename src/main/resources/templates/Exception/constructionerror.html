@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Błąd kasowania konstrukcji</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: justify;">UPS coś poszło nie tak!</h1>
+    <h3 style="text-align: justify;"> Nie można skasować wybranej konstrukcji, ponieważ jest ona wykorzystywana w
+        zaprojektowanej instalacji!</h3>
+    <div class="row">
+        <a href="/construction/list" class="btn btn-default" role="button">Powrót do listy konstrukcji</button></a>
+    </div>
+</div>
+</body>
+</html>

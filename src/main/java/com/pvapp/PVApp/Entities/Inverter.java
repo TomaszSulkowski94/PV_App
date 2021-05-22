@@ -71,5 +71,4 @@ public class Inverter {
     @ToString.Exclude
     private List<Instalation> instalationList;
 
-
-}
+  }

@@ -5,6 +5,7 @@ import lombok.*;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,11 +23,15 @@ public class Instalation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pvmoduleid")
     private PVModule pvModule;
+
+    @NotNull
     private int numberofpvmodule;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inverterid")
     private Inverter inverter;
+
+    @NotNull
     private int numberofinverters;
 
     @ManyToOne(fetch = FetchType.LAZY)

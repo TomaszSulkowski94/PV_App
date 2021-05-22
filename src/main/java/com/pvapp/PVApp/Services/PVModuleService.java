@@ -14,6 +14,8 @@ import java.util.List;
 @Service
 public class PVModuleService {
 
+
+
     @Autowired
     PVModuleDBRepo pvModuleRepo;
 
@@ -37,8 +39,6 @@ public class PVModuleService {
     }
 
     public void deleteModule(int id) {
-
-
         log.info("Deleting module from DB --service");
         pvModuleRepo.delete(id);
     }

@@ -4,6 +4,7 @@ import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Services.InverterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,8 +44,12 @@ public class InvertersController {
 
     @GetMapping("/delete/{id}")
     public String deleteInverter(@PathVariable("id") int id) {
-        inverterService.deleteInverter(id);
-        return "redirect:/inverter/list";
+        try {
+            inverterService.deleteInverter(id);
+            return "redirect:/inverter/list";
+        } catch (DataIntegrityViolationException ex) {
+            return "Exception/invertererror";
+        }
     }
 
     @GetMapping("/edit/{id}")

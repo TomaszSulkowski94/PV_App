@@ -25,6 +25,11 @@ public class ConstructionService {
         return new ArrayList<Construction>(constructionRepo.printAll());
     }
 
+    public List<Construction> getAllIdOrder(){
+        log.info("Getting all constructions from DB --service");
+        return new ArrayList<Construction>(constructionRepo.printAllIdOrder());
+    }
+
     public void saveConstruction(Construction construction) {
         log.info("Saving construction to DB --service");
         constructionRepo.create(construction);

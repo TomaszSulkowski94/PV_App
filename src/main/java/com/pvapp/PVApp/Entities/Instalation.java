@@ -3,9 +3,9 @@ package com.pvapp.PVApp.Entities;
 
 import lombok.*;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +25,7 @@ public class Instalation {
     private PVModule pvModule;
 
     @NotNull
+    @Positive
     private int numberofpvmodule;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,6 +33,7 @@ public class Instalation {
     private Inverter inverter;
 
     @NotNull
+    @Positive
     private int numberofinverters;
 
     @ManyToOne(fetch = FetchType.LAZY)

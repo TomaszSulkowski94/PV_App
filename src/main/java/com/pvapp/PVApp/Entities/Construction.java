@@ -1,6 +1,7 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 
 import javax.persistence.*;
@@ -28,10 +29,8 @@ public class Construction {
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String model;
 
-
     @Enumerated(EnumType.STRING)
     public roofType rooftype;
-
 
     @Enumerated(EnumType.STRING)
     public roofMaterial roofmaterial;
@@ -40,7 +39,7 @@ public class Construction {
     @DecimalMax(value = "1000.00", message = "Maksymalna cena musi wynosi 1000.0 zł/moduł")
     private double price;
 
-
+    @Range(min = 0, max = 70, message = "Kąt nachylenia dachu powinien być pomiedzy 0-70")
     private int roofslope;
 
 

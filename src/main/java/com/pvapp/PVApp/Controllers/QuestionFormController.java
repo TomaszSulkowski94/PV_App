@@ -1,5 +1,6 @@
 package com.pvapp.PVApp.Controllers;
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.pvapp.PVApp.Entities.QuestionForm;
 import com.pvapp.PVApp.Services.ConstructionService;
 import com.pvapp.PVApp.Services.QuestionFormService;
@@ -19,8 +20,6 @@ public class QuestionFormController {
     @Autowired
     QuestionFormService questionFormService;
 
-    @Autowired
-    ConstructionService constructionService;
 
     @GetMapping("/list")
     public String printAll(Model model) {
@@ -37,11 +36,15 @@ public class QuestionFormController {
 
     @PostMapping("/save")
     public String create(@Valid @ModelAttribute("questionform") QuestionForm questionForm, BindingResult result) {
-        if (result.hasErrors()) {
-            return "QuestionForm/questionform";
-        }
-        questionFormService.createQuestionForm(questionForm);
-        return "redirect:/instalation/list";
+//        try {
+            if (result.hasErrors()) {
+                return "QuestionForm/questionform";
+            }
+            questionFormService.createQuestionForm(questionForm);
+            return "redirect:/instalation/list";
+//        } catch (Exception ex) {
+//            return "QuestionForm/questionform";
+//        }
     }
 
     @GetMapping("/edit/{id}")
@@ -70,6 +73,5 @@ public class QuestionFormController {
         model.addAttribute("questionform", questionFormService.getQuestionForm(id));
         return "QuestionForm/viewquestionform";
     }
-
 
 }

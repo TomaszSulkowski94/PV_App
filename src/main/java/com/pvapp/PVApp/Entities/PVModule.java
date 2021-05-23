@@ -24,7 +24,6 @@ public class PVModule {
     @Column(name = "pvmoduleid")
     private int id;
 
-
     @NotEmpty(message = "Podaj producenta modułu PV")
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String manufacturer;
@@ -32,7 +31,6 @@ public class PVModule {
     @NotEmpty(message = "Podaj model modułu PV")
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String model;
-
 
     @Column(name = "type")
     @Enumerated(EnumType.ORDINAL)
@@ -55,7 +53,6 @@ public class PVModule {
     @Column(name = "voltagestc")
     @DecimalMin(value = "0.01", message = "Minimalne napięcie w warunkach STC  powinna być większa niż 0.01 [V]")
     @DecimalMax(value = "100.00", message = "Maksymalne napięcie w warunkach STC powinna być nie większa niż 100.00 [V]")
-
     private double voltageSTC;
 
     @Column(name = "voltagempp")

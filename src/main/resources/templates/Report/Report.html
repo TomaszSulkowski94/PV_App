@@ -13,6 +13,8 @@
     <form style="text-align: justify">
         <h1 style="text-align: justify;">Raport ofertowy</h1>
         <br>
+        <h4 style="text-align: justify;">1.Informacje ogólne</h4>
+        <br>
         <label>Na podstawie miesięcznego rachunku za prąd wynoszacego <span
                 th:text="${instalation.questionForm.bill}"></span> zł.
             Obliczono wielkość projektowanej instalacji na <span th:text="${instalation.power}"></span> Wp. Instalacja
@@ -25,81 +27,80 @@
             o mocy po stronie AC <span th:text="${instalation.inverter.acpower}"></span> W. </label>
         <br>
         <br>
-        <h4 style="text-align: justify;">Produkcja energii elektrycznej:</h4>
+        <h4 style="text-align: justify;">2.Produkcja energii elektrycznej</h4>
         <br>
         <center>
-            <table style="text-align:center">
+            <table style="text-align:center" class="table table-bordered table-hover">
                 <tr>
                     <th colspan="3">Wyprodukowana ilość energii elektrycznej</th>
                 </tr>
                 <tr>
                     <td>Miesiąc</td>
-                    <td>Produkcja energii elektrycznej</td>
-                    <td>-</td>
+                    <td colspan="2">Produkcja energii elektrycznej</td>
                 </tr>
                 <tr>
                     <td>Styczeń</td>
-                    <td th:text="${instalation.production.january}">
+                    <td th:text="${instalation.production.january}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Luty</td>
-                    <td th:text="${instalation.production.february}">
+                    <td th:text="${instalation.production.february}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Marzec</td>
-                    <td th:text="${instalation.production.march}">
+                    <td th:text="${instalation.production.march}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Kwiecień</td>
-                    <td th:text="${instalation.production.april}">
+                    <td th:text="${instalation.production.april}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Maj</td>
-                    <td th:text="${instalation.production.may}">
+                    <td th:text="${instalation.production.may}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Czerwiec</td>
-                    <td th:text="${instalation.production.june}">
+                    <td th:text="${instalation.production.june}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Lipiec</td>
-                    <td th:text="${instalation.production.july}">
+                    <td th:text="${instalation.production.july}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Sierpień</td>
-                    <td th:text="${instalation.production.august}">
+                    <td th:text="${instalation.production.august}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Wrzesień</td>
-                    <td th:text="${instalation.production.september}">
+                    <td th:text="${instalation.production.september}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Październik</td>
-                    <td th:text="${instalation.production.october}">
+                    <td th:text="${instalation.production.october}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Listopad</td>
-                    <td th:text="${instalation.production.november}">
+                    <td th:text="${instalation.production.november}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Grudzień</td>
-                    <td th:text="${instalation.production.december}">
+                    <td th:text="${instalation.production.december}"></td>
                     <td>kWh</td>
                 </tr>
                 <tr>
                     <td>Roczna produkcja</td>
-                    <td th:text="${instalation.production.summary}">
+                    <td th:text="${instalation.production.summary}"></td>
                     <td>kWh</td>
                 </tr>
             </table>
@@ -107,60 +108,63 @@
         <br>
         <br>
         <br>
-        <h4 style="text-align: justify;">Parametry techniczne instalacji:</h4>
+        <h4 style="text-align: justify;">3.Parametry techniczne instalacji</h4>
         <br>
-        <h5 style="text-align: justify;">Parametry techniczne modułów fotowoltaicznych:</h5>
+        <h5 style="text-align: justify;">3.1.Parametry techniczne modułów fotowoltaicznych</h5>
         <br>
         <center>
-            <table style="text-align:center">
+            <table style="text-align:center" class="table table-bordered table-hover">
                 <tr>
                     <th colspan="3">Moduł fotowoltaiczny</th>
                 </tr>
                 <tr>
                     <td>Producent modułu PV</td>
-                    <td th:text="${instalation.pvModule.manufacturer}">
+                    <td th:text="${instalation.pvModule.manufacturer}"></td>
+                    <td>-</td>
                 </tr>
                 <tr>
                     <td>Model modułu PV</td>
-                    <td th:text="${instalation.pvModule.model}">
+                    <td th:text="${instalation.pvModule.model}"></td>
+                    <td>-</td>
                 </tr>
                 <tr>
                     <td>Typ modułu PV</td>
-                    <td th:text="${instalation.pvModule.type}">
+                    <td th:text="${instalation.pvModule.type}"></td>
+                    <td>-</td>
                 </tr>
                 <tr>
                     <td>Moc modułu</td>
-                    <td th:text="${instalation.pvModule.power}">
+                    <td th:text="${instalation.pvModule.power}"></td>
                     <td>Wp</td>
                 </tr>
                 <tr>
                     <td>Prąd zwarcia w warunkach STC</td>
-                    <td th:text="${instalation.pvModule.currentSTC}">
+                    <td th:text="${instalation.pvModule.currentSTC}"></td>
                     <td>A</td>
                 </tr>
                 <tr>
                     <td>Prąd w punkcie pracy maksymalnej w warunkach STC</td>
-                    <td th:text="${instalation.pvModule.maxCurrentSTC}">
+                    <td th:text="${instalation.pvModule.maxCurrentSTC}"></td>
                     <td>A</td>
                 </tr>
                 <tr>
                     <td>Napięcie obwodu otwartego w warunkach STC</td>
-                    <td th:text="${instalation.pvModule.voltageSTC}">
+                    <td th:text="${instalation.pvModule.voltageSTC}"></td>
                     <td>V</td>
                 </tr>
                 <tr>
                     <td>Napięcie robocze w warunkach STC</td>
-                    <td th:text="${instalation.pvModule.voltageMPP}">
+                    <td th:text="${instalation.pvModule.voltageMPP}"></td>
                     <td>V</td>
                 </tr>
                 <tr>
                     <td>Strata temperaturowa Beta</td>
-                    <td th:text="${instalation.pvModule.temperatureLost}">
+                    <td th:text="${instalation.pvModule.temperatureLost}"></td>
                     <td>%/C</td>
                 </tr>
                 <tr>
                     <td>Sprawność modułu fotowoltaicznego</td>
-                    <td th:text="${instalation.pvModule.efficency}">
+                    <td th:text="${instalation.pvModule.efficency}"></td>
                     <td>%</td>
                 </tr>
             </table>
@@ -168,63 +172,65 @@
         <br>
         <br>
         <br>
-        <h4 style="text-align: justify;">Parametry techniczne falownika:</h4>
+        <h4 style="text-align: justify;">3.2.Parametry techniczne falownika</h4>
         <br>
         <center>
-            <table style="text-align:center">
+            <table style="text-align:center" class="table table-bordered table-hover">
                 <tr>
                     <th colspan="3">Falownik fotowoltaiczny</th>
                 </tr>
                 <tr>
                     <td>Producent falownika</td>
-                    <td th:text="${instalation.inverter.manufacturer}">
+                    <td th:text="${instalation.inverter.manufacturer}"></td>
                 </tr>
                 <tr>
                     <td>Model falownika</td>
-                    <td th:text="${instalation.inverter.model}">
+                    <td th:text="${instalation.inverter.model}"></td>
+                    <td>-</td>
                 </tr>
                 <tr>
                     <td>Typ falownika</td>
-                    <td th:text="${instalation.inverter.type}">
+                    <td th:text="${instalation.inverter.type}"></td>
+                    <td>-</td>
                 </tr>
                 <tr>
                     <td>Maksymalna moc po stronie DC falownika</td>
-                    <td th:text="${instalation.inverter.dcpower}">
+                    <td th:text="${instalation.inverter.dcpower}"></td>
                     <td>W</td>
                 </tr>
                 <tr>
                     <td>Maksymalna moc po stronie AC falownika</td>
-                    <td th:text="${instalation.inverter.acpower}">
-                    </td>
+                    <td th:text="${instalation.inverter.acpower}"></td>
+                    <td>W</td>
                 </tr>
                 <tr>
                     <td>Liczba trackerów mppt</td>
-                    <td th:text="${instalation.inverter.mppt}">
+                    <td th:text="${instalation.inverter.mppt}"></td>
                     <td>-</td>
                 </tr>
                 <tr>
                     <td>Maksymalny prąd zwarcia jednego łańcucha MPPT</td>
-                    <td th:text="${instalation.inverter.maxcurrentzwarcia}">
+                    <td th:text="${instalation.inverter.maxcurrentzwarcia}"></td>
                     <td>A</td>
                 </tr>
                 <tr>
                     <td>Maksymalny prąd roboczy jednego łańcucha MPPT</td>
-                    <td th:text="${instalation.inverter.maxcurrentrob}">
+                    <td th:text="${instalation.inverter.maxcurrentrob}"></td>
                     <td>A</td>
                 </tr>
                 <tr>
                     <td>Dolny zakres napiecia pracy jednego łańcucha MPPT</td>
-                    <td th:text="${instalation.inverter.dolnyzakresnapiecia}">
+                    <td th:text="${instalation.inverter.dolnyzakresnapiecia}"></td>
                     <td>V</td>
                 </tr>
                 <tr>
                     <td>Górny zakres napiecia pracy jednego łańcucha MPPT</td>
-                    <td th:text="${instalation.inverter.gornyzakresnapiecia}">
+                    <td th:text="${instalation.inverter.gornyzakresnapiecia}"></td>
                     <td>V</td>
                 </tr>
                 <tr>
                     <td>Maksymalne napięcie wejściowe</td>
-                    <td th:text="${instalation.inverter.maksymalnenapiecie}">
+                    <td th:text="${instalation.inverter.maksymalnenapiecie}"></td>
                     <td>V</td>
                 </tr>
             </table>
@@ -232,83 +238,83 @@
         <br>
         <br>
         <br>
-        <h5 style="text-align: justify;">Konstrukcja montażowa:</h5>
+        <h5 style="text-align: justify;">3.3.Konstrukcja montażowa</h5>
         <br>
         <center>
-            <table style="text-align:center">
+            <table style="text-align:center" class="table table-bordered table-hover">
                 <tr>
                     <th colspan="3">Konstrukcja montażowa</th>
                 </tr>
                 <tr>
                     <td>Producent konstrukcji montażowej</td>
-                    <td th:text="${instalation.construction.manufacturer}">
+                    <td th:text="${instalation.construction.manufacturer}"></td>
                 </tr>
                 <tr>
                     <td>Model konstrukcji montażowej</td>
-                    <td th:text="${instalation.construction.model}">
+                    <td th:text="${instalation.construction.model}"></td>
                 </tr>
                 <tr>
                     <td>Typ dachu</td>
-                    <td th:text="${instalation.construction.rooftype}">
+                    <td th:text="${instalation.construction.rooftype}"></td>
                 </tr>
                 <tr>
                     <td>Materiał pokrycia dachu</td>
-                    <td th:text="${instalation.construction.roofmaterial}">
+                    <td th:text="${instalation.construction.roofmaterial}"></td>
                 </tr>
                 <tr>
                     <td>Kąt nachylenia konstrukcji</td>
-                    <td th:text="${instalation.construction.roofslope}">
+                    <td th:text="${instalation.construction.roofslope}"></td>
                 </tr>
             </table>
         </center>
         <br>
         <br>
         <br>
-        <h5 style="text-align: justify;">Parametry techniczne instalacji:</h5>
+        <h5 style="text-align: justify;">3.4.Parametry techniczne instalacji</h5>
         <br>
         <center>
-            <table style="text-align:center">
+            <table style="text-align:center" class="table table-bordered table-hover">
                 <tr>
                     <th colspan="3">Parametry techniczne instalacji</th>
                 </tr>
                 <tr>
                     <td>Napięcie obwodu otwartego w niskiej temperaturze</td>
-                    <td th:text="${instalation.technicalResults.vocmax}">
+                    <td th:text="${instalation.technicalResults.vocmax}"></td>
                     <td>V</td>
                 </tr>
                 <tr>
                     <td>Napięcie w punkcie mocy maksymalnej w niskiej temperaturze</td>
-                    <td th:text="${instalation.technicalResults.vmppmax}">
+                    <td th:text="${instalation.technicalResults.vmppmax}"></td>
                     <td>V</td>
                 </tr>
                 <tr>
                     <td>Napięcie w punkcie mocy maksymalnej w wysokiej temperaturze</td>
-                    <td th:text="${instalation.technicalResults.vmppmin}">
+                    <td th:text="${instalation.technicalResults.vmppmin}"></td>
                     <td>V</td>
                 </tr>
                 <tr>
                     <td>Maksymalna wartość prądu zwarcia</td>
-                    <td th:text="${instalation.technicalResults.iscmax}">
+                    <td th:text="${instalation.technicalResults.iscmax}"></td>
                     <td>A</td>
                 </tr>
                 <tr>
                     <td>Maksymalna wartość prądu roboczego</td>
-                    <td th:text="${instalation.technicalResults.imppmax}">
+                    <td th:text="${instalation.technicalResults.imppmax}"></td>
                     <td>A</td>
                 </tr>
                 <tr>
                     <td>Minimalna ilość modułów łączona szeregowo w stringu</td>
-                    <td th:text="${instalation.technicalResults.nmin}">
+                    <td th:text="${instalation.technicalResults.nmin}"></td>
                     <td>-</td>
                 </tr>
                 <tr>
                     <td>Maksymalna ilość modułów łączona szeregowo w stringu</td>
-                    <td th:text="${instalation.technicalResults.nmax}">
+                    <td th:text="${instalation.technicalResults.nmax}"></td>
                     <td>-</td>
                 </tr>
                 <tr>
                     <td>Maksymalna ilość stringów łączonych równolegle</td>
-                    <td th:text="${instalation.technicalResults.nmaxparallel}">
+                    <td th:text="${instalation.technicalResults.nmaxparallel}"></td>
                     <td>-</td>
                 </tr>
             </table>
@@ -316,41 +322,41 @@
         <br>
         <br>
         <br>
-        <h4 style="text-align: justify;">Koszt instalacji:</h4>
+        <h4 style="text-align: justify;">4.Koszt instalacji</h4>
         <br>
         <center>
-            <table style="text-align:center">
+            <table style="text-align:center" class="table table-bordered table-hover">
                 <tr>
                     <th colspan="3">Koszty składowe instalacji</th>
                 </tr>
                 <tr>
                     <td>Cena modułów fotowoltaincznych</td>
-                    <td th:text="${instalation.price.moduleprice}">
+                    <td th:text="${instalation.price.moduleprice}"></td>
                     <td>zł</td>
                 </tr>
                 <tr>
                     <td>Cena falowników fotowoltaicznych</td>
-                    <td th:text="${instalation.price.inverterprice}">
+                    <td th:text="${instalation.price.inverterprice}"></td>
                     <td>zł</td>
                 </tr>
                 <tr>
                     <td>Cena konstrukcji</td>
-                    <td th:text="${instalation.price.constructionprice}">
+                    <td th:text="${instalation.price.constructionprice}"></td>
                     <td>zł</td>
                 </tr>
                 <tr>
                     <td>Cena instalacji netto</td>
-                    <td th:text="${instalation.price.instalationpricenet}">
+                    <td th:text="${instalation.price.instalationpricenet}"></td>
                     <td>zł</td>
                 </tr>
                 <tr>
                     <td>Koszt podatku VAT</td>
-                    <td th:text="${instalation.price.taxvalue}">
+                    <td th:text="${instalation.price.taxvalue}"></td>
                     <td>zł</td>
                 </tr>
                 <tr>
                     <td>Cena instalacji brutto</td>
-                    <td th:text="${instalation.price.discountedinstalationpricegross}">
+                    <td th:text="${instalation.price.discountedinstalationpricegross}"></td>
                     <td>zł</td>
                 </tr>
             </table>
@@ -359,7 +365,6 @@
     <br>
     <div class="row">
         <td><a href="/instalation/list" class="btn btn-default" role="button">Powrót do listy instalacji</a></td>
-        <td><a href="/instalation/list" class="btn btn-default" role="button">Pobierz raport</a></td>
     </div>
 </div>
 </body>

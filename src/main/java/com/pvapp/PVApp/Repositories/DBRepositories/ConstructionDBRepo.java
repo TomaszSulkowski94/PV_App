@@ -55,6 +55,11 @@ public class ConstructionDBRepo implements CRUD<Construction> {
         return em.find(Construction.class, id);
     }
 
+    public Collection<Construction> printAllIdOrder() {
+        log.info("Getting all constructions ordered by id --repository");
+        return em.createQuery("from Construction order by id", Construction.class).getResultList();
+    }
+
     public Construction getByRoofTypeMaterial(String rooftype, String roofmaterial) {
         log.info("Getting construction by roof type and roof material --repository");
         try {

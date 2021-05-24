@@ -2,6 +2,9 @@ package com.pvapp.PVApp.Utils;
 
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -105,7 +108,7 @@ public class PdfExporterInstalation {
 
         document.open();
         Font font = new Font(Font.TIMES_ROMAN, 12, Font.NORMAL);
-        document.addTitle("Lista wszystkich instalacji");
+        document.addTitle("Lista instalacji");
         document.addAuthor("Tomasz Sulkowski");
         document.addCreationDate();
         document.addSubject("PVApp");
@@ -115,9 +118,14 @@ public class PdfExporterInstalation {
 
         table.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-        Paragraph paragraph = new Paragraph("Lista instalacji PV", font);
-        paragraph.setAlignment(Element.ALIGN_CENTER);
-        document.add(paragraph);
+
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        String paragraph = "Lista instalacji ".concat(currentDateTime);
+        Paragraph par = new Paragraph(paragraph, font);
+        par.setAlignment(Element.ALIGN_CENTER);
+        document.add(par);
         document.add(Chunk.NEWLINE);
 
         writeTableHeader(table);

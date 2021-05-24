@@ -1,7 +1,10 @@
 package com.pvapp.PVApp.Controllers;
 
+import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Services.PVModuleService;
+import com.pvapp.PVApp.Utils.PdfExporterInverter;
+import com.pvapp.PVApp.Utils.PdfExporterPVModules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -9,7 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -71,5 +79,21 @@ public class PVModuleController {
         }
         pvModuleService.updatemodule(pvModule);
         return "redirect:/modules/modulelist";
+    }
+
+    @GetMapping("/export")
+    public void exportToPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=ModulesList" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<PVModule> modules = pvModuleService.getAllModules();
+
+        PdfExporterPVModules exporter = new PdfExporterPVModules(modules);
+        exporter.export(response);
     }
 }

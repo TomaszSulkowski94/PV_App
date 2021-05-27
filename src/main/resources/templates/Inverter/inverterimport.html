@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Import falowników do bazy danych</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"
+          th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <br>
+    <div class="form-group">
+        <form th:method="post" enctype="multipart/form-data" th:action="@{/inverter/uploadFile}">
+            <div class="form-group">
+                <label class="form-label" name="file">Wybierz plik</label>
+                <input type="file" class="form-control" name="file"/>
+                <br>
+                <div class="row">
+                    <button type="submit" class="btn btn-default">Zaimportuj</button>
+                    <a href="/inverter/list" class="btn btn-danger" role="button">Powrót</a>
+                </div>
+            </div>
+          </form>
+        <br>
+        <br>
+        <h1 style="text-align: justify;">Instrukcja</h1>
+        <h3 style="text-align: justify;">Przygotowanie danych</h3>
+        </form>
+    </div>
+</div>
+</body>
+</html>

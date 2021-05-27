@@ -3,16 +3,26 @@ package com.pvapp.PVApp.Controllers;
 
 import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Services.ConstructionService;
+import com.pvapp.PVApp.Utils.Import.ExcelHelper;
+import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterConstruction;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/construction")
 public class ConstructionController {
@@ -67,4 +77,41 @@ public class ConstructionController {
         return "redirect:/construction/list";
     }
 
+    @GetMapping("/export")
+    public void exportToPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=ConstructionsList" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Construction> constructions = constructionService.getAllIdOrder();
+        PdfExporterConstruction exporter = new PdfExporterConstruction(constructions);
+        exporter.exportConstructionList(response);
+    }
+
+    @GetMapping("/upload")
+    public String uploadFileForm() {
+        return "Construction/constructionimport";
+    }
+
+    @PostMapping("/uploadFile")
+    public String uploadFile(@RequestParam("file") MultipartFile file) {
+        if (ExcelHelper.hasExcelFormat(file)) {
+            try {
+                constructionService.saveFile(file);
+                log.info("Uploaded the file successfully: " + file.getOriginalFilename());
+                return "redirect:/construction/list";
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Could not upload the file: " + file.getOriginalFilename() + "!");
+                return "Construction/constructionimport";
+            }
+        }
+        log.error("Please upload an excel file!");
+        return "Construction/constructionimport";
+    }
 }
+

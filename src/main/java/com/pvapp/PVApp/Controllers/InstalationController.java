@@ -1,20 +1,31 @@
 package com.pvapp.PVApp.Controllers;
 
 
-import com.pvapp.PVApp.Entities.Instalation;
-import com.pvapp.PVApp.Services.*;
+import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterInstalation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+import com.pvapp.PVApp.Entities.Instalation;
+import com.pvapp.PVApp.Services.*;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
-
+@Slf4j
 @Controller
 @RequestMapping("/instalation")
 public class InstalationController {
@@ -31,8 +42,6 @@ public class InstalationController {
     @Autowired
     ConstructionService constructionService;
 
-    @Autowired
-    QuestionFormService questionFormService;
 
     @GetMapping("/report/{id}")
     public String viewReport(Model model, @PathVariable("id") int id) {
@@ -98,4 +107,19 @@ public class InstalationController {
     }
 
 
+    @GetMapping("/export")
+    public void exportToPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=InstalationList_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Instalation> instalations = instalationService.getAll();
+
+        PdfExporterInstalation exporter = new PdfExporterInstalation(instalations);
+        exporter.exportInstalationList(response);
+    }
 }

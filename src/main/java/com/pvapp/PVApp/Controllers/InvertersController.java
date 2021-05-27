@@ -3,16 +3,26 @@ package com.pvapp.PVApp.Controllers;
 import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Services.InverterService;
 
+import com.pvapp.PVApp.Utils.Import.ExcelHelper;
+import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterInverter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/inverter")
 public class InvertersController {
@@ -67,4 +77,41 @@ public class InvertersController {
         return "redirect:/inverter/list";
     }
 
+    @GetMapping("/export")
+    public void exportToPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=InverterList" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Inverter> inverters = inverterService.getAllInverters();
+
+        PdfExporterInverter exporter = new PdfExporterInverter(inverters);
+        exporter.export(response);
+    }
+
+    @GetMapping("/upload")
+    public String uploadFileForm() {
+        return "Inverter/inverterimport";
+    }
+
+    @PostMapping("/uploadFile")
+    public String uploadFile(@RequestParam("file") MultipartFile file) {
+        if (ExcelHelper.hasExcelFormat(file)) {
+            try {
+                inverterService.saveFile(file);
+                log.info("Uploaded the file successfully: " + file.getOriginalFilename());
+                return "redirect:/inverter/list";
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Could not upload the file: " + file.getOriginalFilename() + "!");
+                return "Inverter/inverterimport";
+            }
+        }
+        log.error("Please upload an excel file!");
+        return "Inverter/inverterimport";
+    }
 }

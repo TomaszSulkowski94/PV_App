@@ -12,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
+import java.util.List;
 
 
 @Repository
@@ -35,13 +36,13 @@ public class ConstructionDBRepo implements CRUD<Construction> {
         em.persist(construction);
     }
 
-
     @Override
     @Transactional
     public void delete(int id) {
         log.info("Deleting construction by Id --repository: " + id);
         em.remove(em.find(Construction.class, id));
     }
+
 
     @Override
     public Collection<Construction> printAll() {
@@ -53,6 +54,11 @@ public class ConstructionDBRepo implements CRUD<Construction> {
     public Construction printbyid(int id) {
         log.info("Getting construction by id --repository: " + id);
         return em.find(Construction.class, id);
+    }
+
+    public Collection<Construction> printAllIdOrder() {
+        log.info("Getting all constructions ordered by id --repository");
+        return em.createQuery("from Construction order by id", Construction.class).getResultList();
     }
 
     public Construction getByRoofTypeMaterial(String rooftype, String roofmaterial) {
@@ -85,4 +91,11 @@ public class ConstructionDBRepo implements CRUD<Construction> {
         return em.createQuery("from Construction C WHERE C.manufacturer=:man", Construction.class).setParameter("man", "Producent A").getResultList();
     }
 
+    @Transactional
+    public void saveFromFilem(List<Construction> constructions) {
+        log.info("Save constructions from file");
+        for (Construction construction : constructions) {
+            em.persist(construction);
+        }
+    }
 }

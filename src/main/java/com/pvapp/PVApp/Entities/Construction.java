@@ -25,7 +25,7 @@ public class Construction {
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String manufacturer;
 
-    @NotEmpty(message = "Podaj producenta konstrukcji")
+    @NotEmpty(message = "Podaj model konstrukcji")
     @Size(min = 3, max = 20, message = "Pole musi przyjmować wartości z zakresu 3 do 20 znaków")
     private String model;
 
@@ -44,7 +44,7 @@ public class Construction {
 
 
     public enum roofType {
-        DACH_PLASKI, DACH_SKOSNY, GRUNT
+        DACH_PLASKI, DACH_SKOSNY, GRUNT;
     }
 
     public enum roofMaterial {
@@ -52,7 +52,7 @@ public class Construction {
     }
 
 
-    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH}, mappedBy = "construction")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "construction")
     private List<Instalation> list;
 
 

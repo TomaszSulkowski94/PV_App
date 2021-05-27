@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Lista konstrukcji</title>
@@ -16,9 +16,10 @@
 <div class="container">
     <div class="row">
         <td><a href="/construction/export" class="btn btn-default" role="button">Pobierz listę konstrukcji</a></td>
+        <td><a href="/construction/upload" class="btn btn-default" role="button">Zaimportuj listę konstrukcji</a></td>
     </div>
     <br>
-    <table class="table table-hover">
+    <table class="table table-hover" style="text-align: center">
         <thead>
         <tr>
             <td>Producent</td>
@@ -42,9 +43,7 @@
         </tr>
         </tbody>
     </table>
-
-
-    <div class="row">
+     <div class="row">
         <td><a href="/construction/createConstruction" class="btn btn-default" role="button">Dodaj konstrukcje</a></td>
         <td><a href="/instalation/list" class="btn btn-default" role="button">Przejdź do listy instalacji</a></td>
     </div>

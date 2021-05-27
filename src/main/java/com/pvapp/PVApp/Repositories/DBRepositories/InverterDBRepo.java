@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 @Slf4j
@@ -32,6 +33,14 @@ public class InverterDBRepo implements CRUD<Inverter> {
     public void create(Inverter inverter) {
         log.info("Persisting inverter --repository");
         em.persist(inverter);
+    }
+
+    @Transactional
+    public void saveAll(List<Inverter> inverterList) {
+        log.info("Persisting inverters from lists --repository");
+        for (Inverter inverter : inverterList) {
+            em.persist(inverter);
+        }
     }
 
     @Override

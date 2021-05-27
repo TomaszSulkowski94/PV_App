@@ -1,16 +1,17 @@
 package com.pvapp.PVApp.Controllers;
 
-import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Services.PVModuleService;
-import com.pvapp.PVApp.Utils.PdfExporterInverter;
-import com.pvapp.PVApp.Utils.PdfExporterPVModules;
+import com.pvapp.PVApp.Utils.Import.ExcelHelper;
+import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterPVModules;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/modules")
 public class PVModuleController {
@@ -95,5 +97,27 @@ public class PVModuleController {
 
         PdfExporterPVModules exporter = new PdfExporterPVModules(modules);
         exporter.export(response);
+    }
+
+    @GetMapping("/upload")
+    public String uploadFileForm() {
+        return "Pvmodule/moduleimport";
+    }
+
+    @PostMapping("/uploadFile")
+    public String uploadFile(@RequestParam("file") MultipartFile file) {
+        if (ExcelHelper.hasExcelFormat(file)) {
+            try {
+                pvModuleService.saveFile(file);
+                log.info("Uploaded the file successfully: " + file.getOriginalFilename());
+                return "redirect:/modules/modulelist";
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Could not upload the file: " + file.getOriginalFilename() + "!");
+                return "Pvmodule/moduleimport";
+            }
+        }
+        log.error("Please upload an excel file!");
+        return "Pvmodule/moduleimport";
     }
 }

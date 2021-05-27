@@ -31,7 +31,7 @@ public class Inverter {
     private String model;
 
     @Enumerated(EnumType.ORDINAL)
-    private InverterType type;
+    public InverterType type;
 
 
     @Range(min = 1, max = 1000000, message = "Moc falownika po stronie DC powinna przyjmować wartości z przedziału 1 a 1000000 [W]")
@@ -71,4 +71,4 @@ public class Inverter {
     @ToString.Exclude
     private List<Instalation> instalationList;
 
-  }
+}

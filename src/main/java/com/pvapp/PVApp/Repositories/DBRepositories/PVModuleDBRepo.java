@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 @Repository
@@ -17,6 +18,14 @@ public class PVModuleDBRepo implements CRUD<PVModule> {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Transactional
+    public void saveAll(List<PVModule> pvModules) {
+        log.info("Saving modules --repository");
+        for (PVModule pvModule : pvModules) {
+            em.persist(pvModule);
+        }
+    }
 
     @Override
     @Transactional

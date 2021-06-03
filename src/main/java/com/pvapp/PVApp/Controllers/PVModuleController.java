@@ -2,6 +2,7 @@ package com.pvapp.PVApp.Controllers;
 
 import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Services.PVModuleService;
+import com.pvapp.PVApp.Utils.Exporter.ExcelExporterPVModules;
 import com.pvapp.PVApp.Utils.Import.ExcelHelper;
 import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterPVModules;
 import lombok.extern.slf4j.Slf4j;
@@ -119,5 +120,20 @@ public class PVModuleController {
         }
         log.error("Please upload an excel file!");
         return "Pvmodule/moduleimport";
+    }
+
+    @GetMapping("/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=templatePVModules" + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<PVModule> pvModules = pvModuleService.getAllModules();
+
+        ExcelExporterPVModules excelExporter = new ExcelExporterPVModules(pvModules);
+
+        excelExporter.export(response);
     }
 }

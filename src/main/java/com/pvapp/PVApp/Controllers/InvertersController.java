@@ -3,6 +3,7 @@ package com.pvapp.PVApp.Controllers;
 import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Services.InverterService;
 
+import com.pvapp.PVApp.Utils.Exporter.ExcelExporterInverter;
 import com.pvapp.PVApp.Utils.Import.ExcelHelper;
 import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterInverter;
 import lombok.extern.slf4j.Slf4j;
@@ -113,5 +114,21 @@ public class InvertersController {
         }
         log.error("Please upload an excel file!");
         return "Inverter/inverterimport";
+    }
+
+
+    @GetMapping("/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=templateInverter" + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Inverter> inverters = inverterService.getAllInverters();
+
+        ExcelExporterInverter excelExporter = new ExcelExporterInverter(inverters);
+
+        excelExporter.export(response);
     }
 }

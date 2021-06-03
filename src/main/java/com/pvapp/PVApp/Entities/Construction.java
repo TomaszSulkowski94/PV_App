@@ -56,6 +56,15 @@ public class Construction {
     private List<Instalation> list;
 
 
+    public Construction(String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price, int roofslope) {
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.rooftype = rooftype;
+        this.roofmaterial = roofmaterial;
+        this.price = price;
+        this.roofslope=roofslope;
+    }
+
     public Construction(String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price) {
         this.manufacturer = manufacturer;
         this.model = model;

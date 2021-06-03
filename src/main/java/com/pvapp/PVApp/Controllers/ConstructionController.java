@@ -1,12 +1,13 @@
 package com.pvapp.PVApp.Controllers;
 
-
 import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Services.ConstructionService;
+import com.pvapp.PVApp.Utils.Exporter.ExcelExporterConstruction;
 import com.pvapp.PVApp.Utils.Import.ExcelHelper;
 import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterConstruction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,9 @@ public class ConstructionController {
 
     @Autowired
     ConstructionService constructionService;
+
+    @Autowired
+    ResourceLoader resourceLoader;
 
     @GetMapping("/list")
     public String getconstructions(Model model) {
@@ -113,5 +117,27 @@ public class ConstructionController {
         log.error("Please upload an excel file!");
         return "Construction/constructionimport";
     }
+
+    @GetMapping("/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=templateConstructions" + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Construction> constructions = constructionService.getAllConstructions();
+
+        ExcelExporterConstruction excelExporter = new ExcelExporterConstruction(constructions);
+
+        excelExporter.export(response);
+    }
+
+//    @GetMapping("/uploadcsv")
+//    public String uploadCSV() {
+//        return "Construction/constructionimportcsv";
+//    }
+
+
 }
 

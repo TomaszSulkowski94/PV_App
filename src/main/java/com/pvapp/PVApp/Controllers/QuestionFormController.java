@@ -36,15 +36,11 @@ public class QuestionFormController {
 
     @PostMapping("/save")
     public String create(@Valid @ModelAttribute("questionform") QuestionForm questionForm, BindingResult result) {
-//        try {
-            if (result.hasErrors()) {
-                return "QuestionForm/questionform";
-            }
-            questionFormService.createQuestionForm(questionForm);
-            return "redirect:/instalation/list";
-//        } catch (Exception ex) {
-//            return "QuestionForm/questionform";
-//        }
+        if (result.hasErrors()) {
+            return "QuestionForm/questionform";
+        }
+        questionFormService.createQuestionForm(questionForm);
+        return "redirect:/instalation/list";
     }
 
     @GetMapping("/edit/{id}")

@@ -98,4 +98,5 @@ public class ConstructionDBRepo implements CRUD<Construction> {
             em.persist(construction);
         }
     }
+
 }

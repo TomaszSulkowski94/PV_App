@@ -25,7 +25,7 @@ public class InverterService {
 
     public List<Inverter> getAllInverters() {
         log.info("Getting all inverters --service");
-        return new ArrayList<Inverter>(inverterRepo.printAll());
+        return new ArrayList<>(inverterRepo.printAll());
     }
 
     public void saveInverter(Inverter inverter) {
@@ -48,8 +48,8 @@ public class InverterService {
         inverterRepo.update(inverter);
         List<Instalation> instalations = instalationService.getAllByInverter(inverter);
         if (!instalations.isEmpty()) {
-            for (int i = 0; i < instalations.size(); i++) {
-                instalationService.update(instalations.get(i));
+            for (Instalation instalation : instalations) {
+                instalationService.update(instalation);
             }
         }
     }

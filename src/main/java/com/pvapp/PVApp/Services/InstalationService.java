@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 public class InstalationService {
 
-
     @Autowired
     InstalationDBRepo instalationDBRepo;
 
@@ -39,19 +38,19 @@ public class InstalationService {
     PriceService priceService;
 
     public List<Instalation> getAll() {
-        return new ArrayList<Instalation>(instalationDBRepo.printAll());
+        return new ArrayList<>(instalationDBRepo.printAll());
     }
 
     public List<Instalation> getAllByPVModule(PVModule pvModule) {
-        return new ArrayList<Instalation>(instalationDBRepo.getByPVModule(pvModule));
+        return new ArrayList<>(instalationDBRepo.getByPVModule(pvModule));
     }
 
     public List<Instalation> getAllByConstruction(Construction construction) {
-        return new ArrayList<Instalation>(instalationDBRepo.getByConstruction(construction));
+        return new ArrayList<>(instalationDBRepo.getByConstruction(construction));
     }
 
     public List<Instalation> getAllByInverter (Inverter inverter) {
-        return new ArrayList<Instalation>(instalationDBRepo.getByInverter(inverter));
+        return new ArrayList<>(instalationDBRepo.getByInverter(inverter));
     }
 
     public void save(Instalation instalation) {
@@ -78,7 +77,7 @@ public class InstalationService {
         Instalation instalation = new Instalation(pvModule, numberOfModules, inverter, 1, construction);
         instalation.setPower(instalationSize);
         instalation.setQuestionForm(questionForm);
-        instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
+        instalation.setInstalationangle(setInstalationAngleQuestionForm(questionForm, construction));
         instalation.setRoofposition(setRoofPosition(questionForm));
         productionService.createProduction(instalation);
         technicalResultService.createTR(instalation);
@@ -101,7 +100,7 @@ public class InstalationService {
         instalation.setInverter(inverter);
         instalation.setConstruction(construction);
         priceService.updatePrice(instalation);
-        instalation.setInstalationangle(setInstalationAngleQF(questionForm, construction));
+        instalation.setInstalationangle(setInstalationAngleQuestionForm(questionForm, construction));
         technicalResultService.updateTR(instalation);
         productionService.updateProduction(instalation);
         instalationDBRepo.update(instalation);
@@ -135,7 +134,7 @@ public class InstalationService {
         }
     }
 
-    private int setInstalationAngleQF(QuestionForm questionForm, Construction construction) {
+    private int setInstalationAngleQuestionForm(QuestionForm questionForm, Construction construction) {
         log.info("Setting angle to instalation --service");
         if (construction.getRooftype().toString().equals("DACH_SKOSNY")) {
             return questionForm.getRoofslope();
@@ -192,12 +191,6 @@ public class InstalationService {
         }
     }
 
-
-    private double roundResult(double number) {
-        number = Math.round(number * 100);
-        return number / 100;
-    }
-
     private Construction getconstructionString(QuestionForm questionForm) {
         String rooftype = questionForm.getRooftype().toString();
         String roofmaterial = questionForm.getRoofmaterial().toString();
@@ -214,12 +207,12 @@ public class InstalationService {
     private Inverter getInverterByPower(double power) {
         log.info("Getting inverter --service");
         List<Inverter> inverterList = inverterService.getAllInverters();
-        for (int i = 0; i < inverterList.size(); i++) {
-            if (power > inverterList.get(i).getAcpower() && power <= inverterList.get(i).getDcpower()) {
-                return inverterList.get(i);
+        for (Inverter inverter : inverterList) {
+            if (power > inverter.getAcpower() && power <= inverter.getDcpower()) {
+                return inverter;
             }
         }
-        return inverterList.get(inverterList.size());
+        return inverterList.get(inverterList.size()-1);
     }
 
     private int calcPower(int numberOfPVModules, PVModule pvModule) {

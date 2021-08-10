@@ -1,21 +1,26 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Range;
 
-
-
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "inverter")
-public class Inverter {
+public class Inverter implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,9 +71,38 @@ public class Inverter {
         JEDNOFAZOWY, TROJFAZOWY
     }
 
+    public Inverter(String manufacturer, String model, InverterType type, int dcpower, int acpower, int mppt, double maxcurrentzwarcia, double maxcurrentrob, int dolnyzakresnapiecia, int gornyzakresnapiecia, int maksymalnenapiecie, double price) {
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.type = type;
+        this.dcpower = dcpower;
+        this.acpower = acpower;
+        this.mppt = mppt;
+        this.maxcurrentzwarcia = maxcurrentzwarcia;
+        this.maxcurrentrob = maxcurrentrob;
+        this.dolnyzakresnapiecia = dolnyzakresnapiecia;
+        this.gornyzakresnapiecia = gornyzakresnapiecia;
+        this.maksymalnenapiecie = maksymalnenapiecie;
+        this.price = price;
+    }
 
     @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH}, mappedBy = "inverter")
     @ToString.Exclude
     private List<Instalation> instalationList;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Inverter inverter = (Inverter) o;
+
+        return Objects.equals(id, inverter.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 210171240;
+    }
+
 
 }

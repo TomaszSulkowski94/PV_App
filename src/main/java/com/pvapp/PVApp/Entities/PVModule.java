@@ -1,6 +1,7 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -8,16 +9,19 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "pvmodules")
-public class PVModule {
+public class PVModule implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,4 +87,31 @@ public class PVModule {
     @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "pvModule")
     List<Instalation> instalationList;
 
+    public PVModule(String manufacturer, String model, moduleType type, int power, double currentSTC, double maxCurrentSTC, double voltageSTC, double voltageMPP, double temperatureLost, double efficency, double price) {
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.type = type;
+        this.power = power;
+        this.currentSTC = currentSTC;
+        this.maxCurrentSTC = maxCurrentSTC;
+        this.voltageSTC = voltageSTC;
+        this.voltageMPP = voltageMPP;
+        this.temperatureLost = temperatureLost;
+        this.efficency = efficency;
+        this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        PVModule pvModule = (PVModule) o;
+
+        return Objects.equals(id, pvModule.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 456110359;
+    }
 }

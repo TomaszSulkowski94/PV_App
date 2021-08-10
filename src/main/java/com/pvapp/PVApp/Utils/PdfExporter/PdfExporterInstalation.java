@@ -16,7 +16,7 @@ import com.pvapp.PVApp.Entities.Instalation;
 
 public class PdfExporterInstalation {
 
-    private List<Instalation> instalationList;
+    private final List<Instalation> instalationList;
 
 
     public PdfExporterInstalation(List<Instalation> instalationList) {

@@ -4,7 +4,6 @@ import com.pvapp.PVApp.Entities.Construction;
 import org.apache.commons.csv.*;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,19 +13,19 @@ public class CSVHelper {
     private final static String TYPE = "text/csv";
     private final static String[] ConstructionHeaders = {"Producent", "Model", "Typ dachu", "Material wykonania dachu", "Cena", "Kat nachylenia"};
 
-
     public static boolean hasCSVFormat(MultipartFile file) {
         if (TYPE.equals(file.getContentType())
                 || file.getContentType().equals("application/vnd.ms-excel")) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public static List<Construction> csvConstructions(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
              CSVParser csvParser = new CSVParser(fileReader,
-                     CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
+                     CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim())) {
 
             List<Construction> constructions = new ArrayList<>();
 

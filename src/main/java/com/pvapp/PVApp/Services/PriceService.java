@@ -28,7 +28,7 @@ public class PriceService {
 
     public List<Price> getAllPrices() {
         log.info("Getting all prices --service");
-        return new ArrayList<Price>(priceDBRepo.printAll());
+        return new ArrayList<>(priceDBRepo.printAll());
     }
 
     private void calcPrice(Price price, Instalation instalation) {

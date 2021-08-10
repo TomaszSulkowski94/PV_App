@@ -1,16 +1,20 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(name = "technicalresults")
-public class TechnicalResults {
+public class TechnicalResults implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +32,18 @@ public class TechnicalResults {
 
     @OneToOne(mappedBy = "technicalResults")
     private Instalation instalation;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        TechnicalResults that = (TechnicalResults) o;
+
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 1093799877;
+    }
 }

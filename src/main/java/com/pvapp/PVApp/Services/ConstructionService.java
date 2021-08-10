@@ -3,15 +3,12 @@ package com.pvapp.PVApp.Services;
 import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Entities.Instalation;
 import com.pvapp.PVApp.Repositories.DBRepositories.ConstructionDBRepo;
-import com.pvapp.PVApp.Utils.Import.CSVHelper;
 import com.pvapp.PVApp.Utils.Import.ExcelHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -29,12 +26,12 @@ public class ConstructionService {
 
     public List<Construction> getAllConstructions() {
         log.info("Getting all constructions from DB --service");
-        return new ArrayList<Construction>(constructionRepo.printAll());
+        return new ArrayList<>(constructionRepo.printAll());
     }
 
     public List<Construction> getAllIdOrder() {
         log.info("Getting all constructions from DB --service");
-        return new ArrayList<Construction>(constructionRepo.printAllIdOrder());
+        return new ArrayList<>(constructionRepo.printAllIdOrder());
     }
 
       public void saveConstruction(Construction construction) {
@@ -57,8 +54,8 @@ public class ConstructionService {
         constructionRepo.update(construction);
         List<Instalation> instalations = instalationService.getAllByConstruction(construction);
         if (!instalations.isEmpty()) {
-            for (int i = 0; i < instalations.size(); i++) {
-                instalationService.update(instalations.get(i));
+            for (Instalation instalation : instalations) {
+                instalationService.update(instalation);
             }
         }
     }

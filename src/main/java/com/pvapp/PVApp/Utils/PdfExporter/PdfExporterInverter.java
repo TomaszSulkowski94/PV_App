@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PdfExporterInverter {
 
-    private List<Inverter> inverterList;
+    private final List<Inverter> inverterList;
 
     public PdfExporterInverter(List<Inverter> inverterList) {
         this.inverterList = inverterList;

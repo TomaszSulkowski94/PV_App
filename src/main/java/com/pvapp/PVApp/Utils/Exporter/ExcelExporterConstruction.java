@@ -14,15 +14,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class ExcelExporterConstruction implements ExcelExporter {
-    private XSSFWorkbook workbook;
+    private final XSSFWorkbook workbook;
     private XSSFSheet sheet;
-    private List<Construction> constructions;
+    private final List<Construction> constructions;
 
     public ExcelExporterConstruction(List<Construction> constructions) {
         this.constructions = constructions;
         workbook = new XSSFWorkbook();
     }
-
 
     @Override
     public void writeHeaderLine() {

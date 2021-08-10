@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PdfExporterPVModules {
 
-    private List<PVModule> moduleList;
+    private final List<PVModule> moduleList;
 
     public PdfExporterPVModules(List<PVModule> moduleList) {
         this.moduleList = moduleList;

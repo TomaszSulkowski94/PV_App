@@ -1,14 +1,10 @@
 package com.pvapp.PVApp.Services;
 
 import com.pvapp.PVApp.Entities.*;
-
 import com.pvapp.PVApp.Repositories.DBRepositories.ProductionDBRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Slf4j
@@ -26,12 +22,12 @@ public class ProductionService {
     @Autowired
     PVModuleService pvModuleService;
 
-    private void calcProduction(Instalation instalation, Production production) {
+    private double[] calcProduction(Instalation instalation) {
         log.info("Calculating production  --service");
         PVModule pvModule = pvModuleService.getPVModule(instalation.getPvModule().getId());
         double[] productionfactors = {0.03, 0.04, 0.07, 0.09, 0.12, 0.13, 0.12, 0.13, 0.11, 0.09, 0.05, 0.03};
-        double[] productionArray = new double[12];
-        double electricFactor = electricFactor(questionFormService.getQuestionForm(instalation.getQuestionForm().getId()), instalation);
+        double[] productionArray = new double[13];
+        double electricFactor = electricFactor(instalation);
         double summary = 0;
         for (int i = 0; i < productionfactors.length; i++) {
             double calcProduction = (instalation.getPower() / 1000) * productionfactors[i] * electricFactor * 1025 * (1 - pvModule.getTemperatureLost());
@@ -41,7 +37,20 @@ public class ProductionService {
             summary += calcProduction;
             summary = roundResult(summary);
         }
+        productionArray[productionArray.length - 1] = summary;
         log.info("Summary production: " + summary + " kWh");
+        return productionArray;
+    }
+
+    private Production setProduction(Instalation instalation, double[] productionArray) {
+        Production production;
+        try {
+            production = getProduction(instalation.getProduction().getId());
+            log.info(production.toString());
+        } catch (NullPointerException ex) {
+            production = instalation.getProduction();
+            log.info(production.toString());
+        }
         production.setJanuary(productionArray[0]);
         production.setFebruary(productionArray[1]);
         production.setMarch(productionArray[2]);
@@ -54,16 +63,23 @@ public class ProductionService {
         production.setOctober(productionArray[9]);
         production.setNovember(productionArray[10]);
         production.setDecember(productionArray[11]);
-        production.setSummary(summary);
+        production.setSummary(productionArray[12]);
+        return production;
     }
 
     public void createProduction(Instalation instalation) {
         log.info("Saving production --service");
         Production production = new Production();
-        calcProduction(instalation, production);
         instalation.setProduction(production);
-        productionDBRepository.create(production);
+        double[] productionArray = calcProduction(instalation);
+        productionDBRepository.create(setProduction(instalation, productionArray));
+    }
 
+    public void updateProduction(Instalation instalation) {
+        log.info("Updating production --service");
+        double[] productionArray = calcProduction(instalation);
+        setProduction(instalation, productionArray);
+        productionDBRepository.update(setProduction(instalation, productionArray));
     }
 
     private double roundResult(double number) {
@@ -71,43 +87,23 @@ public class ProductionService {
         return number / 100;
     }
 
-
-    public void updateProduction(Instalation instalation) {
-        log.info("Updating production --service");
-        Production production = instalation.getProduction();
-        calcProduction(instalation, production);
-        productionDBRepository.update(production);
-    }
-
-    public void deleteProduction(int id) {
-        log.info("Deleting production --service" + id);
-        productionDBRepository.delete(id);
-    }
-
     public Production getProduction(int id) {
         log.info("Getting production by id --service" + id);
         return productionDBRepository.printbyid(id);
     }
 
-    public List<Production> getProduction() {
-        return new ArrayList<Production>(productionDBRepository.printAll());
-    }
-
-
-    private double electricFactor(QuestionForm questionForm, Instalation instalation) {
-        int roofslope = 0;
+    private double electricFactor(Instalation instalation) {
+        int roofslope;
         int roofposition = (instalation.getRoofposition() / 5) + 1;
         Construction construction = constructionService.getConstruction(instalation.getConstruction().getId());
         double[][] factorTable = createArrayFactors();
         if (instalation.getConstruction().getRoofslope() == 0) {
             roofslope = (instalation.getInstalationangle() / 5) + 1;
         } else {
-            roofslope = (instalation.getInstalationangle() / 5) + 1;
+            roofslope = (construction.getRoofslope() / 5) + 1;
         }
         log.info("Matched coefficent: " + factorTable[roofslope][roofposition] + " for roofslope: " + roofslope + " and roofposition: " + roofposition);
         return factorTable[roofslope][roofposition];
-
-
     }
 
     private double[][] createArrayFactors() {

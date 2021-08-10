@@ -1,19 +1,22 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Range;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(name = "price")
-public class Price {
+public class Price implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,5 +45,19 @@ public class Price {
         this.taxvalue = taxvalue;
         this.instalationpricegross = instalationpricegross;
         this.discount = 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Price price = (Price) o;
+
+        return Objects.equals(id, price.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 1434193993;
     }
 }

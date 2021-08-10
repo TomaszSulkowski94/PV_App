@@ -1,9 +1,9 @@
 INSERT INTO pvmodules(manufacturer, model, type, power, currentstc, maxcurrentstc, voltagestc, voltagempp,
 temperaturelost, efficency, price)
-VALUES ('Producent X', 'AM315', 1, 315, 9.03, 8.53, 45.33, 36.93, 0.189, 0.25, 0.29);
+VALUES ('Producent X', 'AM315', 1, 315, 9.03, 8.53, 45.33, 36.93, 0.189, 0.2510, 0.29);
 INSERT INTO pvmodules(manufacturer, model, type, power, currentstc, maxcurrentstc, voltagestc, voltagempp,
 temperaturelost, efficency, price)
-VALUES ('Producent X', 'AM340', 1, 340, 10.3, 9.8, 41.88, 34.69, 0.21, 0.203, 0.285);
+VALUES ('Producent X', 'AM340', 1, 340, 10.3, 9.8, 41.88, 34.69, 0.21, 0.2030, 0.285);
 INSERT INTO pvmodules(manufacturer, model, type, power, currentstc, maxcurrentstc, voltagestc, voltagempp,
 temperaturelost, efficency, price)
 VALUES ('Producent W', 'WP250', 0, 250, 9.22, 8.68, 37.85, 32.26, 0.24, 0.1691, 0.3);
@@ -21,13 +21,13 @@ temperaturelost, efficency, price)
 VALUES ('Producent C', 'CM360', 1, 360, 11.45, 10.88, 40.2, 33.3, 0.21, 0.1946, 0.29);
 INSERT INTO pvmodules(manufacturer, model, type, power, currentstc, maxcurrentstc, voltagestc, voltagempp,
 temperaturelost, efficency, price)
-VALUES ('Producent C', 'CB330', 2, 330, 10.46, 9.82, 41.36, 34.63, 0.25, 0.202, 0.28);
+VALUES ('Producent C', 'CB330', 2, 330, 10.46, 9.82, 41.36, 34.63, 0.25, 0.2021, 0.28);
 INSERT INTO pvmodules(manufacturer, model, type, power, currentstc, maxcurrentstc, voltagestc, voltagempp,
 temperaturelost, efficency, price)
-VALUES ('Producent C', 'CG320', 3, 320, 10.01, 9.24, 40.2, 33.6, 0.22, 0.186, 0.34);
+VALUES ('Producent C', 'CG320', 3, 320, 10.01, 9.24, 40.2, 33.6, 0.22, 0.1860, 0.34);
 INSERT INTO pvmodules(manufacturer, model, type, power, currentstc, maxcurrentstc, voltagestc, voltagempp,
 temperaturelost, efficency, price)
-VALUES ('Producent R', 'RM310', 1, 310, 10.01, 9.24, 40.1, 32.6, 0.21, 0.186, 0.27);
+VALUES ('Producent R', 'RM310', 1, 310, 10.01, 9.24, 40.1, 32.6, 0.21, 0.1860, 0.27);
 
 
 INSERT INTO construction(manufacturer, model, rooftype, roofmaterial, price, roofslope)

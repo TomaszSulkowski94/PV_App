@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -25,12 +26,12 @@ public class ConstructionService {
 
     public List<Construction> getAllConstructions() {
         log.info("Getting all constructions from DB --service");
-        return new ArrayList<Construction>(constructionRepo.printAll());
+        return new ArrayList<>(constructionRepo.printAll());
     }
 
     public List<Construction> getAllIdOrder() {
         log.info("Getting all constructions from DB --service");
-        return new ArrayList<Construction>(constructionRepo.printAllIdOrder());
+        return new ArrayList<>(constructionRepo.printAllIdOrder());
     }
 
       public void saveConstruction(Construction construction) {
@@ -53,8 +54,8 @@ public class ConstructionService {
         constructionRepo.update(construction);
         List<Instalation> instalations = instalationService.getAllByConstruction(construction);
         if (!instalations.isEmpty()) {
-            for (int i = 0; i < instalations.size(); i++) {
-                instalationService.update(instalations.get(i));
+            for (Instalation instalation : instalations) {
+                instalationService.update(instalation);
             }
         }
     }
@@ -72,7 +73,6 @@ public class ConstructionService {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }
     }
-
 
 }
 

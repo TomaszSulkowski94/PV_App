@@ -1,7 +1,6 @@
 package com.pvapp.PVApp.Services;
 
 import com.pvapp.PVApp.Entities.Instalation;
-import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Entities.PVModule;
 import com.pvapp.PVApp.Repositories.DBRepositories.PVModuleDBRepo;
 import com.pvapp.PVApp.Utils.Import.ExcelHelper;

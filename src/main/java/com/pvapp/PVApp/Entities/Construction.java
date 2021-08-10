@@ -1,20 +1,26 @@
 package com.pvapp.PVApp.Entities;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Range;
 
-
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "construction")
-public class Construction {
+public class Construction implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +50,7 @@ public class Construction {
 
 
     public enum roofType {
-        DACH_PLASKI, DACH_SKOSNY, GRUNT;
+        DACH_PLASKI, DACH_SKOSNY, GRUNT
     }
 
     public enum roofMaterial {
@@ -56,11 +62,38 @@ public class Construction {
     private List<Instalation> list;
 
 
-    public Construction(String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price) {
+    public Construction(String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price, int roofslope) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.rooftype = rooftype;
         this.roofmaterial = roofmaterial;
         this.price = price;
+        this.roofslope=roofslope;
     }
+
+    public Construction(int id, String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price, int roofslope) {
+        this.id = id;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.rooftype = rooftype;
+        this.roofmaterial = roofmaterial;
+        this.price = price;
+        this.roofslope = roofslope;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Construction that = (Construction) o;
+
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 923847118;
+    }
+
+
 }

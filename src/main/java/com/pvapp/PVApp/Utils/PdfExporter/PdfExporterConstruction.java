@@ -15,7 +15,7 @@ import java.util.List;
 
 public class PdfExporterConstruction {
 
-    private List<Construction> constructionList;
+    private final List<Construction> constructionList;
 
     public PdfExporterConstruction(List<Construction> constructionList) {
         this.constructionList = constructionList;

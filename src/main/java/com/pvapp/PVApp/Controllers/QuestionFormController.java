@@ -1,15 +1,12 @@
 package com.pvapp.PVApp.Controllers;
 
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.pvapp.PVApp.Entities.QuestionForm;
-import com.pvapp.PVApp.Services.ConstructionService;
 import com.pvapp.PVApp.Services.QuestionFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -36,15 +33,11 @@ public class QuestionFormController {
 
     @PostMapping("/save")
     public String create(@Valid @ModelAttribute("questionform") QuestionForm questionForm, BindingResult result) {
-//        try {
-            if (result.hasErrors()) {
-                return "QuestionForm/questionform";
-            }
-            questionFormService.createQuestionForm(questionForm);
-            return "redirect:/instalation/list";
-//        } catch (Exception ex) {
-//            return "QuestionForm/questionform";
-//        }
+        if (result.hasErrors()) {
+            return "QuestionForm/questionform";
+        }
+        questionFormService.createQuestionForm(questionForm);
+        return "redirect:/instalation/list";
     }
 
     @GetMapping("/edit/{id}")

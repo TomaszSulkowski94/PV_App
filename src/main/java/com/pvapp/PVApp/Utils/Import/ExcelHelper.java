@@ -9,6 +9,7 @@ import java.util.List;
 import com.pvapp.PVApp.Entities.Construction;
 import com.pvapp.PVApp.Entities.Inverter;
 import com.pvapp.PVApp.Entities.PVModule;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,7 +17,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
-
+@Slf4j
 public class ExcelHelper {
     private static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     private static final String SHEETCONSTRUCTIONS = "constructions";
@@ -29,6 +30,38 @@ public class ExcelHelper {
             return false;
         }
         return true;
+    }
+
+    private static String checkInvType(String val) {
+        // ENUMS JEDNOFAZOWY, TROJFAZOWY
+        String[] jednofaz = {"JEDNOFAZOWY", "JEDNO-FAZOWY", "JEDNO_FAZOWY", "JEDNO FAZOWY"};
+        String[] trojfaz = {"TRÓJFAZOWY", "TRÓJ-FAZOWY", "TRÓJ FAZOWY", "TRÓJ_FAZOWY", "TROJFAZOWY", "TROJ-FAZOWY", "TROJ FAZOWY", "TROJ_FAZOWY"};
+        if (checkEnum(val, jednofaz)) {
+            return "JEDNOFAZOWY";
+        } else if (checkEnum(val, trojfaz)) {
+            return "TROJFAZOWY";
+        } else {
+            return " ";
+        }
+    }
+
+    private static String checkModuleType(String val) {
+        // ENUMS POLIKRYSTALICZNY, MONOKRYSTALICZNY, BIFACIAL, GLASSGLASS
+        String[] poli = {"POLIKRYSTALICZNY", "POLI", "POLY", "POLIKRYSTALICZNY", "POLI-KRYSTALICZNY", "POLI KRYSTALICZNY", "POLI_KRYSTALICZNY"};
+        String[] mono = {"MONOKRYSTALICZNY", "MONO", "MONOKRYSTALICZNY", "MONO-KRYSTALICZNY", "MONO KRYSTALICZNY", "MONO_KRYSTALICZNY"};
+        String[] glass = {"GLASSGLASS", "GLASS GLASS", "GLASS-GLASS", "GLASS_GLASS", "GLASS"};
+        String[] bifacial = {"BIFACIAL", "BIFACJAL", "BI-FACIAL", "BI FACIAL", "BI_FACIAL"};
+        if (checkEnum(val, poli)) {
+            return "POLIKRYSTALICZNY";
+        } else if (checkEnum(val, mono)) {
+            return "MONOKRYSTALICZNY";
+        } else if (checkEnum(val, glass)) {
+            return "GLASSGLASS";
+        } else if (checkEnum(val, bifacial)) {
+            return "BIFACIAL";
+        } else {
+            return " ";
+        }
     }
 
     public static List<Inverter> excelToInverter(InputStream is) {
@@ -58,17 +91,18 @@ public class ExcelHelper {
                             inverter.setModel(currentCell.getStringCellValue());
                             break;
                         case 2:
-                            Inverter.InverterType type = Inverter.InverterType.valueOf(currentCell.getStringCellValue());
+                            String typeInv = checkInvType(currentCell.getStringCellValue());
+                            Inverter.InverterType type = Inverter.InverterType.valueOf(typeInv);
                             inverter.setType(type);
                             break;
                         case 3:
                             inverter.setDcpower((int) currentCell.getNumericCellValue());
                             break;
                         case 4:
-                            inverter.setAcpower((int)currentCell.getNumericCellValue());
+                            inverter.setAcpower((int) currentCell.getNumericCellValue());
                             break;
                         case 5:
-                            inverter.setMppt((int)currentCell.getNumericCellValue());
+                            inverter.setMppt((int) currentCell.getNumericCellValue());
                             break;
                         case 6:
                             inverter.setMaxcurrentzwarcia(currentCell.getNumericCellValue());
@@ -77,13 +111,13 @@ public class ExcelHelper {
                             inverter.setMaxcurrentrob(currentCell.getNumericCellValue());
                             break;
                         case 8:
-                            inverter.setDolnyzakresnapiecia((int)currentCell.getNumericCellValue());
+                            inverter.setDolnyzakresnapiecia((int) currentCell.getNumericCellValue());
                             break;
                         case 9:
-                            inverter.setGornyzakresnapiecia((int)currentCell.getNumericCellValue());
+                            inverter.setGornyzakresnapiecia((int) currentCell.getNumericCellValue());
                             break;
                         case 10:
-                            inverter.setMaksymalnenapiecie((int)currentCell.getNumericCellValue());
+                            inverter.setMaksymalnenapiecie((int) currentCell.getNumericCellValue());
                             break;
                         case 11:
                             inverter.setPrice(currentCell.getNumericCellValue());
@@ -129,7 +163,8 @@ public class ExcelHelper {
                             pvModule.setModel(currentCell.getStringCellValue());
                             break;
                         case 2:
-                            PVModule.moduleType moduleType = PVModule.moduleType.valueOf(currentCell.getStringCellValue());
+                            String mt = checkModuleType(currentCell.getStringCellValue());
+                            PVModule.moduleType moduleType = PVModule.moduleType.valueOf(mt);
                             pvModule.setType(moduleType);
                             break;
                         case 3:
@@ -170,6 +205,69 @@ public class ExcelHelper {
         }
     }
 
+    private static boolean checkEnum(String val, String[] checkArray) {
+        val = val.toUpperCase();
+        for (int i = 0; i < checkArray.length; i++) {
+            log.info("Value from table " + checkArray[i]);
+            if (val.equals(checkArray[i])) {
+                log.info("Sucesss for value " + checkArray[i]);
+                return true;
+            }
+        }
+        log.info("false");
+        return false;
+    }
+
+
+    private static String roofMaterialChecks(String materialType) {
+        // Enums BLACHODACHOWKA, BLACHOTRAPEZ, PLYTA_WARSTWOWA, PAPA, GONT, GRUNT, DACHÓWKA_CERAMICZNA, DACHÓWKA_KARPIÓWKA
+        String[] allBlachodach = {"BLACHODACHÓWKA", "BLACHODACHOWKA", "BLACHO-DACHÓWKA", "BLACHO-DACHOWKA",
+                "BLACHO DACHÓWKA", "BLACHO DACHOWKA"};
+        String[] allBlachoTrapez = {"BLACHO TRAPEZ", "BLACHO-TRAPEZ", "BLACHOTRAPEZ", "BLACHO_TRAPEZ"};
+        String[] allPlytaWarstwowa = {"PŁYTAWARSTWOWA", "PŁYTA WARSTWOWA", "PŁYTA_WARSTWOWA", "PŁYTA-WARSTWOWA",
+                "PLYTAWARSTWOWA", "PLYTA WARSTWOWA", "PLYTA_WARSTWOWA", "PLYTA-WARSTWOWA"};
+        String[] allDachCer = {"DACHÓWKACERAMICZNA", "DACHÓWKA CERAMICZNA", "DACHÓWKA_CERAMICZNA",
+                "DACHÓWKA-CERAMICZNA", "DACHOWKACERAMICZNA", "DACHOWKA CERAMICZNA", "DACHOWKA-CERAMICZNA", "DACHOWKA_CERAMICZNA"};
+        String[] allDachKar = {"DACHÓWKA KARPIÓWKA", "DACHÓWKAKARPIÓWKA", "DACHÓWKA_KARPIÓWKA", "DACHÓWKA-KARPIÓWKA",
+                "DACHOWKA KARPIÓWKA", "DACHOWKAKARPIÓWKA", "DACHOWKA_KARPIOWKA", "DACHOWKA-KARPIOWKA", "DACHOWKA KARPIOWKA",
+                "DACHOWKAkarpiowka", "DACHOWKA_KARPIOWKA", "DACHOWKA-KARPIOWKA"};
+
+        if (checkEnum(materialType, allBlachodach)) {
+            return "BLACHODACHOWKA";
+        } else if (checkEnum(materialType, allBlachoTrapez)) {
+            return "BLACHOTRAPEZ";
+        } else if (checkEnum(materialType, allPlytaWarstwowa)) {
+            return "PLYTA_WARSTWOWA";
+        } else if (materialType.equals("PAPA")) {
+            return "PAPA";
+        } else if (materialType.equals("GONT")) {
+            return "GONT";
+        } else if (materialType.equals("GRUNT")) {
+            return "GRUNT";
+        } else if (checkEnum(materialType, allDachCer)) {
+            return "DACHÓWKA_CERAMICZNA";
+        } else if (checkEnum(materialType, allDachKar)) {
+            return "DACHÓWKA_KARPIÓWKA";
+        } else {
+            return " ";
+        }
+    }
+
+    private static String roofTypeChecks(String constrType) {
+        String[] allDachPlaski = {"DACH-PLASKI", "DACH-PLASKI", "DACH PLASKI", "DACH PŁASKI", "DACHPŁASKI", "DACHPLASKI", "DACH_PLASKI", "DACH_PŁASKI"};
+        String[] allDachSkosny = {"DACH-SKOŚNY", "DACH-SKOSNY", "DACHSKOŚNY", "DACH SKOŚNY", "DACHSKOSNY", "DACH SKOSNY", "DACH_SKOSNY", "DACH_SKOŚNY"};
+
+        if (checkEnum(constrType, allDachPlaski)) {
+            return "DACH_PLASKI";
+        } else if (checkEnum(constrType, allDachSkosny)) {
+            return "DACH_SKOSNY";
+        } else if (constrType.equals("GRUNT")) {
+            return "GRUNT";
+        } else {
+            return "";
+        }
+    }
+
     public static List<Construction> excelToConstruction(InputStream is) {
         try {
             Workbook workbook = new XSSFWorkbook(is);
@@ -205,14 +303,16 @@ public class ExcelHelper {
                             construction.setPrice(currentCell.getNumericCellValue());
                             break;
                         case 3:
-                            Construction.roofMaterial rm = Construction.roofMaterial.valueOf(currentCell.getStringCellValue());
+                            String roofMat = roofMaterialChecks(currentCell.getStringCellValue());
+                            Construction.roofMaterial rm = Construction.roofMaterial.valueOf(roofMat);
                             construction.setRoofmaterial(rm);
                             break;
                         case 4:
                             construction.setRoofslope((int) (currentCell.getNumericCellValue()));
                             break;
                         case 5:
-                            Construction.roofType rt = Construction.roofType.valueOf(currentCell.getStringCellValue());
+                            String constrType = roofTypeChecks(currentCell.getStringCellValue());
+                            Construction.roofType rt = Construction.roofType.valueOf(constrType);
                             construction.setRooftype(rt);
                             break;
                         default:

@@ -20,9 +20,6 @@ public class TechnicalResultService {
     TechnicalResultsDB technicalResultsDB;
 
     @Autowired
-    InstalationService instalationService;
-
-    @Autowired
     PVModuleService pvModuleService;
 
     @Autowired

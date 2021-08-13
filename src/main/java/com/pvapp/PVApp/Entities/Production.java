@@ -36,6 +36,22 @@ public class Production implements Serializable {
     private double december;
     private double summary;
 
+    public Production(double january, double february, double march, double april, double may, double june, double july, double august, double september, double october, double november, double december, double summary) {
+        this.january = january;
+        this.february = february;
+        this.march = march;
+        this.april = april;
+        this.may = may;
+        this.june = june;
+        this.july = july;
+        this.august = august;
+        this.september = september;
+        this.october = october;
+        this.november = november;
+        this.december = december;
+        this.summary = summary;
+    }
+
     @OneToOne(mappedBy = "production")
     private Instalation instalation;
 

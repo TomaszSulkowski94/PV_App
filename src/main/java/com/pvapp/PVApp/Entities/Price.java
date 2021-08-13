@@ -56,6 +56,17 @@ public class Price implements Serializable {
         return Objects.equals(id, price.id);
     }
 
+    public Price(double moduleprice, double inverterprice, double constructionprice, double instalationpricenet, double taxvalue, double instalationpricegross, double discountedinstalationpricegross, int discount) {
+        this.moduleprice = moduleprice;
+        this.inverterprice = inverterprice;
+        this.constructionprice = constructionprice;
+        this.instalationpricenet = instalationpricenet;
+        this.taxvalue = taxvalue;
+        this.instalationpricegross = instalationpricegross;
+        this.discountedinstalationpricegross = discountedinstalationpricegross;
+        this.discount = discount;
+    }
+
     @Override
     public int hashCode() {
         return 1434193993;

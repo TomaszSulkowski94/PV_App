@@ -192,20 +192,20 @@ public class InstalationService {
         }
     }
 
-    private Construction getconstructionString(QuestionForm questionForm) {
+    Construction getconstructionString(QuestionForm questionForm) {
         String rooftype = questionForm.getRooftype().toString();
         String roofmaterial = questionForm.getRoofmaterial().toString();
         log.info("Getting construcion by rooftype:" + rooftype + " and roofmaterial:" + roofmaterial);
         return constructionService.getConstructionByRoofTypeMaterial(rooftype, roofmaterial);
     }
 
-    private int consumption(int bill) {
+    int consumption(int bill) {
         log.info("Calculating consumption --service");
         double electricprice = 0.54;
         return (int) Math.round((bill / electricprice) * 12 * 1.2);
     }
 
-    private Inverter getInverterByPower(double power) {
+    Inverter getInverterByPower(double power) {
         log.info("Getting inverter --service");
         List<Inverter> inverterList = inverterService.getAllInverters();
         for (Inverter inverter : inverterList) {
@@ -216,7 +216,7 @@ public class InstalationService {
         return inverterList.get(inverterList.size() - 1);
     }
 
-    private int calcPower(int numberOfPVModules, PVModule pvModule) {
+    int calcPower(int numberOfPVModules, PVModule pvModule) {
         log.info("Calculating power --service");
         return numberOfPVModules * pvModule.getPower();
     }
@@ -230,5 +230,10 @@ public class InstalationService {
     public Instalation getById(int id) {
         log.info("Getting instalation from DB by id --service");
         return instalationDBRepo.printbyid(id);
+    }
+
+    public Instalation getByQF(QuestionForm questionForm) {
+        log.info("Getting instalation from DB by id --service");
+        return instalationDBRepo.printbyQFid(questionForm);
     }
 }

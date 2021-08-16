@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Scope("singleton")
 public class Starter implements CommandLineRunner {
 
-    @Autowired
-    PVModuleDBRepo pvModuleRepo;
-
-    @Autowired
-    InverterDBRepo inverterRepo;
-
-    @Autowired
-    ConstructionDBRepo constructionRepo;
+//    @Autowired
+//    PVModuleDBRepo pvModuleRepo;
+//
+//    @Autowired
+//    InverterDBRepo inverterRepo;
+//
+//    @Autowired
+//    ConstructionDBRepo constructionRepo;
 
     @Override
     @Transactional

@@ -75,6 +75,7 @@ public class PVModuleServiceTest {
         //when
         //then
         Assert.assertNotNull(pvModuleService.getPVModule(pvModule.getId()));
+        Assert.assertEquals(pvModule,pvModuleService.getPVModule(pvModule.getId()));
     }
 
     @Test

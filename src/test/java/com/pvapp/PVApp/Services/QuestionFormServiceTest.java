@@ -26,9 +26,6 @@ public class QuestionFormServiceTest {
     @Autowired
     InstalationDBRepo instalationDBRepo;
 
-    @Autowired
-    PVModuleService pvModuleService;
-
     private QuestionForm qf2 = new QuestionForm(50, QuestionForm.RoofType.DACH_SKOSNY, 20, 0, QuestionForm.RoofMaterial.BLACHODACHOWKA);
     private final List<QuestionForm> qfList = new ArrayList<>();
 
@@ -108,6 +105,7 @@ public class QuestionFormServiceTest {
         //when
         //then
         Assert.assertNotNull(questionFormService.getQuestionForm(qf2.getId()));
+        Assert.assertEquals(qf2,questionFormService.getQuestionForm(qf2.getId()));
     }
 
     @Test

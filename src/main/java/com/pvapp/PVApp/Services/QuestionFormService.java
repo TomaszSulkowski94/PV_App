@@ -24,7 +24,6 @@ public class QuestionFormService {
         questionFormDBRepo.create(questionForm);
     }
 
-
     public void createQuestionForm(QuestionForm questionForm) {
         log.info("Saving questionform --service");
         questionFormDBRepo.create(questionForm);
@@ -58,11 +57,5 @@ public class QuestionFormService {
         log.info("Getting all questionforms  --service ");
         return new ArrayList<QuestionForm>(questionFormDBRepo.printAll());
     }
-
-    public QuestionForm getFirst() {
-        log.info("Getting first questionform --service");
-        return questionFormDBRepo.getFirst();
-    }
-
 
 }

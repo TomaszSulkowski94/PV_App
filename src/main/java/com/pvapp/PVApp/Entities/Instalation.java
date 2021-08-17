@@ -24,7 +24,7 @@ public class Instalation implements Serializable {
     @Column(name = "instalationid")
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pvmoduleid")
     private PVModule pvModule;
 

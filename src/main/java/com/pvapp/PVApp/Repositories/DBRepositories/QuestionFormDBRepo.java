@@ -50,8 +50,4 @@ public class QuestionFormDBRepo implements CRUD<QuestionForm> {
         return em.find(QuestionForm.class, id);
     }
 
-    public QuestionForm getFirst() {
-        log.info("Getting first position from DB --repository");
-        return em.createQuery("from QuestionForm", QuestionForm.class).getResultList().get(0);
-    }
 }

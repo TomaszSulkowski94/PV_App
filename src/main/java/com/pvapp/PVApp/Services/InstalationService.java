@@ -49,7 +49,7 @@ public class InstalationService {
         return new ArrayList<>(instalationDBRepo.getByConstruction(construction));
     }
 
-    public List<Instalation> getAllByInverter (Inverter inverter) {
+    public List<Instalation> getAllByInverter(Inverter inverter) {
         return new ArrayList<>(instalationDBRepo.getByInverter(inverter));
     }
 
@@ -57,7 +57,7 @@ public class InstalationService {
         log.info("Saving instalation --service");
         instalation.setPower(calcPower(instalation.getNumberofpvmodule(), moduleService.getPVModule(instalation.getPvModule().getId())));
         instalation.setInstalationangle(setInstalationAngle(instalation));
-        QuestionForm questionForm = new QuestionForm(50, setRoofTypeFromInstalation(instalation), setInstalationAngle(instalation), instalation.getRoofposition(), setRoofMaterialFromInstalation(instalation), instalation);
+        QuestionForm questionForm = new QuestionForm(50, setRoofTypeFromInstalation(instalation), setInstalationAngle(instalation), instalation.getRoofposition(), setRoofMaterialFromInstalation(instalation));
         questionFormService.create(questionForm);
         instalation.setQuestionForm(questionForm);
         productionService.createProduction(instalation);
@@ -87,7 +87,8 @@ public class InstalationService {
 
     public void updateByQuestionForm(QuestionForm questionForm) {
         log.info("Updating instalation --service");
-        Instalation instalation = instalationDBRepo.printbyid(questionFormService.getQuestionForm(questionForm.getId()).getId());
+        Instalation instalation = instalationDBRepo.printbyQFid(questionForm);
+        //Instalation instalation = instalationDBRepo.printbyid(questionFormService.getQuestionForm(questionForm.getId()).getId()); OLD One to be checked after testing
         int yearconsumption = consumption(questionForm.getBill());
         PVModule pvModule = instalation.getPvModule();
         int numberOfModules = Math.round(yearconsumption / pvModule.getPower());
@@ -122,7 +123,7 @@ public class InstalationService {
         instalationDBRepo.update(instalation);
     }
 
-        private int setInstalationAngle(Instalation instalation) {
+    private int setInstalationAngle(Instalation instalation) {
         log.info("Setting angle to questionform --service");
         Construction construction = constructionService.getConstruction(instalation.getConstruction().getId());
         if (construction.getRooftype().toString().equals("DACH_SKOSNY")) {
@@ -191,20 +192,20 @@ public class InstalationService {
         }
     }
 
-    private Construction getconstructionString(QuestionForm questionForm) {
+    Construction getconstructionString(QuestionForm questionForm) {
         String rooftype = questionForm.getRooftype().toString();
         String roofmaterial = questionForm.getRoofmaterial().toString();
         log.info("Getting construcion by rooftype:" + rooftype + " and roofmaterial:" + roofmaterial);
         return constructionService.getConstructionByRoofTypeMaterial(rooftype, roofmaterial);
     }
 
-    private int consumption(int bill) {
+    int consumption(int bill) {
         log.info("Calculating consumption --service");
         double electricprice = 0.54;
         return (int) Math.round((bill / electricprice) * 12 * 1.2);
     }
 
-    private Inverter getInverterByPower(double power) {
+    Inverter getInverterByPower(double power) {
         log.info("Getting inverter --service");
         List<Inverter> inverterList = inverterService.getAllInverters();
         for (Inverter inverter : inverterList) {
@@ -212,10 +213,10 @@ public class InstalationService {
                 return inverter;
             }
         }
-        return inverterList.get(inverterList.size()-1);
+        return inverterList.get(inverterList.size() - 1);
     }
 
-    private int calcPower(int numberOfPVModules, PVModule pvModule) {
+    int calcPower(int numberOfPVModules, PVModule pvModule) {
         log.info("Calculating power --service");
         return numberOfPVModules * pvModule.getPower();
     }
@@ -229,5 +230,10 @@ public class InstalationService {
     public Instalation getById(int id) {
         log.info("Getting instalation from DB by id --service");
         return instalationDBRepo.printbyid(id);
+    }
+
+    public Instalation getByQF(QuestionForm questionForm) {
+        log.info("Getting instalation from DB by id --service");
+        return instalationDBRepo.printbyQFid(questionForm);
     }
 }

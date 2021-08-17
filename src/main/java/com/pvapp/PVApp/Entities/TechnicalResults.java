@@ -46,4 +46,15 @@ public class TechnicalResults implements Serializable {
     public int hashCode() {
         return 1093799877;
     }
+
+    public TechnicalResults(double vocmax, double vmppmax, double vmppmin, double iscmax, double imppmax, int nmax, int nmin, int nmaxparallel) {
+        this.vocmax = vocmax;
+        this.vmppmax = vmppmax;
+        this.vmppmin = vmppmin;
+        this.iscmax = iscmax;
+        this.imppmax = imppmax;
+        this.nmax = nmax;
+        this.nmin = nmin;
+        this.nmaxparallel = nmaxparallel;
+    }
 }

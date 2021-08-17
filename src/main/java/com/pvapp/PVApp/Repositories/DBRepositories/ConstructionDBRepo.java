@@ -42,7 +42,6 @@ public class ConstructionDBRepo implements CRUD<Construction> {
         em.remove(em.find(Construction.class, id));
     }
 
-
     @Override
     public Collection<Construction> printAll() {
         log.info("Getting all constructions ordered by manufacturerm, roogtype, roofmaterial--repository");

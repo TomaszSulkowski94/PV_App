@@ -1,9 +1,6 @@
 package com.pvapp.PVApp.Repositories.DBRepositories;
 
-import com.pvapp.PVApp.Entities.Construction;
-import com.pvapp.PVApp.Entities.Instalation;
-import com.pvapp.PVApp.Entities.Inverter;
-import com.pvapp.PVApp.Entities.PVModule;
+import com.pvapp.PVApp.Entities.*;
 import com.pvapp.PVApp.Repositories.CRUD;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -54,6 +51,12 @@ public class InstalationDBRepo implements CRUD<Instalation> {
     public Instalation printbyid(int id) {
         log.info("Getting instalation by id --repository " + id);
         return em.find(Instalation.class, id);
+    }
+
+    //testing method to find instalation after creating QF -> could be useful in the future
+    public Instalation printbyQFid(QuestionForm questionForm) {
+        log.info("Getting instalation by questionForm --repository " + questionForm);
+        return em.createQuery("from Instalation I WHERE I.questionForm=:id",Instalation.class).setParameter("id", questionForm).getSingleResult();
     }
 
     public Collection<Instalation> getByPVModule(PVModule pv) {

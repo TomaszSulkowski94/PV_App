@@ -71,15 +71,6 @@ public class Construction implements Serializable {
         this.roofslope=roofslope;
     }
 
-    public Construction(int id, String manufacturer, String model, roofType rooftype, roofMaterial roofmaterial, double price, int roofslope) {
-        this.id = id;
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.rooftype = rooftype;
-        this.roofmaterial = roofmaterial;
-        this.price = price;
-        this.roofslope = roofslope;
-    }
 
     @Override
     public boolean equals(Object o) {

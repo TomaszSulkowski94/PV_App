@@ -74,7 +74,7 @@ List the ready features here:
 
 >User case 2:
 >
-> You are a sales advisor. Your customer-specified requirements for PV installation during the business meeting
+> You are a sales advisor. One of yours customer specified requirements for PV installation during the business meeting
 > you need to prepare for him an offer. You are opening the design page http://localhost:8080/instalation/design
 > after specifying components and setting roof parameters. You can show your customer an offer.
 > At the next meeting customer is interested in your offer, but he wants a 10% discount. During negotiation

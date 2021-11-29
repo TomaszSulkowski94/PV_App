@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml" lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>Lista konstrukcji</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/tablestyle.css}"/>
     <link rel="stylesheet"
           th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <meta name="description" content="PV_APP"/>
+    <meta name="keywords" content="Photovlatic, Fotowoltaika, OZE, PV , Instalacja elektryczna"/>
+    <meta name="author" content="Tomasz Sułkowski"/>
 
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <td><a href="/construction/export" class="btn btn-default" role="button">Pobierz listę konstrukcji</a></td>
-        <td><a href="/construction/upload" class="btn btn-default" role="button">Zaimportuj listę konstrukcji</a></td>
-        <td><a href="/construction/export/excel" class="btn btn-default" role="button">Pobierz wzór importu</a></td>
-    </div>
-    <br>
-    <table class="table table-hover" style="text-align: center">
+<div id="tablecontainer">
+    <nav id="nav">
+        <a href="/instalation/list" class="btn-2" role="button">Instalacje</a>
+        <a href="/modules/modulelist" class="btn-2" role="button">Moduły</a>
+        <a href="/inverter/list" class="btn-2" role="button">Falowniki</a>
+        <a href="/construction/list" class="btn-2" role="button">Konstrukcje</a>
+        <a href="/questionform/list" class="btn-2" role="button">Formularze</a>
+    </nav>
+    <div class="tablediv">
+    <table id="table">
         <thead>
         <tr>
             <td>Producent</td>
@@ -29,6 +30,8 @@
             <td>Materiał wykonania dachu</td>
             <td>Nachylenie konstrukcji</td>
             <td>Cena [zł/moduł]</td>
+            <td>Edycja</td>
+            <td>Usuń</td>
         </tr>
         </thead>
         <tbody>
@@ -43,11 +46,21 @@
             <td><a th:href="${'/construction/delete/'+{construction.id}}"><i class="fa fa-trash"></i></a></td>
         </tr>
         </tbody>
-    </table>
-    <div class="row">
-        <td><a href="/construction/createConstruction" class="btn btn-default" role="button">Dodaj konstrukcje</a></td>
-        <td><a href="/instalation/list" class="btn btn-default" role="button">Przejdź do listy instalacji</a></td>
+        </table>
     </div>
+    <div id="buttons">
+        <a class="btn-1" role="button" href="/construction/createConstruction">Dodaj</a>
+        <a class="btn-1" role="button" href="/construction/export">Pobierz PDF</a>
+        <a class="btn-1" role="button" href="/construction/export/excel">Pobierz wzór</a>
+        <a class="btn-1" role="button" href="/construction/upload">Importuj</a>
+    </div>
+    <footer id="footer">
+        <p>Autor: Tomasz Sułkowski</p>
+        <p>Tel: +48790784812</p>
+        <p>Email: Tomasz.sulkowski@onet.pl</p>
+        <p>Github: TomaszSulkowski94</p>
+        <p>PV_APP</p>
+    </footer>
 </div>
 </body>
 </html>

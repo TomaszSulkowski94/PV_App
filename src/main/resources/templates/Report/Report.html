@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Raport i wyniki</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+    <title>Raport ofertowy</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/report.css}"/>
+    <meta name="description" content="PV_APP"/>
+    <meta name="keywords" content="Photovlatic, Fotowoltaika, OZE, PV , Instalacja elektryczna"/>
+    <meta name="author" content="Tomasz Sułkowski"/>
 </head>
 <body>
-<div class="container">
+<div id="container">
+    <nav id="nav">
+        <a href="/instalation/list" class="btn-2" role="button">Instalacje</a>
+        <a href="/modules/modulelist" class="btn-2" role="button">Moduły</a>
+        <a href="/inverter/list" class="btn-2" role="button">Falowniki</a>
+        <a href="/construction/list" class="btn-2" role="button">Konstrukcje</a>
+        <a href="/questionform/list" class="btn-2" role="button">Formularze</a>
+    </nav>
     <form style="text-align: justify">
-        <h1 style="text-align: justify;">Raport ofertowy</h1>
+        <h1 style="text-align: center;">Raport ofertowy</h1>
         <br>
-        <h4 style="text-align: justify;">1.Informacje ogólne</h4>
+        <h3 style="text-align: justify;">1.Informacje ogólne</h3>
         <br>
         <label>Na podstawie miesięcznego rachunku za prąd wynoszacego <span
                 th:text="${instalation.questionForm.bill}"></span> zł.
@@ -25,12 +32,10 @@
             Sercem instalacji będzie <span th:text="${instalation.inverter.type}"></span> firmy <span
                     th:text="${instalation.inverter.manufacturer}"></span>
             o mocy po stronie AC <span th:text="${instalation.inverter.acpower}"></span> W. </label>
-        <br>
-        <br>
-        <h4 style="text-align: justify;">2.Produkcja energii elektrycznej</h4>
-        <br>
+
+        <h3 style="text-align: justify;">2.Produkcja energii elektrycznej</h3>
         <center>
-            <table style="text-align:center" class="table-sm table-bordered table-hover">
+            <table id="table">
                 <tr>
                     <th colspan="3">Wyprodukowana ilość energii elektrycznej</th>
                 </tr>
@@ -105,15 +110,10 @@
                 </tr>
             </table>
         </center>
-        <br>
-        <br>
-        <br>
-        <h4 style="text-align: justify;">3.Parametry techniczne instalacji</h4>
-        <br>
-        <h5 style="text-align: justify;">3.1.Parametry techniczne modułów fotowoltaicznych</h5>
-        <br>
+        <h3 style="text-align: justify;">3.Parametry techniczne instalacji</h3>
+        <h4 style="text-align: justify;">3.1.Parametry techniczne modułów fotowoltaicznych</h4>
         <center>
-            <table style="text-align:center" class="table-sm  table-bordered table-hover">
+            <table id="table">
                 <tr>
                     <th colspan="3">Moduł fotowoltaiczny</th>
                 </tr>
@@ -169,13 +169,9 @@
                 </tr>
             </table>
         </center>
-        <br>
-        <br>
-        <br>
         <h4 style="text-align: justify;">3.2.Parametry techniczne falownika</h4>
-        <br>
         <center>
-            <table style="text-align:center" class="table-sm table-bordered table-hover">
+            <table id="table">
                 <tr>
                     <th colspan="3">Falownik fotowoltaiczny</th>
                 </tr>
@@ -235,13 +231,9 @@
                 </tr>
             </table>
         </center>
-        <br>
-        <br>
-        <br>
-        <h5 style="text-align: justify;">3.3.Konstrukcja montażowa</h5>
-        <br>
+        <h4 style="text-align: justify;">3.3.Konstrukcja montażowa</h4>
         <center>
-            <table style="text-align:center" class="table-sm table-bordered table-hover">
+            <table id="table">
                 <tr>
                     <th colspan="3">Konstrukcja montażowa</th>
                 </tr>
@@ -267,13 +259,9 @@
                 </tr>
             </table>
         </center>
-        <br>
-        <br>
-        <br>
-        <h5 style="text-align: justify;">3.4.Parametry techniczne instalacji</h5>
-        <br>
+        <h4 style="text-align: justify;">3.4.Parametry techniczne instalacji</h4>
         <center>
-            <table style="text-align:center" class="table-sm table-bordered table-hover">
+            <table id="table">
                 <tr>
                     <th colspan="3">Parametry techniczne instalacji</th>
                 </tr>
@@ -319,13 +307,9 @@
                 </tr>
             </table>
         </center>
-        <br>
-        <br>
-        <br>
-        <h4 style="text-align: justify;">4.Koszt instalacji</h4>
-        <br>
+        <h3 style="text-align: justify;">4.Koszt instalacji</h3>
         <center>
-            <table style="text-align:center" class="table-sm table-bordered table-hover">
+            <table id="table">
                 <tr>
                     <th colspan="3">Koszty składowe instalacji</th>
                 </tr>
@@ -362,10 +346,19 @@
             </table>
         </center>
     </form>
-    <br>
-    <div class="row">
-        <td><a href="/instalation/list" class="btn btn-default" role="button">Powrót do listy instalacji</a></td>
-    </div>
+    <center>
+        <div class="row">
+            <a href="/instalation/list" class="btn-3" role="button">Powrót do listy instalacji</a>
+        </div>
+    </center>
+    <footer id="footer">
+        <p>Autor: Tomasz Sułkowski</p>
+        <p>Tel: +48790784812</p>
+        <p>Email: Tomasz.sulkowski@onet.pl</p>
+        <p>Github: TomaszSulkowski94</p>
+        <p>PV_APP</p>
+    </footer>
+
 </div>
 </body>
 </html>

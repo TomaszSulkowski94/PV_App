@@ -1,0 +1,184 @@
+html, body, div
+{
+    height: 100%;
+    width: 100%;
+    margin:0;
+    overflow: auto;
+    color: #D35400;
+    font-size:16px;
+}
+
+#container{
+    font-family: sans-serif;
+    background-color:#1A1A1D;
+    color:#D35400;
+    display: grid;
+    grid-template-rows: 6% 88% 6%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+}
+
+#nav
+{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+
+
+#formcontainer
+{
+    display: grid;
+    max-height: 93%;
+    max-width: 90%;
+    grid-template-columns: 35% 60%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 5%;
+}
+
+#form1
+{
+    display: grid;
+    grid-template-rows: 85% 8%;
+}
+
+#photo{
+
+}
+
+#discountphoto{
+    height: auto;
+    width: auto;
+    margin-top: 2%;
+    align-content: center;
+    max-width: 800px;
+    max-height: 450px;
+}
+
+#values{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: grid;
+    grid-template-columns: 50% 40%;
+    grid-template-rows: repeat(9,1fr);
+}
+
+#buttons{
+margin-top: 5%;
+margin-left: 5%;
+}
+
+#footer
+{
+    color: #D35400;
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    font-size: 12px;
+    background-color: #1A1A1D;
+}
+
+#footer > p:hover
+{
+    transform: scale(1.5);
+    transition: transform .2s;
+    font-weight: 700;
+}
+
+/* header section*/
+.btn-2 {
+    padding: 10px 24px;
+    border: solid #1A1A1D;
+    color: #D35400;
+    background-color: #1A1A1D;
+    box-shadow: inset 0 0 0 0 #1A1A1D;
+    transition: ease-out 0.5s;
+    outline:inherit;
+    text-decoration: none;
+    font-size:16px;
+}
+
+.btn-2:hover{
+    box-shadow: inset 300px 0 0 0 #D35400;
+    color:aliceblue;
+    text-decoration: none;
+}
+
+.btn-3 {
+    padding: 10px 24px;
+    border: solid #28B463;
+    color: #28B463;
+    background-color: #1A1A1D;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 0 #28B463;
+    transition: ease-out 0.5s;
+    outline:inherit;
+    font-size:16px;
+}
+
+.btn-3:hover{
+    box-shadow: inset 150px 0 0 0 #28B463;
+    color:aliceblue;
+}
+
+/* Reset button*/
+.btn-4 {
+    padding: 10px 24px;
+    border: solid #D35400;
+    color: #D35400;
+    background-color: #1A1A1D;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 0 #D35400;
+    transition: ease-out 0.5s;
+    outline:inherit;
+    font-size:16px;
+
+}
+
+.btn-4:hover{
+    box-shadow: inset 150px 0 0 0 #D35400;
+    color:aliceblue;
+}
+
+
+/* Exit button*/
+.btn-5 {
+    padding: 10px 24px;
+    border: solid #CB4335;
+    color: #CB4335;
+    background-color: #1A1A1D;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 0 #CB4335;
+    transition: ease-out 0.5s;
+    outline:inherit;
+    text-decoration: none;
+    font-size:16px;
+}
+
+.btn-5:hover{
+    box-shadow: inset 150px 0 0 0 #CB4335;
+    color:aliceblue;
+    text-decoration: none;
+}
+
+input:read-only {
+  background-color: #1A1A1D;
+  color:#D35400;
+  text-align: center;
+  border: 0px;
+  font-weight:700;
+  font-size:16px;
+}
+
+p{
+  font-weight: 700;
+}
+
+input{
+  text-align: center;
+  border: 0px;
+  font-size:16px;
+}
+

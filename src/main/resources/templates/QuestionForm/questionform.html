@@ -1,88 +1,87 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Ankieta dotycząca instalacji</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
-
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
-    <script th:src="selectFilter.min.js"></script>
+    <title>Nowa ankieta</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/qfstyle.css}"/>
+    <meta name="description" content="PV_APP"/>
+    <meta name="keywords" content="Photovlatic, Fotowoltaika, OZE, PV , Instalacja elektryczna"/>
+    <meta name="author" content="Tomasz Sułkowski"/>
+</head>
 <body>
-<div class="container">
-    <form th:object="${questionform}" th:action="@{/questionform/save}" th:method="POST" class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label">Wysokość miesięcznego rachunku</label>
-            <input type="number" class="form-control" th:field="*{bill}" min="50" max="2000"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('bill')}" th:errors="*{bill}"></div>
-        </div>
-
-        <div class="form group">
-            <label class="control-label">Typ dachu</label>
-            <select th:field="*{rooftype}">
-                <option th:value="DACH_PLASKI" th:text="'DACH PŁASKI'"></option>
-                <option th:value="DACH_SKOSNY" th:text="'DACH SKOŚNY'"></option>
-                <option th:value="GRUNT" th:text="GRUNT"></option>
-            </select>
-        </div>
-        <br>
-        <div class="form group">
-            <label class="control-label">Materiał wykonania dachu</label>
-            <select th:field="*{roofmaterial}">
-                <option th:value="PAPA" th:text="PAPA"></option>
-                <option th:value="BLACHODACHOWKA" th:text="BLACHODACHÓWKA"></option>
-                <option th:value="BLACHOTRAPEZ" th:text="BLACHOTRAPEZ"></option>
-                <option th:value="PLYTA_WARSTWOWA" th:text="'PŁYTA WARTSTWOWA'"></option>
-                <option th:value="GONT" th:text="GONT"></option>
-                <option th:value="GRUNT" th:text="GRUNT"></option>
-                <option th:value="DACHÓWKA_CERAMICZNA" th:text="'DACHÓWKA CERAMICZNA'"></option>
-                <option th:value="DACHÓWKA_KARPIÓWKA" th:text="'DACHÓWKA KARPIÓWKA'"></option>
-            </select>
-        </div>
-        <br>
-        <div class="form group">
-            <label class="control-label">Nachylenie dachu</label>
-            <select th:field="*{roofslope}">
-                <option th:value="0" th:text="'BRAK'"></option>
-                <option th:value="10" th:text="'LEKKO NACHYLONY'"></option>
-                <option th:value="30" th:text="'SREDNIO NACHYLOWNY'"></option>
-                <option th:value="50" th:text="'MOCNO NACHYLONY'"></option>
-            </select>
-        </div>
-        <br>
-        <div class="form group">
-            <label class="control-label">Pozycja dachu</label>
-            <select th:field="*{roofposition}">
-                <option th:value="0" th:text="POŁUDNIE"></option>
-                <option th:value="10" th:text="'POŁUDNIOWY WSCHÓD 10'"></option>
-                <option th:value="20" th:text="'POŁUDNIOWY WSCHÓD 20'"></option>
-                <option th:value="30" th:text="'POŁUDNIOWY WSCHÓD 30'"></option>
-                <option th:value="40" th:text="'POŁUDNIOWY WSCHÓD 40'"></option>
-                <option th:value="50" th:text="'POŁUDNIOWY WSCHÓD 50'"></option>
-                <option th:value="60" th:text="'POŁUDNIOWY WSCHÓD 60'"></option>
-                <option th:value="70" th:text="'POŁUDNIOWY WSCHÓD 70'"></option>
-                <option th:value="80" th:text="'POŁUDNIOWY WSCHÓD 80'"></option>
-                <option th:value="90" th:text="'WSCHÓD-ZACHÓD'"></option>
-                <option th:value="10" th:text="'POŁUDNIOWY ZACHÓD 10'"></option>
-                <option th:value="20" th:text="'POŁUDNIOWY ZACHÓD 20'"></option>
-                <option th:value="30" th:text="'POŁUDNIOWY ZACHÓD 30'"></option>
-                <option th:value="40" th:text="'POŁUDNIOWY ZACHÓD 40'"></option>
-                <option th:value="50" th:text="'POŁUDNIOWY ZACHÓD 50'"></option>
-                <option th:value="60" th:text="'POŁUDNIOWY ZACHÓD 60'"></option>
-                <option th:value="70" th:text="'POŁUDNIOWY ZACHÓD 70'"></option>
-                <option th:value="80" th:text="'POŁUDNIOWY ZACHÓD 80'"></option>
-            </select>
-        </div>
-        <br>
-        <div class="row">
-            <button type="submit" class="btn btn-default">Wypełnij formularz</button>
-            <button type="reset" class="btn btn-default">Wyczyść formularz</button>
-            <a href="/questionform/list" class="btn btn-danger" role="button">Powrót</a>
-        </div>
-    </form>
+<div id="container">
+    <nav id="nav">
+        <a href="/instalation/list" class="btn-2" role="button">Instalacje</a>
+        <a href="/modules/modulelist" class="btn-2" role="button">Moduły</a>
+        <a href="/inverter/list" class="btn-2" role="button">Falowniki</a>
+        <a href="/construction/list" class="btn-2" role="button">Konstrukcje</a>
+        <a href="/questionform/list" class="btn-2" role="button">Formularze</a>
+    </nav>
+    <div id="formcontainer">
+        <form id="form" th:object="${questionform}" th:action="@{/questionform/save}"  th:method="POST" class="form-horizontal">
+            <div id="values">
+                <div class="center"><p>Wysokość miesięcznego rachunku:</p></div><input type="number" th:field="*{bill}" min="50" max="2000" placeholder="np.: 150"/>
+                <div class="center"><p>Typ dachu:</p> </div>
+                <select th:field="*{rooftype}">
+                    <option th:value="DACH_PLASKI" th:text="'DACH PŁASKI'"></option>
+                    <option th:value="DACH_SKOSNY" th:text="'DACH SKOŚNY'"></option>
+                    <option th:value="GRUNT" th:text="GRUNT"></option>
+                </select>
+                <div class="center"> <p>Materiał wykonania dachu:</p> </div>
+                <select th:field="*{roofmaterial}">
+                    <option th:value="PAPA" th:text="PAPA"></option>
+                    <option th:value="BLACHODACHOWKA" th:text="BLACHODACHÓWKA"></option>
+                    <option th:value="BLACHOTRAPEZ" th:text="BLACHOTRAPEZ"></option>
+                    <option th:value="PLYTA_WARSTWOWA" th:text="'PŁYTA WARTSTWOWA'"></option>
+                    <option th:value="GONT" th:text="GONT"></option>
+                    <option th:value="GRUNT" th:text="GRUNT"></option>
+                    <option th:value="DACHÓWKA_CERAMICZNA" th:text="'DACHÓWKA CERAMICZNA'"></option>
+                    <option th:value="DACHÓWKA_KARPIÓWKA" th:text="'DACHÓWKA KARPIÓWKA'"></option>
+                </select>
+                <div class="center"><p>Nachylenie konstrukcji: </p> </div>
+                <select th:field="*{roofslope}">
+                    <option th:value="0" th:text="'BRAK'"></option>
+                    <option th:value="10" th:text="'LEKKO NACHYLONY'"></option>
+                    <option th:value="30" th:text="'SREDNIO NACHYLOWNY'"></option>
+                    <option th:value="50" th:text="'MOCNO NACHYLONY'"></option>
+                </select>
+                <div class="center"><p>Pozycja dachu</p> </div>
+                <select th:field="*{roofposition}">
+                    <option th:value="0" th:text="POŁUDNIE"></option>
+                    <option th:value="10" th:text="'POŁUDNIOWY WSCHÓD 10'"></option>
+                    <option th:value="20" th:text="'POŁUDNIOWY WSCHÓD 20'"></option>
+                    <option th:value="30" th:text="'POŁUDNIOWY WSCHÓD 30'"></option>
+                    <option th:value="40" th:text="'POŁUDNIOWY WSCHÓD 40'"></option>
+                    <option th:value="50" th:text="'POŁUDNIOWY WSCHÓD 50'"></option>
+                    <option th:value="60" th:text="'POŁUDNIOWY WSCHÓD 60'"></option>
+                    <option th:value="70" th:text="'POŁUDNIOWY WSCHÓD 70'"></option>
+                    <option th:value="80" th:text="'POŁUDNIOWY WSCHÓD 80'"></option>
+                    <option th:value="90" th:text="'WSCHÓD-ZACHÓD'"></option>
+                    <option th:value="10" th:text="'POŁUDNIOWY ZACHÓD 10'"></option>
+                    <option th:value="20" th:text="'POŁUDNIOWY ZACHÓD 20'"></option>
+                    <option th:value="30" th:text="'POŁUDNIOWY ZACHÓD 30'"></option>
+                    <option th:value="40" th:text="'POŁUDNIOWY ZACHÓD 40'"></option>
+                    <option th:value="50" th:text="'POŁUDNIOWY ZACHÓD 50'"></option>
+                    <option th:value="60" th:text="'POŁUDNIOWY ZACHÓD 60'"></option>
+                    <option th:value="70" th:text="'POŁUDNIOWY ZACHÓD 70'"></option>
+                    <option th:value="80" th:text="'POŁUDNIOWY ZACHÓD 80'"></option>
+                </select>
+            </div>
+            <div id="buttons">
+                <button type="submit" class="btn-3">Dodaj</button>
+                <button class="btn-4" type="reset">Resetuj zmiany</button>
+                <a href="/questionform/list" class="btn-5" role="button">Powrót</a>
+            </div>
+        </form>
+        <div id="photo"><img id="photocontainer" th:src="@{/questionmark.jpg}"></div>
+    </div>
+    <footer id="footer">
+        <p>Autor: Tomasz Sułkowski</p>
+        <p>Tel: +48790784812</p>
+        <p>Email: Tomasz.sulkowski@onet.pl</p>
+        <p>Github: TomaszSulkowski94</p>
+        <p>PV_APP</p>
+    </footer>
 </div>
 </body>
 </html>

@@ -14,8 +14,9 @@ import java.util.Collection;
 import java.util.List;
 
 
-@Repository
+
 @Slf4j
+@Repository
 public class ConstructionDBRepo implements CRUD<Construction> {
 
     @PersistenceContext

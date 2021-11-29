@@ -1,0 +1,215 @@
+#buttons{
+    margin-left:25px;
+    text-align: center;
+    margin-top:30px;
+    max-height:80px;
+    max-width:400px;
+}
+
+#footer > p:hover
+{
+    transform: scale(1.5);
+    transition: transform .2s;
+    font-weight: 700;
+}
+
+#formcontainer
+{
+    display: grid;
+    max-height:99%;
+    max-width: 90%;
+    grid-template-columns: 30% 70%;
+    margin-bottom: 1%;
+    margin-top:1%;
+    margin-left: 5%;
+}
+
+#values{
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+}
+
+#photocontainer
+{
+  margin-top:0%;
+  margin-left: 2%;
+  max-height:95%;
+  max-width: 95%;
+  height: auto;
+}
+
+#photo
+{
+
+    height:95%;
+    width:95%;
+
+}
+
+#form
+{
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+
+.center {
+position: relative;
+}
+
+.center p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size:14px;
+
+  }
+
+html, body, div
+{
+    height: 100%;
+    width: 100%;
+    margin:0;
+    overflow: auto;
+    color: #D35400;
+    font-size:14px;
+    font-family: sans-serif;
+    text-align:center;
+}
+
+
+#container{
+    font-family: sans-serif;
+    background-color:#1A1A1D;
+    color:#D35400;
+    display: grid;
+    grid-template-rows: 4% 92% 4%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+}
+
+/* header section*/
+.btn-2 {
+    padding: 10px 24px;
+    border: solid #1A1A1D;
+    color: #D35400;
+    background-color: #1A1A1D;
+    box-shadow: inset 0 0 0 0 #1A1A1D;
+    transition: ease-out 0.5s;
+    outline:inherit;
+    text-decoration:none;
+    font-family: sans-serif;
+}
+
+.btn-2:hover{
+    box-shadow: inset 300px 0 0 0 #D35400;
+    color:aliceblue;
+    text-decoration:none;
+    font-family: sans-serif;
+}
+
+
+/* Done button*/
+.btn-3 {
+    padding: 10px 24px;
+    border: solid #28B463;
+    color: #28B463;
+    background-color: #1A1A1D;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 0 #28B463;
+    transition: ease-out 0.5s;
+    outline:inherit;
+    text-decoration:none;
+}
+
+.btn-3:hover{
+    box-shadow: inset 150px 0 0 0 #28B463;
+    color:aliceblue;
+    text-decoration:none;
+}
+
+
+/* Reset button*/
+.btn-4 {
+    padding: 10px 24px;
+    border: solid #D35400;
+    color: #D35400;
+    background-color: #1A1A1D;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 0 #D35400;
+    transition: ease-out 0.5s;
+    outline:inherit;
+text-decoration:none;
+}
+
+.btn-4:hover{
+    box-shadow: inset 150px 0 0 0 #D35400;
+    color:aliceblue;
+    text-decoration:none;
+}
+
+
+/* Exit button*/
+.btn-5 {
+    padding: 10px 24px;
+    border: solid #CB4335;
+    color: #CB4335;
+    background-color: #1A1A1D;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 0 #CB4335;
+    transition: ease-out 0.5s;
+    outline:inherit;
+text-decoration:none;
+}
+
+.btn-5:hover{
+    box-shadow: inset 150px 0 0 0 #CB4335;
+    color:aliceblue;
+text-decoration:none;
+}
+
+#footer
+{
+    color: #D35400;
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    font-size: 12px;
+    background-color: #1A1A1D;
+}
+
+input:read-only {
+  background-color: #1A1A1D;
+  color:#D35400;
+  text-align: center;
+  border: 0px;
+  font-weight:700;
+  font-size:14px;
+}
+
+#nav
+{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+
+/* Normal button*/
+.btn-1 {
+    padding: 10px 24px;
+    border: solid #D35400;
+    color: #D35400;
+    border-radius: 12px;
+    background-color: #1A1A1D;
+    box-shadow: inset 0 0 0 0 #1A1A1D;
+    transition: ease-out 0.5s;
+    outline:inherit;
+    text-decoration:none;
+}
+
+.btn-1:hover{
+    box-shadow: inset 150px 0 0 0 #D35400;
+    color: aliceblue;
+    text-decoration:none;
+}

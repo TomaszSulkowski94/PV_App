@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+//@DataJpaTest works with JPARepository (in my case I am using manually created repo)
 public class ConstructionDBRepoTest {
 
     @Autowired

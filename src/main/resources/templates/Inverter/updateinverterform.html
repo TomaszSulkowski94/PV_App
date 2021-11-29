@@ -1,106 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Edycja falownika</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
-
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+    <title>Edycja instalacji</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/invstyle.css}"/>
+    <meta name="description" content="PV_APP"/>
+    <meta name="keywords" content="Photovlatic, Fotowoltaika, OZE, PV , Instalacja elektryczna"/>
+    <meta name="author" content="Tomasz Sułkowski"/>
 </head>
 <body>
-
-<div class="container">
-
-    <form th:object="${inverter}" th:action="@{/inverter/edit}" th:method="POST" class="form-horizontal">
-        <div hidden class="form-group">
-            <label class="control-label">Id</label>
-            <input type="text" th:field="*{id}" class="form-control" readonly="readonly"/>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Producent</label>
-            <input type="text" class="form-control" th:field="*{manufacturer}" minlength="3" maxlength="9"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('manufacturer')}"
-                 th:errors="*{manufacturer}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Model</label>
-            <input type="text" class="form-control" th:field="*{model}" minlength="3" maxlength="9"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('model')}"
-                 th:errors="*{model}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Typ falownika</label>
-            <select th:field="*{type}">
-                <option th:each="type : ${T(com.pvapp.PVApp.Entities.Inverter$InverterType).values()}"
-                        th:value="${type}"
-                        th:text="${type}">
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Moc DC</label>
-            <input type="number" class="form-control" th:field="*{dcpower}" min="1" max="1000000" step="1"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('dcpower')}"
-                 th:errors="*{dcpower}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Moc AC</label>
-            <input type="number" class="form-control" th:field="*{acpower}" min="1" max="1000000" step="1"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('acpower')}"
-                 th:errors="*{acpower}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Liczba MPPT</label>
-            <input type="number" class="form-control" th:field="*{mppt}" min="1" max="99"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('mppt')}"
-                 th:errors="*{mppt}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Maksymalny prąd zwarcia</label>
-            <input type="number" class="form-control" th:field="*{maxcurrentzwarcia}" min="0.01" max="100.00" step="0.01"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentzwarcia')}"
-                 th:errors="*{maxcurrentzwarcia}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Maksymalny prąd roboczy</label>
-            <input type="number" class="form-control" th:field="*{maxcurrentrob}" min="0.01" max="100.00" step="0.01"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('maxcurrentrob')}"
-                 th:errors="*{maxcurrentrob}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Dolny zakres napięcia</label>
-            <input type="number" class="form-control" th:field="*{dolnyzakresnapiecia}" min="1" max="1000" step="1"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('dolnyzakresnapiecia')}"
-                 th:errors="*{dolnyzakresnapiecia}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Górny zakres napięcia</label>
-            <input type="number" class="form-control" th:field="*{gornyzakresnapiecia}" min="100" max="100000"
-                   step="1"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('gornyzakresnapiecia')}"
-                 th:errors="*{gornyzakresnapiecia}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Maksymalne napięcie pracy</label>
-            <input type="number" class="form-control" th:field="*{maksymalnenapiecie}" min="100" max="100000" step="1"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('maksymalnenapiecie')}"
-                 th:errors="*{maksymalnenapiecie}"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Cena</label>
-            <input type="number" class="form-control" th:field="*{price}" min="0.01" max="99999.00" step="0.01"/>
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
-                 th:errors="*{price}"></div>
-        </div>
-        <div class="row">
-            <button type="submit" class="btn btn-default">Zapisz zmiany</button>
-            <button type="reset" class="btn btn-default">Zrestartuj zmiany</button>
-            <a href="/inverter/list" class="btn btn-danger" role="button">Powrót</a>
-        </div>
-    </form>
+<div id="container">
+    <nav id="nav">
+        <a href="/instalation/list" class="btn-2" role="button">Instalacje</a>
+        <a href="/modules/modulelist" class="btn-2" role="button">Moduły</a>
+        <a href="/inverter/list" class="btn-2" role="button">Falowniki</a>
+        <a href="/construction/list" class="btn-2" role="button">Konstrukcje</a>
+        <a href="/questionform/list" class="btn-2" role="button">Formularze</a>
+    </nav>
+    <div id="formcontainer">
+        <form id="form" th:object="${inverter}" th:action="@{/inverter/edit}"  th:method="POST" class="form-horizontal">
+           <div id="values">
+               <p hidden="hidden">Id:</p><input typle="text" type="text" th:field="*{id}" readonly="readonly" hidden="hidden"/>
+               <p>Producent:</p>  <input type="text" th:field="*{manufacturer}" th:minlength="3" th:maxlength="20" placeholder="np.: Producent XYZ"/>
+               <p>Model:</p><input type="text" placeholder="np.: Model ABC" th:field="*{model}" th:minlength=3  th:maxlength=20/>
+               <p>Typ falownika:</p>
+               <select th:field="*{type}">
+                   <option th:each="type : ${T(com.pvapp.PVApp.Entities.Inverter$InverterType).values()}"
+                           th:value="${type}"
+                           th:text="${type}">
+                   </option>
+               </select>
+               <p>Moc DC [W] </p><input type="number" th:field="*{dcpower}" min=100 max=1000000 step="1"/>
+               <p>Moc AC [W] </p><input type="number" th:field="*{acpower}"  min=100 max=1000000 step="1"/>
+               <p>Liczba MPPT [-]</p><input type="number" th:field="*{mppt}" min=1 max=10 step="1"/>
+               <p>Maksymalny prąd zwarcia [A]</p><input type="number" th:field="*{maxcurrentzwarcia}" min=0.01 max=100.00 step="0.01"/>
+               <p>Maksymalny prąd roboczy [A]</p><input type="number" th:field="*{maxcurrentrob}" min=0.01 max=100.00 step="0.01"/>
+               <p>Dolny zakres napięcia [V]</p><input type="number" th:field="*{dolnyzakresnapiecia}" min=1 max=1000 step="1"/>
+               <p>Górny zakres napięcia [V]</p><input type="number" placeholder="np.: 1000" th:field="*{gornyzakresnapiecia}" min=100 max=100000 step="1"/>
+               <p>Maksymalne napięcie pracy [V]</p><input type="number" th:field="*{maksymalnenapiecie}" min=100 max=100000 step="1" />
+               <p>Cena [zł]</p><input type="number" th:field="*{price}" min=0.01 max=999999.00 step="0.01"/>
+           </div>
+            <div id="buttons">
+                <button type="submit" class="btn-3">Aktualizuj</button>
+                <button class="btn-4" type="reset">Resetuj zmiany</button>
+                <a href="/inverter/list" class="btn-5" role="button">Powrót</a>
+            </div>
+        </form>
+        <div id="photo"><img id="photocontainer" th:src="@{/inverter.jpg}"></div>
+    </div>
+    <footer id="footer">
+        <p>Autor: Tomasz Sułkowski</p>
+        <p>Tel: +48790784812</p>
+        <p>Email: Tomasz.sulkowski@onet.pl</p>
+        <p>Github: TomaszSulkowski94</p>
+        <p>PV_APP</p>
+    </footer>
 </div>
 </body>
 </html>

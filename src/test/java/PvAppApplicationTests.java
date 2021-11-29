@@ -1,8 +1,10 @@
+
 import com.pvapp.PVApp.Repositories.DBRepositories.*;
 import com.pvapp.PVApp.Services.*;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -10,6 +12,7 @@ import org.junit.runners.Suite;
 		ProductionDBRepositoryTest.class,PVModuleDBRepoTest.class,QuestionFormDBRepoTest.class,TechnicalResultsDBTest.class,
 		ConstructionServiceTest.class, InstalationServiceTest.class, InverterServiceTest.class,PVModuleDBRepoTest.class,
 		QuestionFormDBRepoTest.class, PriceServiceTest.class, TechnicalResultServiceTest.class
+
 
 })
 

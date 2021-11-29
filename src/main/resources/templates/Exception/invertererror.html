@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Błąd kasowania falownika PV</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
-
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.5.3/bootstrap.min.js}"></script>
+    <title>Ups coś poszło nie tak</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/exceptionstyle.css}"/>
+    <meta name="description" content="PV_APP"/>
+    <meta name="keywords" content="Photovlatic, Fotowoltaika, OZE, PV , Instalacja elektryczna"/>
+    <meta name="author" content="Tomasz Sułkowski"/>
 </head>
 <body>
-<div class="container">
-    <h1 style="text-align: justify;">UPS coś poszło nie tak!</h1>
-    <h3 style="text-align: justify;"> Nie można skasować wybranego falownika, ponieważ jest on wykorzystywany w
-        zaprojektowanej instalacji!</h3>
-    <div class="row">
-        <a href="/inverter/list" class="btn btn-default" role="button">Powrót do listy falowników</button></a>
+<div id="container">
+    <nav id="nav">
+        <a href="/instalation/list" class="btn-2" role="button">Instalacje</a>
+        <a href="/modules/modulelist" class="btn-2" role="button">Moduły</a>
+        <a href="/inverter/list" class="btn-2" role="button">Falowniki</a>
+        <a href="/construction/list" class="btn-2" role="button">Konstrukcje</a>
+        <a href="/questionform/list" class="btn-2" role="button">Formularze</a>
+    </nav>
+    <div id="workspace">
+        <h1 style="text-align: center;">UPS coś poszło nie tak!</h1>
+        <h3 style="text-align: center;"> Nie można skasować wybranego falownika, ponieważ jest on wykorzystywana w zaprojektowanej instalacji!</h3>
+        <br>
+        <a href="/inverter/list" class="btn-5" role="button">Powrót do listy falowników</a>
     </div>
+    <footer id="footer">
+        <p>Autor: Tomasz Sułkowski</p>
+        <p>Tel: +48790784812</p>
+        <p>Email: Tomasz.sulkowski@onet.pl</p>
+        <p>Github: TomaszSulkowski94</p>
+        <p>PV_APP</p>
+    </footer>
 </div>
 </body>
 </html>

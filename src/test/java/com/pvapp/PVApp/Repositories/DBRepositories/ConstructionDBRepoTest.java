@@ -64,11 +64,11 @@ public class ConstructionDBRepoTest {
         //given
         construction = constructionDBRepo.printbyid(construction.getId());
         //when
-        construction.setId(2);
+        construction.setPrice(200.0);
         //then
         constructionDBRepo.update(construction);
-        Assert.assertNotNull(constructionDBRepo.printbyid(2));
-        Assert.assertEquals(constructionDBRepo.printbyid(2).getPrice(), 150, 0.001);
+        Assert.assertNotNull(constructionDBRepo.printbyid(construction.getId()));
+        Assert.assertEquals(constructionDBRepo.printbyid(construction.getId()).getPrice(), 200.0, 0.001);
     }
 
     @Test

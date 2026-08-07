@@ -14,6 +14,8 @@ manually. Github [_link_](https://github.com/TomaszSulkowski94/PV_App).
 * [Room for Improvement](#room-for-improvement)
 * [Contact](#contact)
 
+## Launching
+Running the program requires to use SDK 1.8 and language level 8.
 
 ## General Information
 This project was inspired my work as a project coordinator at photovoltaic company.
@@ -45,10 +47,6 @@ List the ready features here:
 - Export list of the components from database to pdf file
 - CRUD operations for components (PV modules, inverters, construction) and for designed installation
 - Creating a simple report with an offer after designing process
-
-<!-- TO BE ADDED after adding GUI -->
-<!--## Screenshots-->
-<!--[Example screenshot](./img/screenshot.png)-->
 
 ## Usage
 - Question form page: http://localhost:8080/questionform/create
@@ -98,14 +96,6 @@ Project is: in progress.
 ## Room for Improvement
 Room for improvement:
 - Refactor code
-
-To do:
-- Use spring security to create designer, sales account and add permissions
-- Create a simple GUI based on the bootstrap and CSS
-- Improve final report
-- Add send offers via email feature
-- Create customers DB to store potential customers
-- Adding offer status
 
 ## Contact
 Created by [@Tomasz Sułkowski](https://www.linkedin.com/in/tomasz-su%C5%82kowski/) - 

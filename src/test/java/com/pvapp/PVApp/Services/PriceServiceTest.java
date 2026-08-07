@@ -99,7 +99,7 @@ public class PriceServiceTest {
     public void getPrice() {
         //given
         //when
-        price = priceService.getPrice(instalation.getProduction().getId());
+        price = priceService.getPrice(instalation.getPrice().getId());
         //then
         Assert.assertNotNull(price);
     }

@@ -7,7 +7,6 @@ import com.pvapp.PVApp.Utils.Import.ExcelHelper;
 import com.pvapp.PVApp.Utils.PdfExporter.PdfExporterConstruction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,10 +29,6 @@ public class ConstructionController {
 
     @Autowired
     ConstructionService constructionService;
-
-    //To be implemented
-    @Autowired
-    ResourceLoader resourceLoader;
 
     @GetMapping("/list")
     public String getconstructions(Model model) {
@@ -133,12 +128,5 @@ public class ConstructionController {
 
         excelExporter.export(response);
     }
-
-//    @GetMapping("/uploadcsv")
-//    public String uploadCSV() {
-//        return "Construction/constructionimportcsv";
-//    }
-
-
 }
 

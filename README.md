@@ -88,14 +88,6 @@ List the ready features here:
 > You need to take all available components for this meeting. You need to open the components page and download components list
 > from the database system. After a meeting, your boss selected some components and changed their prices. To perform this action
 > you need to open components pages and click on the pencil icon to change the price.
- 
-
-## Project Status
-Project is: in progress.
-
-## Room for Improvement
-Room for improvement:
-- Refactor code
 
 ## Contact
 Created by [@Tomasz Sułkowski](https://www.linkedin.com/in/tomasz-su%C5%82kowski/) - 
